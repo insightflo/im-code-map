@@ -245,7 +245,7 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
             "answers": {
                 "who_starts": p.get("actor_label") or ", ".join(stream.get("actor_ids", [])[:2]),
                 "what_they_want": p.get("intent_label") or stream.get("purpose", ""),
-                "key_decisions": ", ".join(n["label"].split(". ",1)[-1] for n in flow_nodes if n.get("role") == "decision"),
+                "key_decisions": ", ".join(n["label"].split(". ",1)[-1] for n in flow_nodes if n.get("role") == "decision") or ("중심 판단: 요청이 접수되고 처리가 완료되는지 확인한다." if language == "ko" else "Core decision: whether the request is accepted and processing completes."),
                 "success_change": p.get("success_label") or success.get("observable_result", "")
             },
             "does_not_answer": session.get("scope", {}).get("out_of_scope", []) or ["Full implementation detail"],

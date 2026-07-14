@@ -240,10 +240,13 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
     content += "\n## Navigation\n\n- " + wikilink("start-here", "Architecture start") + "\n- " + wikilink("workspace-stream-map.canvas", "Workspace stream canvas")
     write(root, "visual-index.md", content)
 
-    # Compact indices create additional graph hubs.
-    write(root, "indexes/streams.md", frontmatter("index", "streams", model.get("confidence","UNVERIFIED")) + "# Business streams\n\n" + bullets(stream_links))
-    write(root, "indexes/domains.md", frontmatter("index", "domains", model.get("confidence","UNVERIFIED")) + "# Domains\n\n" + bullets(domain_links))
-    write(root, "indexes/states-rules.md", frontmatter("index", "states-rules", model.get("confidence","UNVERIFIED")) + "# States and rules\n\n" + bullets(state_links + [wikilink(f"../rules/{r['id']}", r["name"]) for r in rules.values()]))
+    # Compact indices create additional graph hubs. Their links are one level deeper than the root notes.
+    stream_index_links = [wikilink(f"../flows/{s['id']}", s["name"]) + f" · `{s['confidence']}`" for s in streams.values()]
+    domain_index_links = [wikilink(f"../domains/{d['id']}", d["name"]) for d in domains.values()]
+    state_index_links = [wikilink(f"../states/{m['id']}", m["name"]) for m in machines.values()]
+    write(root, "indexes/streams.md", frontmatter("index", "streams", model.get("confidence","UNVERIFIED")) + "# Business streams\n\n" + bullets(stream_index_links))
+    write(root, "indexes/domains.md", frontmatter("index", "domains", model.get("confidence","UNVERIFIED")) + "# Domains\n\n" + bullets(domain_index_links))
+    write(root, "indexes/states-rules.md", frontmatter("index", "states-rules", model.get("confidence","UNVERIFIED")) + "# States and rules\n\n" + bullets(state_index_links + [wikilink(f"../rules/{r['id']}", r["name"]) for r in rules.values()]))
 
 
 def main() -> int:

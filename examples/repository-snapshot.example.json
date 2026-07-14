@@ -1,0 +1,98 @@
+{
+  "schema_version": "5.2.0",
+  "workspace_id": "demo-commerce",
+  "repository": {
+    "provider": "fixture",
+    "owner": "im-code-map",
+    "name": "demo-commerce",
+    "full_name": "im-code-map/demo-commerce",
+    "repository_url": "https://example.invalid/im-code-map/demo-commerce",
+    "default_branch": "main",
+    "visibility": "public"
+  },
+  "snapshot": {
+    "ref_type": "commit",
+    "commit_sha": "1111111111111111111111111111111111111111",
+    "resolved_from": "main",
+    "commit_message": "Synthetic fixture for remote-snapshot validation",
+    "committed_at": "2026-07-14T00:00:00Z",
+    "captured_at": "2026-07-14T11:00:00+08:00"
+  },
+  "acquisition": {
+    "mode": "remote-connector-snapshot",
+    "connector": "fixture-repository-connector",
+    "local_checkout": false,
+    "codegraph": "NOT_REQUIRED",
+    "content_contract": {
+      "immutable_ref": true,
+      "blob_sha_per_file": true,
+      "line_ranges": true,
+      "no_unfetched_claims": true
+    }
+  },
+  "files": [
+    {
+      "path": "src/routes/orders.ts",
+      "ref": "1111111111111111111111111111111111111111",
+      "blob_sha": "2222222222222222222222222222222222222222",
+      "evidence_class": "route",
+      "purpose": "Order entry point fixture",
+      "line_ranges": [
+        { "start": 10, "end": 30, "excerpt": "POST /orders validates and calls the order service." }
+      ],
+      "fetched_at": "2026-07-14T11:00:00+08:00"
+    },
+    {
+      "path": "src/services/order-service.ts",
+      "ref": "1111111111111111111111111111111111111111",
+      "blob_sha": "3333333333333333333333333333333333333333",
+      "evidence_class": "service",
+      "purpose": "Order orchestration fixture",
+      "line_ranges": [
+        { "start": 40, "end": 100, "excerpt": "Member, product, stock, and payment checks are orchestrated." }
+      ],
+      "fetched_at": "2026-07-14T11:00:00+08:00"
+    },
+    {
+      "path": "src/services/order-service.test.ts",
+      "ref": "1111111111111111111111111111111111111111",
+      "blob_sha": "4444444444444444444444444444444444444444",
+      "evidence_class": "test",
+      "purpose": "Order lifecycle fixture test",
+      "line_ranges": [
+        { "start": 20, "end": 80, "excerpt": "The test asserts the happy path and payment failure compensation." }
+      ],
+      "fetched_at": "2026-07-14T11:00:00+08:00"
+    },
+    {
+      "path": "src/schema/orders.ts",
+      "ref": "1111111111111111111111111111111111111111",
+      "blob_sha": "5555555555555555555555555555555555555555",
+      "evidence_class": "schema",
+      "purpose": "Order state fixture",
+      "line_ranges": [
+        { "start": 1, "end": 35, "excerpt": "Order status and timestamps are persisted." }
+      ],
+      "fetched_at": "2026-07-14T11:00:00+08:00"
+    }
+  ],
+  "coverage": {
+    "fetched_file_count": 4,
+    "evidence_classes": ["route", "service", "test", "schema"],
+    "cross_checks": [
+      {
+        "claim": "Order creation follows route to service and is asserted by tests against persisted state.",
+        "classes": ["route", "service", "test", "schema"]
+      }
+    ],
+    "unresolved_paths": ["External payment provider internals are not part of the fixture."],
+    "limitations": ["Synthetic package fixture; not a claim about a real repository."]
+  },
+  "integrity": {
+    "immutable_ref": true,
+    "all_files_pinned": true,
+    "all_ranges_valid": true,
+    "result": "PASS",
+    "notes": ["All fixture evidence is pinned to the same synthetic commit."]
+  }
+}

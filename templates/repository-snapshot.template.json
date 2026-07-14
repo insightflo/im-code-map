@@ -1,0 +1,48 @@
+{
+  "schema_version": "5.2.0",
+  "workspace_id": "WORKSPACE_ID",
+  "repository": {
+    "provider": "github",
+    "owner": "OWNER",
+    "name": "REPOSITORY",
+    "full_name": "OWNER/REPOSITORY",
+    "repository_url": "https://github.com/OWNER/REPOSITORY",
+    "default_branch": "main",
+    "visibility": "unknown"
+  },
+  "snapshot": {
+    "ref_type": "commit",
+    "commit_sha": "0000000000000000000000000000000000000000",
+    "resolved_from": "main",
+    "commit_message": null,
+    "committed_at": null,
+    "captured_at": "ISO-8601"
+  },
+  "acquisition": {
+    "mode": "remote-connector-snapshot",
+    "connector": "github",
+    "local_checkout": false,
+    "codegraph": "NOT_REQUIRED",
+    "content_contract": {
+      "immutable_ref": true,
+      "blob_sha_per_file": true,
+      "line_ranges": true,
+      "no_unfetched_claims": true
+    }
+  },
+  "files": [],
+  "coverage": {
+    "fetched_file_count": 0,
+    "evidence_classes": [],
+    "cross_checks": [],
+    "unresolved_paths": [],
+    "limitations": []
+  },
+  "integrity": {
+    "immutable_ref": true,
+    "all_files_pinned": true,
+    "all_ranges_valid": true,
+    "result": "PARTIAL",
+    "notes": []
+  }
+}

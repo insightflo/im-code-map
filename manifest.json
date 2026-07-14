@@ -1,9 +1,9 @@
 {
   "name": "im-code-map",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "created_at": "2026-07-06",
   "updated_at": "2026-07-14",
-  "description": "Human-first, evidence-grounded codebase understanding with a default Focus profile, a shared Deep Atlas, and a reusable native-Excalidraw visual design system.",
+  "description": "Human-first, evidence-grounded codebase understanding with Focus and Deep Atlas profiles, supporting both local CodeGraph analysis and immutable remote repository snapshots.",
   "status": "validated",
   "requires_preflight_gate": true,
   "mandatory_preflight": true,
@@ -14,8 +14,6 @@
   ],
   "default_policy": "QUESTION_SCOPED_PROGRESSIVE_DISCLOSURE_WITH_NO_SILENT_FALLBACK",
   "required_tools_for_normal_mode": [
-    "git",
-    "codegraph",
     "python3"
   ],
   "default_documentation_provider": "agent-native-docs",
@@ -45,6 +43,7 @@
   ],
   "primary_outputs": [
     "understanding session and routing decision",
+    "repository snapshot and acquisition integrity report",
     "coverage and explicit unknown boundaries",
     "shared evidence ledger and business stream model",
     "human overview and Focus Excalidraw flow",
@@ -58,6 +57,7 @@
   "commands": [
     "/im-code-map tools-check",
     "/im-code-map init",
+    "/im-code-map snapshot-check",
     "/im-code-map orient",
     "/im-code-map trace",
     "/im-code-map explain",
@@ -75,5 +75,39 @@
     "whiteboard"
   ],
   "default_visual_theme": "clean",
-  "bundled_stencil_library": "libraries/im-code-map-architecture.excalidrawlib"
+  "bundled_stencil_library": "libraries/im-code-map-architecture.excalidrawlib",
+  "normal_evidence_modes": {
+    "local-codegraph": {
+      "required": [
+        "git",
+        "codegraph",
+        "python3"
+      ]
+    },
+    "remote-connector-snapshot": {
+      "required": [
+        "immutable-commit-ref",
+        "repository-connector",
+        "python3"
+      ]
+    },
+    "hybrid": {
+      "required": [
+        "git-or-repository-connector",
+        "immutable-commit-ref",
+        "python3"
+      ]
+    }
+  },
+  "required_tools_for_local_codegraph_mode": [
+    "git",
+    "codegraph",
+    "python3"
+  ],
+  "required_capabilities_for_remote_snapshot_mode": [
+    "immutable-commit-ref",
+    "repository-connector",
+    "file-content-with-blob-sha",
+    "python3"
+  ]
 }

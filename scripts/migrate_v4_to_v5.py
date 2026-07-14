@@ -56,7 +56,7 @@ def reader_contract(diagram:dict[str,Any])->dict[str,Any]:
 def main()->int:
     ap=argparse.ArgumentParser(description=__doc__); ap.add_argument("v4_map",type=Path); ap.add_argument("v4_visual",type=Path); ap.add_argument("output_dir",type=Path)
     a=ap.parse_args(); out=a.output_dir; out.mkdir(parents=True,exist_ok=True); now=datetime.now(timezone.utc).isoformat()
-    m=normalize_atlas_paths(read_json(a.v4_map)); m["schema_version"]="5.0.0"; m["profile_support"]={"default_profile":"focus","supported_profiles":["focus","atlas"],"default_workflows":["orient","trace","explain","before-change","debug","expand"],"atlas_escalation_triggers":TRIGGERS}
+    m=normalize_atlas_paths(read_json(a.v4_map)); m["schema_version"]="5.0.0"; m["repository_snapshot"]=None; m.setdefault("tool_status",{}).update({"evidence_mode":"degraded","snapshot":"NOT_APPLICABLE"}); m["profile_support"]={"default_profile":"focus","supported_profiles":["focus","atlas"],"default_workflows":["orient","trace","explain","before-change","debug","expand"],"atlas_escalation_triggers":TRIGGERS}
     v=normalize_atlas_paths(read_json(a.v4_visual)); v["schema_version"]="5.0.0"; v["profile"]="atlas"; v["source_understanding_session"]=None; v["reader_policy"]={"intended_reader":"reviewer","primary_question":"Migrated v4 Atlas; establish a real v5 understanding question before using Focus.","first_view_target_seconds":180,"detail_policy":"full-detail","implementation_identifiers":"notes-only","max_primary_story_nodes":30,"failure_detail_mode":"full-branches","show_step_numbers":False}
     for d in v.get("diagrams",[]): d["profile"]="atlas"; d.setdefault("reader_contract",reader_contract(d))
     stream=(m.get("business_streams") or [{}])[0].get("id")

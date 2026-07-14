@@ -24,6 +24,29 @@ def validate(data: dict[str, Any]) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
 
+    tool_status = data.get("tool_status", {})
+    evidence_mode = tool_status.get("evidence_mode")
+    snapshot_status = tool_status.get("snapshot")
+    codegraph_status = tool_status.get("codegraph")
+    normal_mode = tool_status.get("normal_mode") is True
+    if evidence_mode not in {"local-codegraph", "remote-connector-snapshot", "hybrid", "degraded"}:
+        errors.append("tool_status.evidence_mode must declare how evidence was acquired")
+    if evidence_mode == "local-codegraph":
+        if codegraph_status not in {"READY", "PARTIAL"}:
+            errors.append("local-codegraph mode requires CodeGraph READY or PARTIAL")
+        if snapshot_status not in {"NOT_APPLICABLE", "PARTIAL"}:
+            errors.append("local-codegraph mode snapshot status must be NOT_APPLICABLE or PARTIAL")
+    if evidence_mode in {"remote-connector-snapshot", "hybrid"}:
+        if snapshot_status not in {"READY", "PARTIAL"}:
+            errors.append("remote/hybrid mode requires a READY or PARTIAL repository snapshot")
+        if not data.get("repository_snapshot"):
+            errors.append("remote/hybrid mode requires repository_snapshot path")
+        remote_tools = {str(item.get("name", "")).lower() for item in data.get("source_tools", [])}
+        if not any(name in remote_tools for name in {"github-connector", "gitlab-connector", "repository-connector", "remote-repository"}):
+            errors.append("remote/hybrid mode requires a repository connector source tool")
+    if normal_mode and evidence_mode == "degraded":
+        errors.append("normal_mode cannot use degraded evidence_mode")
+
     profile_support = data.get("profile_support", {})
     if profile_support.get("default_profile") != "focus":
         errors.append("map-model v5 default_profile must be focus")
@@ -259,11 +282,8 @@ def main() -> int:
         print(f"FAIL: {message}")
     if not errors:
         print(f"PASS: map-model schema and stream semantics ({len(data.get('business_streams', []))} streams)")
-    # jsonschema is an optional dependency in the skill spec; its absence is a skip warning,
-    # not a strict-mode failure. Only genuine semantic/schema warnings are fatal under --strict-warnings.
-    strict_warnings = [w for w in warnings if not w.startswith("jsonschema")]
     print(f"SUMMARY errors={len(errors)} warnings={len(warnings)}")
-    return 1 if errors or (args.strict_warnings and strict_warnings) else 0
+    return 1 if errors or (args.strict_warnings and warnings) else 0
 
 
 if __name__ == "__main__":

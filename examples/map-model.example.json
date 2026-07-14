@@ -41,7 +41,9 @@
     "documentation": "AGENT_NATIVE",
     "notes": [
       "Payment adapter behavior remains PARTIAL because the example snapshot omits provider implementation."
-    ]
+    ],
+    "evidence_mode": "local-codegraph",
+    "snapshot": "NOT_APPLICABLE"
   },
   "documentation_provider": "agent-native-docs",
   "codebases": [
@@ -2873,5 +2875,6 @@
       "broad-state-change",
       "user-request"
     ]
-  }
+  },
+  "repository_snapshot": null
 }

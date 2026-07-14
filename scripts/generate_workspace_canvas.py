@@ -25,7 +25,7 @@ def generate(model: dict[str, Any], visual: dict[str, Any], prefix: str) -> dict
     streams = model.get("business_streams", []); domains = model.get("domains", [])
     states = model.get("state_machines", []); entities = model.get("entities", [])
     codebases = model.get("codebases", []); rules = model.get("business_rules", [])
-    diagrams = {d["id"]: d for d in visual.get("diagrams", [])}
+    diagrams = list(visual.get("diagrams", []))
 
     start = node("file", "start-here", 40, 40, 360, 220, file=f"{prefix}/start-here.md")
     visual_index = node("file", "visual-index", 450, 40, 340, 220, file=f"{prefix}/visual-index.md")
@@ -41,7 +41,18 @@ def generate(model: dict[str, Any], visual: dict[str, Any], prefix: str) -> dict
     for i, stream in enumerate(streams):
         y = 400 + i*330
         note = node("file", f"stream-note:{stream['id']}", 80, y, 440, 210, file=f"{prefix}/flows/{stream['id']}.md")
-        diag_name = Path(stream.get("diagram_paths", [f"{stream['id']}.excalidraw"])[0]).name
+        # The map-model may list both Focus and Atlas drawing paths.  This Canvas is
+        # generated from an Atlas visual model, so resolve the child by visual source_ref
+        # instead of blindly taking diagram_paths[0] and re-prefixing it under /atlas.
+        visual_diagram = next((
+            item for item in diagrams
+            if item.get("type") == "business-stream" and stream["id"] in item.get("source_refs", [])
+        ), None)
+        if visual_diagram:
+            diag_name = f"{visual_diagram['id']}.excalidraw"
+        else:
+            candidates = [Path(path).name for path in stream.get("diagram_paths", []) if "/atlas/" in str(path).replace("\\", "/")]
+            diag_name = candidates[0] if candidates else f"stream-{stream['id']}.excalidraw"
         diag = node("file", f"stream-diagram:{stream['id']}", 570, y, 500, 210, file=f"{prefix}/excalidraw/{diag_name}")
         summary = node("text", f"stream-summary:{stream['id']}", 1120, y, 590, 210,
                        text=f"**Trigger**: {stream['trigger']['event']}\n\n**Entry**: `{stream['trigger']['entry_point']}`\n\n**Terminal outcomes**: {len(stream.get('outcomes', []))}\n\n**Confidence**: `{stream['confidence']}`")

@@ -102,6 +102,17 @@ def validate(path: Path) -> tuple[list[str], list[str]]:
     generated_source = str(scene.get("source", "")).startswith("im-code-map-v5.1") or root_meta.get("generated")
     if generated_source and root_meta.get("designSystemVersion") != "1.0.0":
         errors.append("generated scene is missing designSystemVersion=1.0.0")
+    nav_text_elements = [e for e in elements if custom(e).get("role") == "navigation-button-text"]
+    nav_labels: dict[str, set[str]] = defaultdict(set)
+    for element in nav_text_elements:
+        label = str(element.get("text", "")).strip()
+        link = str(element.get("link", "")).strip()
+        if label:
+            nav_labels[label].add(link)
+    for label, links in nav_labels.items():
+        if len(links) > 1:
+            errors.append(f"navigation label {label!r} points to multiple destinations; labels must identify the target")
+
     if diagram_type in {"human-overview", "focus-flow"}:
         visible_text = [str(e.get("text", "")) for e in elements if e.get("type") == "text"]
         if any("[[" in value or "]]" in value for value in visible_text):

@@ -1,10 +1,10 @@
 ---
 name: im-code-map
-description: Human-first, evidence-grounded codebase understanding. Defaults to a question-scoped Focus map and preserves a full Deep Atlas for risky changes, audits, takeovers, and detailed architecture work. Generates progressive Excalidraw views, linked Obsidian notes, machine-readable evidence, explicit unknowns, and render-based visual QA.
-version: 5.1.0
+description: Human-first, evidence-grounded codebase understanding. Defaults to a question-scoped Focus map, preserves a full Deep Atlas, and supports either local CodeGraph analysis or immutable remote repository snapshots. Generates progressive Excalidraw views, linked Obsidian notes, machine-readable evidence, explicit unknowns, and render-based visual QA.
+version: 5.2.0
 ---
 
-# im-code-map v5.1.0
+# im-code-map v5.2.0
 
 ## 1. Mission
 
@@ -200,14 +200,20 @@ python scripts/route_profile.py \
 
 ## 5. Tool policy
 
-### 5.1 Required in normal mode
+### 5.1 Normal evidence modes
+
+Normal mode is defined by evidence integrity, not by whether the repository happens to be mounted locally. Choose exactly one acquisition mode and record it in `tool_status.evidence_mode`.
+
+#### A. `local-codegraph`
+
+Required:
 
 - Git
 - CodeGraph CLI
 - Python 3.10+
 - writable architecture output directory
 
-CodeGraph is the structure and impact evidence source in normal mode. Initialize it at the repository or multi-repository workspace root, never at a home directory merely to make the command stop complaining.
+CodeGraph is the structure and impact evidence source in this mode. Initialize it at the repository or multi-repository workspace root, never at a home directory merely to make the command stop complaining.
 
 Recommended commands:
 
@@ -224,6 +230,31 @@ python3 --version
 ```
 
 Use `explore` to discover the end-to-end candidate, then focused JSON commands to establish traceable structure evidence.
+
+#### B. `remote-connector-snapshot`
+
+Use this when a repository connector can read repository metadata and file contents but a local checkout or CodeGraph is unavailable.
+
+Required:
+
+- repository identity and default branch from the connector;
+- a full immutable commit SHA resolved before analysis;
+- every fetched file read at that exact SHA;
+- a blob SHA for every fetched file;
+- exact line ranges and short excerpts for every material claim;
+- route/service/test/schema cross-checks where those evidence classes exist;
+- `architecture/machine/repository-snapshot.json` passing `validate_repository_snapshot.py`;
+- Python 3.10+ and a writable output directory.
+
+In this mode CodeGraph is `NOT_REQUIRED`, not `BLOCKED`. The connector snapshot is normal evidence only while all claims stay inside fetched content. Repository search results, filenames, commit messages, README prose, and generated docs are discovery aids until the underlying file content is fetched at the pinned SHA.
+
+Do not infer an unfetched caller, callee, runtime branch, or state transition merely because a name suggests one. Put the unresolved edge in `coverage.json` instead.
+
+#### C. `hybrid`
+
+Use a pinned connector snapshot together with a local checkout or CodeGraph. The commit identities must match. Any mismatch is `CONFLICT` until resolved.
+
+See `references/remote-snapshot-mode.md`.
 
 ### 5.2 Documentation provider
 
@@ -276,12 +307,14 @@ Check:
 
 If CodeGraph is unavailable:
 
-1. stop normal mode;
-2. state the exact missing requirement;
-3. provide installation or initialization guidance;
+1. check whether `remote-connector-snapshot` can meet the immutable-ref, blob-SHA, line-range, and cross-check contract;
+2. if it can, continue in normal remote snapshot mode and mark CodeGraph `NOT_REQUIRED`;
+3. if it cannot, stop normal mode and state the exact missing evidence capability;
 4. continue only under explicit degraded authorization;
 5. mark affected claims `PARTIAL` or `UNVERIFIED`;
-6. do not call recursive grep equivalent to a graph trace.
+6. do not use recursive text search as a pretend call graph.
+
+The preflight report must state which evidence mode was selected and why. A network failure during `git clone` is not itself evidence degradation when the connector can still produce a valid immutable snapshot. Conversely, a connector that exposes only repository names or search snippets is not enough for normal mode.
 
 ## 7. Shared evidence layer
 
@@ -291,7 +324,8 @@ The profiles share these machine files:
 architecture/machine/
   tool-preflight-report.md
   workspace-registry.json
-  codegraph-evidence.json
+  repository-snapshot.json   # remote/hybrid mode; null/not applicable in local mode
+  codegraph-evidence.json    # local/hybrid mode
   evidence-ledger.json
   map-model.json
   understanding-session.json
@@ -299,6 +333,18 @@ architecture/machine/
   focus-visual-model.json
   atlas-visual-model.json
 ```
+
+### 7.0 Repository snapshot integrity
+
+For remote or hybrid evidence, run:
+
+```bash
+python scripts/validate_repository_snapshot.py \
+  architecture/machine/repository-snapshot.json \
+  --strict-warnings
+```
+
+The snapshot is an acquisition ledger, not a substitute for the semantic map. It proves which immutable files were actually inspected and which claims remain outside coverage.
 
 ### 7.1 Confidence
 
@@ -779,6 +825,7 @@ A delivery is complete only when:
 
 ```text
 /im-code-map tools-check
+/im-code-map snapshot-check
 /im-code-map init
 /im-code-map orient
 /im-code-map trace "<behavior>"

@@ -1,5 +1,30 @@
 # Changelog
 
+## 5.2.0 — 2026-07-14
+
+### Immutable remote repository evidence
+
+- Added `remote-connector-snapshot` and `hybrid` as normal evidence modes alongside local CodeGraph analysis.
+- Added `repository-snapshot.json`, a schema, template, example, and validator for full commit SHA, per-file blob SHA, exact line ranges, evidence classes, cross-checks, and explicit limitations.
+- Changed CodeGraph handling so it is `NOT_REQUIRED` when a repository connector satisfies the immutable snapshot contract, rather than incorrectly forcing degraded mode.
+- Added exact remote evidence locator fields (`ref`, `blob_sha`, line range, evidence class, URL) to machine-model evidence objects.
+- Added conditional map-model validation for local, remote, hybrid, and degraded acquisition modes.
+
+### Validation and documentation
+
+- Extended clean-room package validation to exercise the repository snapshot validator.
+- Added remote snapshot preflight, confidence, and no-unfetched-claims rules.
+
+### Papercompany runtime field fixes
+
+- Capped generated Focus card summaries at the declared word budget while retaining full traceability in linked Atlas notes.
+- Removed commerce-demo phase headings and order/product/payment icon overrides from the generic Focus renderer. Phase titles and icons now come from the active visual model.
+- Replaced the fixed six-card `Ordering` domain layout with an adaptive contract-chain, supporting-boundary, and persistence-foundation layout.
+- Increased Atlas transition spacing so guard/contract labels no longer sit on top of state and workflow cards.
+- Fixed Atlas Canvas drawing resolution so a stream with both Focus and Atlas paths links to the child declared by the supplied Atlas visual model.
+- Disambiguated Atlas navigation labels by actual destination and made duplicate visible labels with different links a validation error.
+- Added a state-machine-specific branch layout: the normal success spine stays on the top row while pause, blocked, failed, skipped, cancelled, and other alternate states appear below without implying false sequential transitions.
+
 ## 5.1.0 — 2026-07-14
 
 ### Excalidraw presentation redesign

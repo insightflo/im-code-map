@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import py_compile
 import shutil
 import subprocess
@@ -20,7 +19,7 @@ import tempfile
 from pathlib import Path
 from typing import Iterable
 
-VERSION = "5.1.0"
+VERSION = "5.2.0"
 
 
 def fail(message: str) -> None:
@@ -39,9 +38,7 @@ def run(cmd: list[str], *, cwd: Path) -> None:
     # pipes can stall long clean-room runs in constrained agent containers, while inheriting the
     # current stdout/stderr preserves the same audit trail without buffering surprises.
     print("RUN:", " ".join(cmd), flush=True)
-    env = dict(os.environ)
-    env["PYTHONDONTWRITEBYTECODE"] = "1"
-    result = subprocess.run(cmd, cwd=cwd, text=True, env=env)
+    result = subprocess.run(cmd, cwd=cwd, text=True)
     if result.returncode:
         fail(f"command failed with exit code {result.returncode}: {' '.join(cmd)}")
 
@@ -75,11 +72,18 @@ def validate_frontmatter(skill_path: Path) -> None:
         "6–12 numbered primary-story nodes", "Mandatory Atlas escalation triggers",
         "human-overview.excalidraw", "atlas-master", "validate_human_understanding.py",
         "openwiki code --init", "CodeGraph", "im-code-map-architecture.excalidrawlib",
-        "whiteboard", "curated section index",
+        "whiteboard", "curated section index", "remote-connector-snapshot", "repository-snapshot.json",
     ]
     absent = [p for p in phrases if p not in text]
     if absent:
         fail(f"SKILL.md is missing v5 policies: {absent}")
+    renderer = (skill_path.parent / "scripts/generate_excalidraw_from_visual_model.py").read_text(encoding="utf-8")
+    leaked_demo_phrases = [
+        phrase for phrase in ("주문 가능성 확인", "재고와 결제 준비", "Ordering이 중심 조정자")
+        if phrase in renderer
+    ]
+    if leaked_demo_phrases:
+        fail(f"generic renderer contains demo-domain hardcoding: {leaked_demo_phrases}")
     print("OK: SKILL.md frontmatter and v5 Focus/Atlas policies")
 
 
@@ -93,9 +97,15 @@ def validate_manifest(root: Path) -> None:
         fail("manifest must support focus and atlas")
     if manifest.get("default_documentation_provider") != "agent-native-docs":
         fail("default documentation provider must be agent-native-docs")
-    required_tools = set(manifest.get("required_tools_for_normal_mode", []))
-    if not {"git", "codegraph", "python3"}.issubset(required_tools):
-        fail("normal mode must require git, codegraph, and python3")
+    modes = manifest.get("normal_evidence_modes", {})
+    if not {"local-codegraph", "remote-connector-snapshot", "hybrid"}.issubset(set(modes)):
+        fail("manifest must declare local, remote snapshot, and hybrid normal evidence modes")
+    local_required = set((modes.get("local-codegraph") or {}).get("required", []))
+    remote_required = set((modes.get("remote-connector-snapshot") or {}).get("required", []))
+    if not {"git", "codegraph", "python3"}.issubset(local_required):
+        fail("local-codegraph mode must require git, codegraph, and python3")
+    if not {"immutable-commit-ref", "repository-connector", "python3"}.issubset(remote_required):
+        fail("remote snapshot mode must require an immutable ref, connector, and python3")
     outputs = " ".join(manifest.get("primary_outputs", [])).lower()
     for phrase in ("understanding session", "coverage", "focus", "atlas", "obsidian", "stencil library"):
         if phrase not in outputs:
@@ -106,7 +116,7 @@ def validate_manifest(root: Path) -> None:
         fail("manifest visual_themes must include clean and whiteboard")
     if manifest.get("bundled_stencil_library") != "libraries/im-code-map-architecture.excalidrawlib":
         fail("manifest bundled_stencil_library path mismatch")
-    print("OK: manifest v5.1 policy")
+    print("OK: manifest v5.2 local/remote evidence policy")
 
 
 def validate_json_files(root: Path) -> None:
@@ -118,11 +128,6 @@ def validate_json_files(root: Path) -> None:
 
 
 def validate_clean_tree(root: Path) -> None:
-    # Drop any bytecode caches produced by validation subprocesses before scanning, so the
-    # checker does not flag its own side effects as transient package files.
-    for cached in root.rglob("__pycache__"):
-        if cached.is_dir() and "/.git/" not in cached.as_posix():
-            shutil.rmtree(cached, ignore_errors=True)
     junk=[]
     for path in root.rglob("*"):
         if path.name in {".DS_Store", "__pycache__"} or path.suffix in {".pyc", ".pyo"}:
@@ -173,7 +178,7 @@ def validate_stencil_library(root: Path) -> None:
     preview = read_json(preview_path)
     meta = preview.get("imCodeMap") or {}
     if meta.get("designSystemVersion") != "1.0.0" or meta.get("diagramType") != "stencil-library":
-        fail("stencil preview lacks v5.1 design metadata")
+        fail("stencil preview lacks design-system metadata")
     for path in (root / "libraries/previews").glob("*.png"):
         if path.read_bytes()[:8] != b"\x89PNG\r\n\x1a\n":
             fail(f"invalid stencil preview PNG signature: {path}")
@@ -273,6 +278,7 @@ step "$PY" "$ROOT/scripts/validate_excalidraw_output.py" \
 step "$PY" "$ROOT/scripts/render_excalidraw_preview.py" \
   {q(generated_library_preview)} "$LIBRARY_DIR/preview.svg"
 
+step "$PY" "$ROOT/scripts/validate_repository_snapshot.py" "$EX/repository-snapshot.example.json" --strict-warnings
 step "$PY" "$ROOT/scripts/validate_map_model.py" {q(map_model)} --strict-warnings
 step "$PY" "$ROOT/scripts/validate_understanding_session.py" {q(session)} --map-model {q(map_model)}
 step "$PY" "$ROOT/scripts/validate_coverage.py" {q(coverage)} --session {q(session)} --strict-warnings
@@ -360,20 +366,20 @@ def main()->int:
     required=[
       "SKILL.md","README.md","CHANGELOG.md","sources.md","manifest.json",
       "templates/map-model.schema.json","templates/visual-model.schema.json","templates/workspace-registry.schema.json",
-      "templates/understanding-session.schema.json","templates/coverage.schema.json","templates/evidence-ledger.schema.json",
-      "templates/understanding-session.template.json","templates/coverage.template.json","templates/evidence-ledger.template.json",
+      "templates/understanding-session.schema.json","templates/coverage.schema.json","templates/evidence-ledger.schema.json","templates/repository-snapshot.schema.json",
+      "templates/understanding-session.template.json","templates/coverage.template.json","templates/evidence-ledger.template.json","templates/repository-snapshot.template.json",
       "templates/focus-flow.template.md","templates/start-here.template.md",
       "references/evidence-extraction.md","references/visual-design-rules.md","references/obsidian-linking-rules.md",
       "references/icon-policy.md","references/legacy-migration.md","references/focus-vs-atlas.md",
-      "references/human-understanding-quality-gates.md","references/progressive-disclosure.md",
+      "references/human-understanding-quality-gates.md","references/progressive-disclosure.md","references/remote-snapshot-mode.md",
       "references/excalidraw-design-system.md","references/external-library-policy.md","icons/icon-registry.json",
-      "reviews/v5.1-visual-design-review.ko.md","reviews/validation-summary.md",
+      "reviews/v5.1-visual-design-review.ko.md","reviews/v5.2-remote-snapshot-review.ko.md","reviews/v5.2-papercompany-runtime-field-review.ko.md","reviews/validation-summary.md",
       "templates/excalidraw-design-system.json","libraries/README.md",
       "libraries/im-code-map-architecture.excalidrawlib","libraries/im-code-map-architecture-preview.excalidraw",
       "libraries/previews/im-code-map-architecture-preview.svg","libraries/previews/im-code-map-architecture-preview.png",
-      "scripts/excalidraw_design_system.py","scripts/generate_excalidraw_stencil_library.py",
+      "scripts/excalidraw_design_system.py","scripts/generate_excalidraw_stencil_library.py","scripts/validate_repository_snapshot.py",
       "examples/map-model.example.json","examples/focus-visual-model.example.json","examples/atlas-visual-model.example.json",
-      "examples/understanding-session.example.json","examples/coverage.example.json","examples/evidence-ledger.example.json",
+      "examples/understanding-session.example.json","examples/coverage.example.json","examples/evidence-ledger.example.json","examples/repository-snapshot.example.json",
       "examples/workspace-registry.example.json","examples/demo-commerce/source-snapshot.md",
     ]
     try:

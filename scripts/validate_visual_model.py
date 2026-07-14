@@ -180,8 +180,7 @@ def main() -> int:
     if not errors:
         print(f"PASS: visual-model schema, stream semantics, and composition references ({len(data.get('diagrams', []))} diagrams)")
     print(f"SUMMARY errors={len(errors)} warnings={len(warnings)}")
-    strict_warnings = [x for x in warnings if not x.startswith("jsonschema")]
-    return 1 if errors or (args.strict_warnings and strict_warnings) else 0
+    return 1 if errors or (args.strict_warnings and warnings) else 0
 
 
 if __name__ == "__main__":

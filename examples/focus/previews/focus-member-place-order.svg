@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1851" height="1581" viewBox="-12.00 -22.00 1851.00 1581.00">
-<rect x="-12.00" y="-22.00" width="1851.00" height="1581.00" fill="#F7F8FC"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1851" height="1629" viewBox="-12.00 -22.00 1851.00 1629.00">
+<rect x="-12.00" y="-22.00" width="1851.00" height="1629.00" fill="#F7F8FC"/>
 <rect x="55.00" y="215.00" width="1724.00" height="270.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="48.00" y="208.00" width="1724.00" height="270.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
 <rect x="55.00" y="515.00" width="1724.00" height="270.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="48.00" y="508.00" width="1724.00" height="270.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
 <rect x="55.00" y="815.00" width="1724.00" height="270.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="48.00" y="808.00" width="1724.00" height="270.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
-<rect x="55.00" y="1377.00" width="1724.00" height="122.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="48.00" y="1370.00" width="1724.00" height="122.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
+<rect x="55.00" y="1425.00" width="1724.00" height="122.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="48.00" y="1418.00" width="1724.00" height="122.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
 <rect x="185.00" y="327.00" width="354.00" height="138.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="573.00" y="327.00" width="354.00" height="138.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="961.00" y="327.00" width="354.00" height="138.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
@@ -20,9 +20,9 @@
 <rect x="573.00" y="927.00" width="354.00" height="138.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="961.00" y="927.00" width="354.00" height="138.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="1349.00" y="927.00" width="354.00" height="138.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="55.00" y="1185.00" width="548.00" height="170.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="637.00" y="1185.00" width="548.00" height="170.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="1219.00" y="1185.00" width="548.00" height="170.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="55.00" y="1185.00" width="548.00" height="218.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="637.00" y="1185.00" width="548.00" height="218.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1219.00" y="1185.00" width="548.00" height="218.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <polyline points="537.00,389.00 561.00,389.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="561.00,389.00 542.00,397.55 542.00,380.45" fill="#4F46E5" opacity="1.000"/>
 <polyline points="925.00,389.00 949.00,389.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="949.00,389.00 930.00,397.55 930.00,380.45" fill="#4F46E5" opacity="1.000"/>
 <polyline points="1313.00,389.00 1337.00,389.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1337.00,389.00 1318.00,397.55 1318.00,380.45" fill="#4F46E5" opacity="1.000"/>
@@ -45,11 +45,10 @@
 <rect x="76.00" y="530.00" width="88.00" height="30.00" rx="5.40" stroke="#7F56D9" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
 <rect x="48.00" y="808.00" width="8.00" height="270.00" rx="0.64" stroke="#0E7490" fill="#0E7490" stroke-width="0.0" opacity="1.000"/>
 <rect x="76.00" y="830.00" width="88.00" height="30.00" rx="5.40" stroke="#0E7490" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
-<rect x="48.00" y="1370.00" width="8.00" height="122.00" rx="0.64" stroke="#98A2B3" fill="#98A2B3" stroke-width="0.0" opacity="1.000"/>
+<rect x="48.00" y="1418.00" width="8.00" height="122.00" rx="0.64" stroke="#98A2B3" fill="#98A2B3" stroke-width="0.0" opacity="1.000"/>
 <rect x="178.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
 <rect x="178.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
 <rect x="193.00" y="335.00" width="44.00" height="44.00" rx="3.52" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
-<rect x="204.38" y="342.12" width="21.25" height="29.75" rx="1.70" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="181.00" cy="323.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
 <rect x="566.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
 <rect x="566.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
@@ -61,7 +60,8 @@
 <rect x="954.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
 <rect x="954.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
 <rect x="969.00" y="335.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
-<ellipse cx="985.68" cy="351.69" rx="2.12" ry="2.12" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="991.00" cy="357.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="991.00" cy="367.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="957.00" cy="323.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
 <rect x="1224.00" y="424.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
 <rect x="1342.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
@@ -89,7 +89,7 @@
 <rect x="1342.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#C11574" fill="#FDF2FA" stroke-width="1.6" opacity="1.000"/>
 <rect x="1342.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#C11574" fill="#C11574" stroke-width="0.0" opacity="1.000"/>
 <rect x="1357.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#FDF2FA" fill="#FDF2FA" stroke-width="0.0" opacity="1.000"/>
-<rect x="1364.12" y="647.44" width="29.75" height="21.25" rx="2.38" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="1379.00" cy="657.00" rx="13.81" ry="13.81" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="1345.00" cy="623.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
 <rect x="178.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
 <rect x="178.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
@@ -110,15 +110,15 @@
 <rect x="1342.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
 <rect x="1357.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
 <ellipse cx="1345.00" cy="923.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="48.00" y="1178.00" width="548.00" height="170.00" rx="18.00" stroke="#D92D20" fill="#FEF3F2" stroke-width="2.2" opacity="1.000"/>
+<rect x="48.00" y="1178.00" width="548.00" height="218.00" rx="18.00" stroke="#D92D20" fill="#FEF3F2" stroke-width="2.2" opacity="1.000"/>
 <rect x="48.00" y="1178.00" width="548.00" height="6.00" rx="1.08" stroke="#D92D20" fill="#D92D20" stroke-width="0.0" opacity="1.000"/>
 <rect x="66.00" y="1196.00" width="52.00" height="52.00" rx="4.16" stroke="#FEF3F2" fill="#FEF3F2" stroke-width="0.0" opacity="1.000"/>
 <ellipse cx="92.00" cy="1233.88" rx="1.88" ry="1.88" stroke="#D92D20" fill="#D92D20" stroke-width="2.1" opacity="1.000"/>
-<rect x="630.00" y="1178.00" width="548.00" height="170.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
+<rect x="630.00" y="1178.00" width="548.00" height="218.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
 <rect x="630.00" y="1178.00" width="548.00" height="6.00" rx="1.08" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
 <rect x="648.00" y="1196.00" width="52.00" height="52.00" rx="4.16" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
 <ellipse cx="674.00" cy="1233.88" rx="1.88" ry="1.88" stroke="#15803D" fill="#15803D" stroke-width="2.1" opacity="1.000"/>
-<rect x="1212.00" y="1178.00" width="548.00" height="170.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
+<rect x="1212.00" y="1178.00" width="548.00" height="218.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
 <rect x="1212.00" y="1178.00" width="548.00" height="6.00" rx="1.08" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
 <rect x="1230.00" y="1196.00" width="52.00" height="52.00" rx="4.16" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
 <rect x="1242.25" y="1204.50" width="27.50" height="35.00" rx="2.20" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000"/>
@@ -127,11 +127,9 @@
 <rect x="895.00" y="673.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="507.00" y="973.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="1283.00" y="973.00" width="84.00" height="30.00" rx="5.40" stroke="#0E7490" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<polyline points="208.62,349.56 221.37,349.56" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="208.62,355.94 221.37,355.94" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="208.62,362.31 218.18,362.31" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="207.56,345.31 207.56,368.69 224.56,357.00 207.56,345.31" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="597.69,351.69 599.81,348.50 605.13,348.50 608.31,351.69 608.31,354.88 604.07,358.06 603.00,361.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="978.25,345.31 995.25,345.31 1004.81,354.87 993.13,368.69 978.25,357.00 978.25,345.31" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="985.69,351.69 987.81,348.50 993.13,348.50 996.31,351.69 996.31,354.88 992.07,358.06 991.00,361.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="1365.19,349.56 1388.57,349.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1388.57,349.56 1371.37,357.30 1371.37,341.82" fill="#7F56D9" opacity="1.000"/>
 <polyline points="1392.82,364.44 1369.44,364.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1369.44,364.44 1386.64,356.70 1386.64,372.18" fill="#7F56D9" opacity="1.000"/>
 <polyline points="212.88,653.81 224.57,653.81" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
@@ -139,8 +137,8 @@
 <polyline points="597.69,651.69 599.81,648.50 605.13,648.50 608.31,651.69 608.31,654.88 604.07,658.06 603.00,661.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="977.19,649.56 1000.57,649.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1000.57,649.56 983.37,657.30 983.37,641.82" fill="#7F56D9" opacity="1.000"/>
 <polyline points="1004.82,664.44 981.44,664.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="981.44,664.44 998.64,656.70 998.64,672.18" fill="#7F56D9" opacity="1.000"/>
-<polyline points="1365.19,653.81 1392.81,653.81" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="1369.44,659.12 1375.82,659.12 1375.82,664.43 1369.44,664.43 1369.44,659.12" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1366.25,657.00 1391.75,657.00" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1379.00,644.25 1372.62,657.00 1379.00,669.75 1385.37,657.00 1379.00,644.25" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="209.69,951.69 211.81,948.50 217.13,948.50 220.31,951.69 220.31,954.88 216.07,958.06 215.00,961.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="589.19,949.56 612.57,949.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="612.57,949.56 595.37,957.30 595.37,941.82" fill="#7F56D9" opacity="1.000"/>
 <polyline points="616.82,964.44 593.44,964.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="593.44,964.44 610.64,956.70 610.64,972.18" fill="#7F56D9" opacity="1.000"/>
@@ -162,17 +160,17 @@
 <a href="[[architecture/flows/member-place-order-focus.md]]"><text x="1484.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1484.00" dy="0.00">흐름 문서</tspan></text></a>
 <a href="[[architecture/understanding/understand-member-order.md]]"><text x="1370.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1370.00" dy="0.00">질문 문서</tspan></text></a>
 <text x="120.00" y="249.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 1</tspan></text>
-<text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">주문 가능성 확인</tspan></text>
-<text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">회원과 상품이 지금 주문 가능한지 확인하고 주문을 접수합니다.</tspan></text>
+<text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">주문 요청 → 주문 접수</tspan></text>
+<text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">주문 요청부터 주문 접수까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
 <text x="120.00" y="549.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#7F56D9" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 2</tspan></text>
-<text x="180.00" y="550.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">재고와 결제 준비</tspan></text>
-<text x="76.00" y="579.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">재고를 예약한 뒤 외부 결제 승인 요청을 시작합니다.</tspan></text>
+<text x="180.00" y="550.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">재고 확보 → 결제 승인 요청</tspan></text>
+<text x="76.00" y="579.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">재고 확보부터 결제 승인 요청까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
 <text x="120.00" y="849.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#0E7490" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 3</tspan></text>
-<text x="180.00" y="850.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">승인과 완료</tspan></text>
-<text x="76.00" y="879.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">결제 결과를 반영하고 후속 처리 이벤트와 주문 번호를 반환합니다.</tspan></text>
+<text x="180.00" y="850.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">결제가 승인됐는가? → 주문 완료</tspan></text>
+<text x="76.00" y="879.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">결제가 승인됐는가?부터 주문 완료까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
 <text x="48.00" y="1149.00" font-size="24.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="48.00" dy="0.00">흐름이 멈추는 이유와 다음 탐색</tspan></text>
-<text x="76.00" y="1412.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="76.00" dy="0.00">이 그림이 답하지 않는 것</tspan></text>
-<text x="76.00" y="1441.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">관리자 상품 등록 · 판매자 정산 · 추천 상품 생성 · 배송 이후 처리</tspan></text>
+<text x="76.00" y="1460.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="76.00" dy="0.00">이 그림이 답하지 않는 것</tspan></text>
+<text x="76.00" y="1489.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">관리자 상품 등록 · 판매자 정산 · 추천 상품 생성 · 배송 이후 처리</tspan></text>
 <text x="181.00" y="328.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="181.00" dy="0.00">1</tspan></text>
 <a href="[[atlas/flows/member-place-order]]"><text x="250.00" y="355.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="250.00" dy="0.00">주문 요청</tspan></text></a>
 <a href="[[atlas/flows/member-place-order]]"><text x="193.00" y="389.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="193.00" dy="0.00">회원이 상품, 수량, 결제 정보를 제출한다.</tspan></text></a>

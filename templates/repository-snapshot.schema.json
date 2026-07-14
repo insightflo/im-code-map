@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://insightflo.dev/im-code-map/repository-snapshot.schema.json",
+  "title": "im-code-map immutable repository snapshot",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace_id",
+    "repository",
+    "snapshot",
+    "acquisition",
+    "files",
+    "coverage",
+    "integrity"
+  ],
+  "properties": {
+    "schema_version": { "const": "5.2.0" },
+    "workspace_id": { "type": "string", "minLength": 1 },
+    "repository": {
+      "type": "object",
+      "required": ["provider", "owner", "name", "full_name", "repository_url", "default_branch", "visibility"],
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "full_name": { "type": "string", "minLength": 3 },
+        "repository_url": { "type": "string", "minLength": 1 },
+        "default_branch": { "type": "string", "minLength": 1 },
+        "visibility": { "enum": ["public", "private", "internal", "unknown"] }
+      },
+      "additionalProperties": false
+    },
+    "snapshot": {
+      "type": "object",
+      "required": ["ref_type", "commit_sha", "resolved_from", "captured_at"],
+      "properties": {
+        "ref_type": { "const": "commit" },
+        "commit_sha": { "type": "string", "pattern": "^[0-9a-fA-F]{40}$" },
+        "resolved_from": { "type": "string", "minLength": 1 },
+        "commit_message": { "type": ["string", "null"] },
+        "committed_at": { "type": ["string", "null"] },
+        "captured_at": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "acquisition": {
+      "type": "object",
+      "required": ["mode", "connector", "local_checkout", "codegraph", "content_contract"],
+      "properties": {
+        "mode": { "enum": ["remote-connector-snapshot", "hybrid"] },
+        "connector": { "type": "string", "minLength": 1 },
+        "local_checkout": { "type": "boolean" },
+        "codegraph": { "enum": ["READY", "PARTIAL", "NOT_REQUIRED"] },
+        "content_contract": {
+          "type": "object",
+          "required": ["immutable_ref", "blob_sha_per_file", "line_ranges", "no_unfetched_claims"],
+          "properties": {
+            "immutable_ref": { "const": true },
+            "blob_sha_per_file": { "const": true },
+            "line_ranges": { "const": true },
+            "no_unfetched_claims": { "const": true }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "ref", "blob_sha", "evidence_class", "purpose", "line_ranges", "fetched_at"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "ref": { "type": "string", "pattern": "^[0-9a-fA-F]{40}$" },
+          "blob_sha": { "type": "string", "pattern": "^[0-9a-fA-F]{40}$" },
+          "evidence_class": {
+            "enum": ["route", "service", "test", "schema", "config", "runtime", "documentation", "connector-metadata", "other"]
+          },
+          "purpose": { "type": "string", "minLength": 1 },
+          "line_ranges": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["start", "end", "excerpt"],
+              "properties": {
+                "start": { "type": "integer", "minimum": 1 },
+                "end": { "type": "integer", "minimum": 1 },
+                "excerpt": { "type": "string", "minLength": 1 }
+              },
+              "additionalProperties": false
+            }
+          },
+          "fetched_at": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "required": ["fetched_file_count", "evidence_classes", "cross_checks", "unresolved_paths", "limitations"],
+      "properties": {
+        "fetched_file_count": { "type": "integer", "minimum": 1 },
+        "evidence_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string" }
+        },
+        "cross_checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["claim", "classes"],
+            "properties": {
+              "claim": { "type": "string", "minLength": 1 },
+              "classes": {
+                "type": "array",
+                "minItems": 2,
+                "uniqueItems": true,
+                "items": { "type": "string" }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "unresolved_paths": { "type": "array", "items": { "type": "string" } },
+        "limitations": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "integrity": {
+      "type": "object",
+      "required": ["immutable_ref", "all_files_pinned", "all_ranges_valid", "result"],
+      "properties": {
+        "immutable_ref": { "const": true },
+        "all_files_pinned": { "const": true },
+        "all_ranges_valid": { "const": true },
+        "result": { "enum": ["PASS", "PARTIAL", "FAIL"] },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -29,6 +29,5 @@ def main()->int:
     for x in errors: print("FAIL:",x)
     if not errors: print(f"PASS: evidence ledger claims={len(data.get('claims',[]))}")
     print(f"SUMMARY errors={len(errors)} warnings={len(warnings)}")
-    strict_warnings=[x for x in warnings if not x.startswith("jsonschema")]
-    return 1 if errors or (a.strict_warnings and strict_warnings) else 0
+    return 1 if errors or (a.strict_warnings and warnings) else 0
 if __name__=='__main__': raise SystemExit(main())

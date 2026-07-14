@@ -8,6 +8,7 @@ Only native Excalidraw primitives are emitted, so diagrams remain editable in Ob
 from __future__ import annotations
 
 import argparse
+import re
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
@@ -192,12 +193,28 @@ def render_human_overview(diagram: dict[str, Any], theme: dict[str, Any]) -> dic
     return scene_root(diagram, [*bg, *edges, *cards, *labels], theme=theme)
 
 
-def phase_title(index: int) -> tuple[str, str]:
-    return {
-        1: ("주문 가능성 확인", "회원과 상품이 지금 주문 가능한지 확인하고 주문을 접수합니다."),
-        2: ("재고와 결제 준비", "재고를 예약한 뒤 외부 결제 승인 요청을 시작합니다."),
-        3: ("승인과 완료", "결제 결과를 반영하고 후속 처리 이벤트와 주문 번호를 반환합니다."),
-    }.get(index, (f"업무 단계 {index}", "관련 처리와 판단을 순서대로 읽습니다."))
+def phase_title(lane: dict[str, Any], phase_nodes: list[dict[str, Any]], index: int) -> tuple[str, str]:
+    """Derive a phase heading from the current Focus model, never from a demo domain.
+
+    v5.1 accidentally baked the commerce example's 주문/재고/결제 headings into every
+    generated Focus diagram.  The visual layer must consume the semantic lane and node
+    labels supplied by the model instead of inventing domain language.
+    """
+    raw = str(lane.get("label") or "").strip()
+    title = re.sub(r"^\s*(?:Phase\s+\d+|\d+단계)\s*[·:.-]?\s*", "", raw, flags=re.IGNORECASE).strip()
+    labels = [re.sub(r"^\s*\d+\.\s*", "", str(node.get("label") or "")).strip() for node in phase_nodes]
+    first = labels[0] if labels else ""
+    last = labels[-1] if labels else ""
+    if not title:
+        title = first if first == last and first else (f"{first} → {last}" if first and last else f"업무 단계 {index}")
+    korean = bool(re.search(r"[가-힣]", title + first + last))
+    if first and last and first != last:
+        subtitle = f"{first}부터 {last}까지 왼쪽에서 오른쪽으로 읽습니다." if korean else f"Read left to right from {first} through {last}."
+    elif first:
+        subtitle = f"{first} 처리와 판단을 확인합니다." if korean else f"Inspect the processing and decisions around {first}."
+    else:
+        subtitle = "관련 처리와 판단을 순서대로 읽습니다." if korean else "Read the related processing and decisions in order."
+    return title, subtitle
 
 
 def render_focus_flow(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[str, Any]:
@@ -224,26 +241,23 @@ def render_focus_flow(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[st
     shapes: dict[str, dict[str, Any]] = {}
     phase_y: dict[str, float] = {}
 
+    phase_lane_by_id = {lane["id"]: lane for lane in diagram.get("lanes", []) if lane.get("kind") == "phase"}
     for phase_index, lane_id in enumerate(lane_order, start=1):
         y = content_y + (phase_index - 1) * 300
         phase_y[lane_id] = y
-        title, subtitle = phase_title(phase_index)
+        phase_nodes = sorted(by_phase.get(lane_id, []), key=lambda n: int(n.get("step_number", n.get("order", 0))))
+        title, subtitle = phase_title(phase_lane_by_id.get(lane_id, {}), phase_nodes, phase_index)
         accent = [theme["primary"], theme["purple"], theme["info"]][min(phase_index - 1, 2)]
         bg.extend(panel_elements(
             f"focus-phase:{phase_index}", panel_x, y, panel_w, panel_h,
             title, subtitle, theme=theme, accent=accent, index=phase_index, role="phase-panel",
         ))
-        phase_nodes = sorted(by_phase.get(lane_id, []), key=lambda n: int(n.get("step_number", n.get("order", 0))))
         for local_index, node in enumerate(phase_nodes):
             box = (card_start_x + local_index * (card_w + card_gap), y + 112, card_w, card_h)
             boxes[node["id"]] = box
-            icon = node.get("kind", "process")
-            if node.get("step_number") == 1:
-                icon = "order"
-            elif node.get("step_number") == 3:
-                icon = "product"
-            elif node.get("step_number") == 8:
-                icon = "payment"
+            icon = node.get("icon")
+            if not icon or icon == "auto":
+                icon = node.get("kind", "process")
             group, _ = card_elements(
                 node, box, theme=theme, compact=True, focus_mode=True,
                 icon_override=icon, decision_as_card=True,
@@ -285,7 +299,7 @@ def render_focus_flow(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[st
         color=theme["ink"], align="left", valign="middle", font_family=theme["font_family"],
         custom_data={"imCodeMap": {"role": "context-heading"}},
     ))
-    context_w, context_h, context_gap = 548.0, 170.0, 34.0
+    context_w, context_h, context_gap = 548.0, 218.0, 34.0
     for idx, node in enumerate(context_nodes[:3]):
         box = (panel_x + idx * (context_w + context_gap), context_y + 58, context_w, context_h)
         group, _ = card_elements(
@@ -296,7 +310,7 @@ def render_focus_flow(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[st
         cards.extend(group)
 
     does_not = diagram.get("reader_contract", {}).get("does_not_answer", [])
-    footer_y = context_y + 250
+    footer_y = context_y + 298
     bg.extend(panel_elements(
         "focus-scope:" + diagram["id"], panel_x, footer_y, panel_w, 122,
         "이 그림이 답하지 않는 것",
@@ -319,6 +333,223 @@ def atlas_lane_panel(
     ]
 
 
+
+def state_primary_path(
+    frame_nodes: list[dict[str, Any]],
+    frame_edges: list[dict[str, Any]],
+) -> list[str]:
+    """Choose the normal lifecycle spine without pretending branch states are sequential.
+
+    State diagrams used to place every state on one row by ``order``.  A transition such
+    as ``active -> completed`` then ran behind a ``paused`` card, making the picture look
+    like ``active -> paused -> completed``.  This helper finds the most plausible
+    start-to-success path and moves all alternate/error/cancel states to a branch row.
+    No transition is invented; the choice only controls layout.
+    """
+    nodes = {node["id"]: node for node in frame_nodes}
+    outgoing: dict[str, list[str]] = defaultdict(list)
+    for edge in frame_edges:
+        src, dst = edge.get("from"), edge.get("to")
+        if src in nodes and dst in nodes and src != dst:
+            outgoing[src].append(dst)
+
+    order = {nid: int(node.get("order", idx)) for idx, (nid, node) in enumerate(nodes.items())}
+    starts = sorted(
+        [nid for nid, node in nodes.items() if node.get("kind") == "start"],
+        key=lambda nid: order[nid],
+    )
+    if not starts and nodes:
+        starts = [min(nodes, key=lambda nid: order[nid])]
+
+    branch_kinds = {"error", "compensation", "wait", "risk"}
+
+    def path_score(path: list[str]) -> tuple[int, int, int, int]:
+        last_kind = str(nodes[path[-1]].get("kind", "")) if path else ""
+        success = 1 if last_kind == "end" else 0
+        branch_penalty = sum(1 for nid in path if nodes[nid].get("kind") in branch_kinds)
+        forwardness = sum(
+            1 for left, right in zip(path, path[1:]) if order.get(right, 0) > order.get(left, 0)
+        )
+        return (success, len(path), forwardness, -branch_penalty)
+
+    def best_from(nid: str, seen: frozenset[str]) -> list[str]:
+        candidates: list[list[str]] = [[nid]]
+        for target in sorted(outgoing.get(nid, []), key=lambda item: order.get(item, 0)):
+            if target in seen:
+                continue
+            candidates.append([nid] + best_from(target, seen | {target}))
+        return max(candidates, key=path_score)
+
+    paths = [best_from(start, frozenset({start})) for start in starts]
+    return max(paths, key=path_score) if paths else []
+
+
+def render_state_machine(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[str, Any]:
+    """Render lifecycle spines on the top row and alternative outcomes below.
+
+    This preserves the actual graph semantics while keeping long guards readable.  It is
+    deliberately wider than a compact flowchart because Excalidraw can zoom; semantic
+    falsehood is not an acceptable space-saving technique.
+    """
+    bg: list[dict[str, Any]] = []
+    edges: list[dict[str, Any]] = []
+    cards: list[dict[str, Any]] = []
+    labels: list[dict[str, Any]] = []
+
+    frame_defs = {f["id"]: f for f in diagram.get("frames", [])}
+    nodes_by_frame: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for node in diagram.get("nodes", []):
+        nodes_by_frame[node.get("frame", "default")].append(node)
+    ordered_frames = [
+        frame["id"]
+        for frame in sorted(diagram.get("frames", []), key=lambda item: int(item.get("order", 0)))
+    ] or list(nodes_by_frame)
+
+    max_columns = max(
+        (len({int(node.get("order", 0)) for node in nodes_by_frame.get(frame_id, [])}) for frame_id in ordered_frames),
+        default=1,
+    )
+    column_step = 470.0
+    node_start_x = 318.0
+    card_w, card_h = 238.0, 126.0
+    width = max(2200.0, node_start_x + max(0, max_columns - 1) * column_step + card_w + 110.0)
+    header, content_y = header_elements(
+        diagram, theme=theme, width=width, profile_label="DEEP ATLAS · 상태 분기"
+    )
+    bg.extend(header)
+
+    lanes = {lane["id"]: lane for lane in diagram.get("lanes", [])}
+    boxes: dict[str, tuple[float, float, float, float]] = {}
+    shapes: dict[str, dict[str, Any]] = {}
+    primary_by_frame: dict[str, set[str]] = {}
+    cursor_y = content_y
+
+    panel_h = 482.0
+    lane_h = 342.0
+    for frame_index, frame_id in enumerate(ordered_frames):
+        frame_nodes = sorted(nodes_by_frame.get(frame_id, []), key=lambda node: int(node.get("order", 0)))
+        if not frame_nodes:
+            continue
+        frame_edges = [
+            edge for edge in diagram.get("edges", [])
+            if edge.get("from") in {node["id"] for node in frame_nodes}
+            and edge.get("to") in {node["id"] for node in frame_nodes}
+        ]
+        primary = set(state_primary_path(frame_nodes, frame_edges))
+        primary_by_frame[frame_id] = primary
+
+        frame = frame_defs.get(frame_id, {"label": frame_id, "purpose": ""})
+        accent = [theme["primary"], theme["purple"], theme["info"], theme["warning"]][frame_index % 4]
+        bg.extend(panel_elements(
+            f"state-frame:{frame_id}", 48, cursor_y, width - 96, panel_h,
+            frame.get("label", frame_id), frame.get("purpose", ""),
+            theme=theme, accent=accent, index=frame_index + 1, role="state-frame",
+        ))
+
+        lane_id = next((node.get("lane") for node in frame_nodes if node.get("lane")), "default")
+        lane_label = lanes.get(lane_id, {}).get("label") or frame.get("label", frame_id)
+        lane_x, lane_y = 78.0, cursor_y + 100.0
+        bg.extend(atlas_lane_panel(
+            f"state-lane:{frame_id}:{lane_id}", lane_x, lane_y, width - 156, lane_h,
+            lane_label, theme=theme, index=frame_index,
+        ))
+
+        main_y = lane_y + 54.0
+        branch_y = lane_y + 216.0
+        bg.extend([
+            text_element(
+                f"state-row-main:{frame_id}", lane_x + 22, main_y + 38,
+                "주요 진행", font_size=13, width=180, height=30, color=theme["muted"],
+                align="left", valign="middle", font_family=theme["font_family"],
+                custom_data={"imCodeMap": {"role": "state-row-label"}},
+            ),
+            text_element(
+                f"state-row-branch:{frame_id}", lane_x + 22, branch_y + 38,
+                "분기·중단·별도 상태", font_size=13, width=190, height=30, color=theme["muted"],
+                align="left", valign="middle", font_family=theme["font_family"],
+                custom_data={"imCodeMap": {"role": "state-row-label"}},
+            ),
+        ])
+
+        order_values = sorted({int(node.get("order", 0)) for node in frame_nodes})
+        order_rank = {value: idx for idx, value in enumerate(order_values)}
+        for node in frame_nodes:
+            rank = order_rank[int(node.get("order", 0))]
+            x = node_start_x + rank * column_step
+            y = main_y if node["id"] in primary else branch_y
+            box = (x, y, card_w, card_h)
+            boxes[node["id"]] = box
+            group, _ = card_elements(
+                node, box, theme=theme, compact=True, focus_mode=False,
+                decision_as_card=False, show_confidence=True,
+            )
+            shapes[node["id"]] = shape_from_group(group)
+            cards.extend(group)
+        cursor_y += panel_h + 42.0
+
+    node_frame = {node["id"]: node.get("frame", "default") for node in diagram.get("nodes", [])}
+    downward_slots: dict[tuple[str, str], int] = defaultdict(int)
+    backward_slots: dict[str, int] = defaultdict(int)
+    upper_slots: dict[str, int] = defaultdict(int)
+
+    for edge in sorted(diagram.get("edges", []), key=lambda item: int(item.get("sequence", 0))):
+        src, dst = edge.get("from"), edge.get("to")
+        if src not in boxes or dst not in boxes:
+            continue
+        frame_id = node_frame.get(src, "default")
+        primary = primary_by_frame.get(frame_id, set())
+        source_main = src in primary
+        target_main = dst in primary
+        sb, tb = boxes[src], boxes[dst]
+        scx, scy = center(sb)
+        tcx, tcy = center(tb)
+
+        if source_main and target_main and tcx > scx:
+            sx, sy = anchor(sb, "right")
+            tx, ty = anchor(tb, "left")
+            points = [(sx + 5, sy), (tx - 5, ty)]
+            label_pos = ((sx + tx) / 2, sy - 18)
+        elif source_main and not target_main:
+            slot_key = (frame_id, src)
+            slot = downward_slots[slot_key]
+            downward_slots[slot_key] += 1
+            sx, sy = anchor(sb, "bottom")
+            tx, ty = anchor(tb, "top")
+            route_y = sy + 24.0 + slot * 20.0
+            points = [(sx, sy + 5), (sx, route_y), (tx, route_y), (tx, ty - 5)]
+            label_pos = ((sx + tx) / 2, route_y - 12)
+        elif not source_main and target_main:
+            slot = backward_slots[frame_id]
+            backward_slots[frame_id] += 1
+            sx, sy = anchor(sb, "bottom")
+            tx, ty = anchor(tb, "bottom")
+            route_y = max(sy, ty) + 36.0 + slot * 24.0
+            points = [(sx, sy + 5), (sx, route_y), (tx, route_y), (tx, ty + 5)]
+            label_pos = ((sx + tx) / 2, route_y - 12)
+        elif not source_main and not target_main and tcx > scx:
+            sx, sy = anchor(sb, "right")
+            tx, ty = anchor(tb, "left")
+            points = [(sx + 5, sy), (tx - 5, ty)]
+            label_pos = ((sx + tx) / 2, sy - 18)
+        else:
+            slot = upper_slots[frame_id]
+            upper_slots[frame_id] += 1
+            sx, sy = anchor(sb, "top")
+            tx, ty = anchor(tb, "top")
+            route_y = min(sy, ty) - 38.0 - slot * 24.0
+            points = [(sx, sy - 5), (sx, route_y), (tx, route_y), (tx, ty - 5)]
+            label_pos = ((sx + tx) / 2, route_y - 12)
+
+        parts = arrow_elements(
+            edge, shapes[src], shapes[dst], points,
+            theme=theme, show_label=True, label_position=label_pos,
+        )
+        line, lab = split_edge_parts(parts)
+        edges.extend(line)
+        labels.extend(lab)
+
+    return scene_root(diagram, [*bg, *edges, *cards, *labels], theme=theme)
+
 def generic_atlas_layout(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[str, Any]:
     header_width = 2200.0
     bg: list[dict[str, Any]] = []
@@ -334,12 +565,16 @@ def generic_atlas_layout(diagram: dict[str, Any], theme: dict[str, Any]) -> dict
         nodes_by_frame[node.get("frame", "default")].append(node)
     ordered_frames = [f["id"] for f in sorted(diagram.get("frames", []), key=lambda f: int(f.get("order", 0)))] or list(nodes_by_frame)
 
-    # Compute content width from the widest frame before drawing the header.
+    # Compute content width from the widest frame before drawing the header.  Atlas
+    # transition labels need real whitespace; the old fixed 270px column step left only
+    # ~32px between 238px cards, so every non-trivial guard was painted over the nodes.
+    dtype = diagram.get("type")
+    column_step = 430.0 if dtype == "state-machine" else 370.0
     widest = 0
     for frame_id in ordered_frames:
         orders = sorted({int(n.get("order", 0)) for n in nodes_by_frame.get(frame_id, [])})
         widest = max(widest, len(orders))
-    content_w = max(1740.0, 280.0 + widest * 270.0)
+    content_w = max(1740.0, 330.0 + widest * column_step)
     width = max(header_width, content_w + 96)
     header, content_y = header_elements(diagram, theme=theme, width=width, profile_label="DEEP ATLAS · 검증 가능한 상세")
     bg.extend(header)
@@ -382,7 +617,7 @@ def generic_atlas_layout(diagram: dict[str, Any], theme: dict[str, Any]) -> dict
                 compact = True
                 is_decision = node.get("kind") == "decision"
                 w, h = (238.0, 146.0) if is_decision else (238.0, 126.0)
-                x = node_start_x + rank * 270.0
+                x = node_start_x + rank * column_step
                 y = ly + (lane_h - 14 - h) / 2
                 box = (x, y, w, h)
                 boxes[node["id"]] = box
@@ -430,58 +665,212 @@ def generic_atlas_layout(diagram: dict[str, Any], theme: dict[str, Any]) -> dict
     return scene_root(diagram, [*bg, *edges, *cards, *labels], theme=theme)
 
 
+def domain_icon(node: dict[str, Any]) -> str:
+    text = " ".join([
+        str(node.get("label") or ""),
+        str(node.get("summary") or ""),
+        " ".join(str(x) for x in node.get("source_refs", [])),
+    ]).lower()
+    if any(key in text for key in ("api", "접근", "route", "gateway")):
+        return "api"
+    if any(key in text for key in ("postgres", "database", "storage", "persistence", "저장")):
+        return "storage"
+    if any(key in text for key in ("qa", "quality", "검증", "evidence", "증거")):
+        return "test"
+    if any(key in text for key in ("recovery", "reconcile", "복구", "정합")):
+        return "compensation"
+    if any(key in text for key in ("heartbeat", "queue", "wakeup")):
+        return "event"
+    if any(key in text for key in ("workflow", "orchestration", "워크플로")):
+        return "flow"
+    if any(key in text for key in ("adapter", "external", "외부")):
+        return "external"
+    if any(key in text for key in ("issue", "작업")):
+        return "note"
+    if any(key in text for key in ("mission", "미션")):
+        return "domain"
+    return "worker" if node.get("kind") == "external" else "domain"
+
+
+def is_foundation_domain(node: dict[str, Any]) -> bool:
+    text = " ".join([
+        str(node.get("label") or ""),
+        str(node.get("summary") or ""),
+        " ".join(str(x) for x in node.get("source_refs", [])),
+    ]).lower()
+    return any(key in text for key in ("postgres", "database", "storage", "persistence", "상태 저장"))
+
+
+def domain_backbone(diagram: dict[str, Any]) -> list[str]:
+    """Build a readable, model-driven main contract chain.
+
+    The node order supplied by the visual model breaks cycles deterministically.  Direct
+    predecessors of the reader's start node are prepended so API/input boundaries remain
+    visible without turning the layout into a generic three-column wallpaper.
+    """
+    nodes = node_map(diagram)
+    if not nodes:
+        return []
+    order = {nid: int(node.get("order", idx)) for idx, (nid, node) in enumerate(nodes.items())}
+    outgoing: dict[str, list[str]] = defaultdict(list)
+    incoming: dict[str, list[str]] = defaultdict(list)
+    for edge in sorted(diagram.get("edges", []), key=lambda e: int(e.get("sequence", 0))):
+        src, dst = edge.get("from"), edge.get("to")
+        if src not in nodes or dst not in nodes or src == dst:
+            continue
+        outgoing[src].append(dst)
+        incoming[dst].append(src)
+
+    start = diagram.get("reader_contract", {}).get("start_here_node_id")
+    if start not in nodes or is_foundation_domain(nodes[start]):
+        candidates = [nid for nid in nodes if not incoming[nid] and not is_foundation_domain(nodes[nid])]
+        start = min(candidates or list(nodes), key=lambda nid: order[nid])
+
+    memo: dict[str, list[str]] = {}
+    visiting: set[str] = set()
+
+    def best_from(nid: str) -> list[str]:
+        if nid in memo:
+            return memo[nid]
+        if nid in visiting:
+            return [nid]
+        visiting.add(nid)
+        candidates = [dst for dst in outgoing.get(nid, []) if order.get(dst, 0) > order.get(nid, 0) and not is_foundation_domain(nodes[dst])]
+        paths = [[nid] + best_from(dst) for dst in candidates]
+        visiting.remove(nid)
+        best = max(paths, key=lambda p: (len(p), -sum(order[x] for x in p))) if paths else [nid]
+        memo[nid] = best
+        return best
+
+    chain = best_from(start)
+    predecessors = [src for src in incoming.get(start, []) if not is_foundation_domain(nodes[src]) and src not in chain]
+    predecessors.sort(key=lambda nid: order[nid])
+    chain = predecessors[-2:] + chain
+    if len(chain) < 3:
+        ordered = [nid for nid in sorted(nodes, key=lambda nid: order[nid]) if not is_foundation_domain(nodes[nid])]
+        chain = ordered[: min(6, len(ordered))]
+    return list(dict.fromkeys(chain))
+
+
 def render_domain_overview(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[str, Any]:
-    width = 1840.0
+    nodes = node_map(diagram)
+    backbone = domain_backbone(diagram)
+    foundation = [nid for nid, node in nodes.items() if is_foundation_domain(node)]
+    support = [nid for nid in nodes if nid not in backbone and nid not in foundation]
+
+    card_w, card_h, gap = 286.0, 158.0, 110.0
+    margin = 78.0
+    main_count = max(1, len(backbone))
+    width = max(1900.0, margin * 2 + main_count * card_w + max(0, main_count - 1) * gap)
+    support_cols = min(4, max(1, len(support)))
+    support_rows = (len(support) + support_cols - 1) // support_cols if support else 0
+    foundation_rows = 1 if foundation else 0
+    panel_h = 350.0 + support_rows * 205.0 + foundation_rows * 205.0
+
     bg: list[dict[str, Any]] = []
     edges: list[dict[str, Any]] = []
     cards: list[dict[str, Any]] = []
     labels: list[dict[str, Any]] = []
     header, content_y = header_elements(diagram, theme=theme, width=width, profile_label="DEEP ATLAS · 도메인 경계")
     bg.extend(header)
+    frame = sorted(diagram.get("frames", []), key=lambda f: int(f.get("order", 0)))
+    panel_title = frame[0].get("label") if frame else "업무 소유권과 계약"
+    panel_subtitle = diagram.get("purpose") or (frame[0].get("purpose") if frame else "")
     bg.extend(panel_elements(
-        "domain-boundary", 48, content_y, width - 96, 760,
-        "업무 소유권과 계약", "Ordering이 중심 조정자이며 각 도메인은 명시된 계약으로만 협력합니다.",
+        "domain-boundary", 48, content_y, width - 96, panel_h,
+        panel_title, panel_subtitle,
         theme=theme, accent=theme["primary"], role="domain-boundary",
     ))
 
-    nodes = node_map(diagram)
-    positions = {
-        "d-order": (700.0, content_y + 270, 360.0, 190.0),
-        "d-member": (110.0, content_y + 130, 330.0, 160.0),
-        "d-catalog": (110.0, content_y + 470, 330.0, 160.0),
-        "d-inventory": (1400.0, content_y + 120, 330.0, 160.0),
-        "d-payment": (1400.0, content_y + 470, 330.0, 160.0),
-        "d-worker": (720.0, content_y + 590, 320.0, 150.0),
-    }
+    main_y = content_y + 136
     boxes: dict[str, tuple[float, float, float, float]] = {}
     shapes: dict[str, dict[str, Any]] = {}
-    fallback_x, fallback_y = 520.0, content_y + 110
-    for idx, node in enumerate(diagram.get("nodes", [])):
-        box = positions.get(node["id"], (fallback_x + (idx % 3) * 390, fallback_y + (idx // 3) * 220, 340.0, 160.0))
-        boxes[node["id"]] = box
-        icon = "worker" if node.get("kind") == "external" else "domain"
-        group, _ = card_elements(node, box, theme=theme, compact=False, icon_override=icon, decision_as_card=True)
-        shapes[node["id"]] = shape_from_group(group)
+    if backbone:
+        total = len(backbone) * card_w + max(0, len(backbone) - 1) * gap
+        main_x = (width - total) / 2
+        for idx, nid in enumerate(backbone):
+            boxes[nid] = (main_x + idx * (card_w + gap), main_y, card_w, card_h)
+
+    support_y = main_y + card_h + 120
+    if support:
+        support_gap = 54.0
+        support_w = 310.0
+        for idx, nid in enumerate(support):
+            row, col = divmod(idx, support_cols)
+            row_items = min(support_cols, len(support) - row * support_cols)
+            row_total = row_items * support_w + max(0, row_items - 1) * support_gap
+            row_x = (width - row_total) / 2
+            boxes[nid] = (row_x + col * (support_w + support_gap), support_y + row * 205.0, support_w, 158.0)
+
+    foundation_y = support_y + support_rows * 205.0
+    if foundation:
+        bg.append(text_element(
+            "domain-foundation-label:" + diagram["id"], margin, foundation_y - 34,
+            "공통 상태·저장 기반", font_size=15, width=380, height=28, color=theme["muted"],
+            align="left", valign="middle", font_family=theme["font_family"],
+            custom_data={"imCodeMap": {"role": "foundation-label"}},
+        ))
+        foundation_gap = 54.0
+        foundation_w = 330.0
+        total = len(foundation) * foundation_w + max(0, len(foundation) - 1) * foundation_gap
+        fx = (width - total) / 2
+        for idx, nid in enumerate(foundation):
+            boxes[nid] = (fx + idx * (foundation_w + foundation_gap), foundation_y, foundation_w, 158.0)
+
+    for nid, node in nodes.items():
+        box = boxes.get(nid)
+        if not box:
+            continue
+        group, _ = card_elements(
+            node, box, theme=theme, compact=False,
+            icon_override=domain_icon(node), decision_as_card=True,
+        )
+        shapes[nid] = shape_from_group(group)
         cards.extend(group)
 
+    backbone_index = {nid: idx for idx, nid in enumerate(backbone)}
+    back_edge_index = 0
     for edge in sorted(diagram.get("edges", []), key=lambda e: int(e.get("sequence", 0))):
-        sb, tb = boxes[edge["from"]], boxes[edge["to"]]
+        src, dst = edge.get("from"), edge.get("to")
+        if src not in boxes or dst not in boxes:
+            continue
+        sb, tb = boxes[src], boxes[dst]
         scx, scy = center(sb)
         tcx, tcy = center(tb)
-        if abs(tcx - scx) > abs(tcy - scy):
-            s_side = "right" if tcx > scx else "left"
-            t_side = "left" if tcx > scx else "right"
+        label_pos: tuple[float, float]
+        if src in backbone_index and dst in backbone_index and backbone_index[dst] > backbone_index[src]:
+            sx, sy = anchor(sb, "right"); tx, ty = anchor(tb, "left")
+            points = [(sx + 5, sy), (tx - 5, ty)]
+            label_pos = ((sx + tx) / 2, sy - 22)
+        elif src in backbone_index and dst in backbone_index:
+            sx, sy = anchor(sb, "top"); tx, ty = anchor(tb, "top")
+            route_y = main_y - 38 - back_edge_index * 34
+            back_edge_index += 1
+            points = [(sx, sy - 5), (sx, route_y), (tx, route_y), (tx, ty - 5)]
+            label_pos = ((sx + tx) / 2, route_y - 12)
+        elif tcy > scy + 40:
+            sx, sy = anchor(sb, "bottom"); tx, ty = anchor(tb, "top")
+            mid_y = (sy + ty) / 2
+            points = [(sx, sy + 5), (sx, mid_y), (tx, mid_y), (tx, ty - 5)]
+            label_pos = ((sx + tx) / 2, mid_y - 12)
+        elif tcy < scy - 40:
+            sx, sy = anchor(sb, "top"); tx, ty = anchor(tb, "bottom")
+            mid_y = (sy + ty) / 2
+            points = [(sx, sy - 5), (sx, mid_y), (tx, mid_y), (tx, ty + 5)]
+            label_pos = ((sx + tx) / 2, mid_y - 12)
         else:
-            s_side = "bottom" if tcy > scy else "top"
-            t_side = "top" if tcy > scy else "bottom"
-        sx, sy = anchor(sb, s_side)
-        tx, ty = anchor(tb, t_side)
-        mid = ((sx + tx) / 2, (sy + ty) / 2)
-        points = [(sx, sy), (mid[0], sy), (mid[0], ty), (tx, ty)] if s_side in {"left", "right"} else [(sx, sy), (sx, mid[1]), (tx, mid[1]), (tx, ty)]
-        parts = arrow_elements(edge, shapes[edge["from"]], shapes[edge["to"]], points, theme=theme, show_label=True, label_position=mid)
+            s_side = "right" if tcx >= scx else "left"
+            t_side = "left" if tcx >= scx else "right"
+            sx, sy = anchor(sb, s_side); tx, ty = anchor(tb, t_side)
+            mid_x = (sx + tx) / 2
+            points = [(sx, sy), (mid_x, sy), (mid_x, ty), (tx, ty)]
+            label_pos = (mid_x, (sy + ty) / 2 - 12)
+        parts = arrow_elements(
+            edge, shapes[src], shapes[dst], points,
+            theme=theme, show_label=True, label_position=label_pos,
+        )
         line, lab = split_edge_parts(parts)
-        edges.extend(line)
-        labels.extend(lab)
+        edges.extend(line); labels.extend(lab)
     return scene_root(diagram, [*bg, *edges, *cards, *labels], theme=theme)
 
 
@@ -493,6 +882,8 @@ def render_diagram(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[str, 
         return render_focus_flow(diagram, theme)
     if diagram.get("id") == "domain-commerce-overview" or dtype == "domain-overview":
         return render_domain_overview(diagram, theme)
+    if dtype == "state-machine":
+        return render_state_machine(diagram, theme)
     return generic_atlas_layout(diagram, theme)
 
 

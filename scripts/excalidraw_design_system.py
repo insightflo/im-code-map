@@ -228,19 +228,53 @@ def clean_node_label(value: str) -> str:
 
 
 def note_label(path: str) -> str:
+    """Return a short, destination-specific navigation label.
+
+    Earlier Atlas scenes collapsed every note below ``architecture/atlas`` into the
+    same visible label, "Deep Atlas".  Four identical buttons with four different
+    links are not navigation; they are a small usability prank.  Prefer the note's
+    semantic collection before falling back to the generic Atlas label.
+    """
     raw = str(path).strip("[]")
     stem = Path(raw).stem.replace("-", " ")
     lower = raw.lower()
+    if "visual-index" in lower:
+        return "그림 목차"
+    if "/atlas/start-here" in lower:
+        return "Atlas 시작"
+    if "/atlas/index" in lower:
+        return "Atlas 목차"
     if "start-here" in lower:
         return "시작 문서"
     if "/understanding/" in lower:
         return "질문 문서"
+    if "/atlas/flows/" in lower:
+        return clamp_text(stem.replace(" lifecycle", ""), 2, 20)
     if "/flows/" in lower:
         return "흐름 문서"
+    if "/states/" in lower:
+        state_name = stem.replace(" lifecycle", "").strip()
+        state_names = {
+            "mission": "Mission 상태",
+            "workflow run": "Run 상태",
+            "workflow step run": "Step 상태",
+            "issue": "Issue 상태",
+        }
+        return state_names.get(state_name.lower(), clamp_text(f"{state_name} 상태", 2, 20))
+    if "/rules/" in lower:
+        return clamp_text(stem.removeprefix("rule "), 2, 20)
+    if "/domains/" in lower:
+        return clamp_text(stem, 2, 20)
+    if "/actors/" in lower:
+        return clamp_text(stem, 2, 20)
+    if "/entities/" in lower:
+        return clamp_text(stem, 2, 20)
+    if "/codebases/" in lower:
+        return clamp_text(stem, 2, 20)
     if "unknown" in lower:
         return "미확인 사항"
-    if "/atlas" in lower or "atlas/index" in lower:
-        return "Deep Atlas"
+    if "/atlas" in lower:
+        return "전체 지도"
     return clamp_text(stem, 3, 20)
 
 

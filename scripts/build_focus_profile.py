@@ -95,6 +95,39 @@ def confidence_min(values: list[str]) -> str:
     return min(values, key=lambda x: rank.get(x, -1))
 
 
+def cap_summary_words(text: str, max_words: int = 32) -> str:
+    """Keep first-view card prose inside the visual-model word budget.
+
+    Traceability is preserved in source_refs, reader_contract, and the linked Atlas note;
+    this only prevents a generated summary card from invalidating the Focus model.
+    Newlines are retained where possible so bullet cards remain scannable.
+    """
+    if max_words < 2:
+        return "…" if text.strip() else ""
+    tokens = text.split()
+    if len(tokens) <= max_words:
+        return text
+
+    remaining = max_words - 1
+    output_lines: list[str] = []
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        words = line.split()
+        if remaining <= 0:
+            break
+        take = min(len(words), remaining)
+        output_lines.append(" ".join(words[:take]))
+        remaining -= take
+        if take < len(words):
+            break
+    if not output_lines:
+        return "…"
+    output_lines[-1] = output_lines[-1].rstrip(".,;:!?…") + "…"
+    return "\n".join(output_lines)
+
+
 def assign_phase_lanes(nodes: list[dict[str, Any]], language: str, columns: int = 4) -> list[dict[str, Any]]:
     """Wrap a Focus story into compact, numbered, left-to-right phase rows.
 
@@ -152,7 +185,7 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
             "id": node_id, "label": f"{len(flow_nodes)+1}. {label}",
             "kind": KIND_MAP.get(step.get("kind"), "process"),
             "frame": "focus-main", "lane": "focus-story", "order": len(flow_nodes),
-            "summary": summary, "icon": "auto", "source_refs": [step["id"]],
+            "summary": cap_summary_words(summary), "icon": "auto", "source_refs": [step["id"]],
             "confidence": step.get("confidence", "UNVERIFIED"),
             "stream_step_ref": step["id"], "details_link": f"[[atlas/flows/{stream_id}]]",
             "role": "decision" if step.get("kind") == "decision" else "primary-story",
@@ -203,7 +236,7 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
     failure_node = {
         "id": "focus-stop-reasons", "label": "왜 흐름이 멈추는가" if language == "ko" else "Why the flow stops",
         "kind": "risk", "frame": "focus-context", "lane": "focus-context-lane", "order": 0,
-        "summary": "\n".join(f"• {x}" for x in failure_labels[:6]), "icon": "auto",
+        "summary": cap_summary_words("\n".join(f"• {x}" for x in failure_labels[:6])), "icon": "auto",
         "source_refs": [o["id"] for o in stream.get("outcomes", []) if o.get("type") != "success"],
         "confidence": stream.get("confidence", "UNVERIFIED"), "details_link": f"[[atlas/flows/{stream_id}#errors-timeouts-and-retries]]",
         "role": "failure-summary", "collapsed_refs": [x.get("id", "") for x in stream.get("error_paths", [])]
@@ -212,7 +245,7 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
     unknown_node = {
         "id": "focus-required-unknowns", "label": "아직 확인되지 않은 것" if language == "ko" else "Still unknown",
         "kind": "note", "frame": "focus-context", "lane": "focus-context-lane", "order": 1,
-        "summary": unknown_text, "icon": "auto", "source_refs": [x["id"] for x in relevant_unknowns],
+        "summary": cap_summary_words(unknown_text), "icon": "auto", "source_refs": [x["id"] for x in relevant_unknowns],
         "confidence": confidence_min([x.get("confidence", "UNVERIFIED") for x in relevant_unknowns]) if relevant_unknowns else "VERIFIED",
         "details_link": "[[unknowns]]", "role": "unknown"
     }
@@ -220,7 +253,7 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
     atlas_node = {
         "id": "focus-open-atlas", "label": p.get("atlas_label") or ("전체 지도 열기" if language == "ko" else "Open Deep Atlas"),
         "kind": "note", "frame": "focus-context", "lane": "focus-context-lane", "order": 2,
-        "summary": expansion_text, "icon": "auto", "source_refs": [x["id"] for x in expansion_points],
+        "summary": cap_summary_words(expansion_text), "icon": "auto", "source_refs": [x["id"] for x in expansion_points],
         "confidence": "PARTIAL", "details_link": "[[atlas/index]]", "role": "atlas-link"
     }
 
@@ -245,7 +278,7 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
             "answers": {
                 "who_starts": p.get("actor_label") or ", ".join(stream.get("actor_ids", [])[:2]),
                 "what_they_want": p.get("intent_label") or stream.get("purpose", ""),
-                "key_decisions": ", ".join(n["label"].split(". ",1)[-1] for n in flow_nodes if n.get("role") == "decision") or ("중심 판단: 요청이 접수되고 처리가 완료되는지 확인한다." if language == "ko" else "Core decision: whether the request is accepted and processing completes."),
+                "key_decisions": ", ".join(n["label"].split(". ",1)[-1] for n in flow_nodes if n.get("role") == "decision"),
                 "success_change": p.get("success_label") or success.get("observable_result", "")
             },
             "does_not_answer": session.get("scope", {}).get("out_of_scope", []) or ["Full implementation detail"],
@@ -263,9 +296,9 @@ def build_focus(map_model: dict[str, Any], session: dict[str, Any], coverage: di
 
     overview_nodes = [
         {"id":"overview-start","label":"START HERE · 시스템 한 줄" if language=="ko" else "START HERE · System in one line","kind":"start","frame":"overview-main","lane":"overview-lane","order":0,
-         "summary":p.get("system_summary") or map_model.get("workspace_id", ""),"icon":"auto","source_refs":[map_model.get("workspace_id","")],"confidence":map_model.get("confidence","UNVERIFIED"),"details_link":"[[architecture/start-here]]","role":"context","step_number":1},
+         "summary":cap_summary_words(p.get("system_summary") or map_model.get("workspace_id", "")),"icon":"auto","source_refs":[map_model.get("workspace_id","")],"confidence":map_model.get("confidence","UNVERIFIED"),"details_link":"[[architecture/start-here]]","role":"context","step_number":1},
         {"id":"overview-question","label":"질문에서 시작" if language=="ko" else "Begin with a question","kind":"process","frame":"overview-main","lane":"overview-lane","order":1,
-         "summary":session["question"],"icon":"auto","source_refs":[session["session_id"]],"confidence":"VERIFIED","details_link":f"[[understanding/{session['session_id']}]]","role":"primary-story","step_number":2},
+         "summary":cap_summary_words(session["question"]),"icon":"auto","source_refs":[session["session_id"]],"confidence":"VERIFIED","details_link":f"[[understanding/{session['session_id']}]]","role":"primary-story","step_number":2},
         {"id":"overview-flow","label":"한 흐름을 끝까지" if language=="ko" else "Trace one flow end to end","kind":"process","frame":"overview-main","lane":"overview-lane","order":2,
          "summary":f"{len(flow_nodes)}개의 중심 단계 · 실패 이유 {len(failure_labels)}개" if language=="ko" else f"{len(flow_nodes)} primary steps · {len(failure_labels)} stop reasons",
          "icon":"auto","source_refs":[stream_id],"confidence":stream.get("confidence","UNVERIFIED"),"details_link":f"[[flows/{stream_id}-focus]]","role":"primary-story","step_number":3},

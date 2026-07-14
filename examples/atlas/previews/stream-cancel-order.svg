@@ -1,22 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2231" height="971" viewBox="-12.00 -22.00 2231.00 971.00">
-<rect x="-12.00" y="-22.00" width="2231.00" height="971.00" fill="#F7F8FC"/>
-<rect x="55.00" y="215.00" width="2104.00" height="674.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="48.00" y="208.00" width="2104.00" height="674.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
-<rect x="78.00" y="308.00" width="2044.00" height="164.00" rx="18.00" stroke="#D0D5DD" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
-<rect x="78.00" y="486.00" width="2044.00" height="164.00" rx="18.00" stroke="#D0D5DD" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
-<rect x="78.00" y="664.00" width="2044.00" height="164.00" rx="18.00" stroke="#D0D5DD" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2677" height="971" viewBox="-12.00 -22.00 2677.00 971.00">
+<rect x="-12.00" y="-22.00" width="2677.00" height="971.00" fill="#F7F8FC"/>
+<rect x="55.00" y="215.00" width="2550.00" height="674.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="48.00" y="208.00" width="2550.00" height="674.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
+<rect x="78.00" y="308.00" width="2490.00" height="164.00" rx="18.00" stroke="#D0D5DD" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
+<rect x="78.00" y="486.00" width="2490.00" height="164.00" rx="18.00" stroke="#D0D5DD" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
+<rect x="78.00" y="664.00" width="2490.00" height="164.00" rx="18.00" stroke="#D0D5DD" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
 <rect x="319.00" y="334.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="1399.00" y="334.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="1669.00" y="334.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="1129.00" y="512.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<rect x="859.00" y="690.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
-<polyline points="555.00,390.00 566.00,390.00 566.00,568.00 577.00,568.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="577.00,568.00 558.00,576.55 558.00,559.45" fill="#4F46E5" opacity="1.000"/>
-<polyline points="825.00,568.00 836.00,568.00 836.00,746.00 847.00,746.00" stroke="#D97706" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="847.00,746.00 829.60,753.83 829.60,738.17" fill="#D97706" opacity="1.000"/>
-<polyline points="825.00,568.00 1241.00,568.00 1241.00,390.00 1657.00,390.00" stroke="#D97706" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1657.00,390.00 1639.60,397.83 1639.60,382.17" fill="#D97706" opacity="1.000"/>
-<polyline points="1095.00,746.00 1106.00,746.00 1106.00,568.00 1117.00,568.00" stroke="#C11574" fill="none" stroke-width="3.0" opacity="1.000" stroke-dasharray="3 7" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1117.00,568.00 1098.00,576.55 1098.00,559.45" fill="#C11574" opacity="1.000"/>
-<polyline points="1365.00,568.00 1376.00,568.00 1376.00,390.00 1387.00,390.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1387.00,390.00 1368.00,398.55 1368.00,381.45" fill="#4F46E5" opacity="1.000"/>
+<rect x="1799.00" y="334.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="2169.00" y="334.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1429.00" y="512.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1059.00" y="690.00" width="238.00" height="126.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<polyline points="555.00,390.00 616.00,390.00 616.00,568.00 677.00,568.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="677.00,568.00 658.00,576.55 658.00,559.45" fill="#4F46E5" opacity="1.000"/>
+<polyline points="925.00,568.00 986.00,568.00 986.00,746.00 1047.00,746.00" stroke="#D97706" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1047.00,746.00 1029.60,753.83 1029.60,738.17" fill="#D97706" opacity="1.000"/>
+<polyline points="925.00,568.00 1541.00,568.00 1541.00,390.00 2157.00,390.00" stroke="#D97706" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="2157.00,390.00 2139.60,397.83 2139.60,382.17" fill="#D97706" opacity="1.000"/>
+<polyline points="1295.00,746.00 1356.00,746.00 1356.00,568.00 1417.00,568.00" stroke="#C11574" fill="none" stroke-width="3.0" opacity="1.000" stroke-dasharray="3 7" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1417.00,568.00 1398.00,576.55 1398.00,559.45" fill="#C11574" opacity="1.000"/>
+<polyline points="1665.00,568.00 1726.00,568.00 1726.00,390.00 1787.00,390.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1787.00,390.00 1768.00,398.55 1768.00,381.45" fill="#4F46E5" opacity="1.000"/>
 <rect x="56.00" y="38.00" width="139.36" height="30.00" rx="5.40" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.0" opacity="1.000"/>
-<rect x="2040.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="2486.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="48.00" y="208.00" width="8.00" height="674.00" rx="0.64" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
 <rect x="76.00" y="230.00" width="88.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
 <rect x="78.00" y="308.00" width="10.00" height="164.00" rx="0.80" stroke="#175CD3" fill="#175CD3" stroke-width="0.0" opacity="1.000"/>
@@ -25,38 +25,38 @@
 <rect x="312.00" y="327.00" width="238.00" height="126.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
 <rect x="312.00" y="327.00" width="238.00" height="5.00" rx="0.90" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
 <rect x="327.00" y="342.00" width="44.00" height="44.00" rx="3.52" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
-<rect x="1392.00" y="327.00" width="238.00" height="126.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
-<rect x="1392.00" y="327.00" width="238.00" height="5.00" rx="0.90" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
-<rect x="1407.00" y="342.00" width="44.00" height="44.00" rx="3.52" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
-<rect x="1662.00" y="327.00" width="238.00" height="126.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
-<rect x="1662.00" y="327.00" width="238.00" height="5.00" rx="0.90" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
-<rect x="1677.00" y="342.00" width="44.00" height="44.00" rx="3.52" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
-<polygon points="701.00,495.00 820.00,568.00 701.00,641.00 582.00,568.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000" stroke-linejoin="round"/>
-<rect x="679.00" y="509.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
-<ellipse cx="701.00" cy="531.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
-<ellipse cx="701.00" cy="541.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
-<rect x="1122.00" y="505.00" width="238.00" height="126.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
-<rect x="1122.00" y="505.00" width="238.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
-<rect x="1137.00" y="520.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
-<rect x="852.00" y="683.00" width="238.00" height="126.00" rx="18.00" stroke="#C11574" fill="#FDF2FA" stroke-width="2.2" opacity="1.000"/>
-<rect x="852.00" y="683.00" width="238.00" height="5.00" rx="0.90" stroke="#C11574" fill="#C11574" stroke-width="0.0" opacity="1.000"/>
-<rect x="867.00" y="698.00" width="44.00" height="44.00" rx="3.52" stroke="#FDF2FA" fill="#FDF2FA" stroke-width="0.0" opacity="1.000"/>
-<rect x="524.00" y="463.00" width="168.36" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="794.00" y="641.00" width="149.22" height="30.00" rx="5.40" stroke="#D97706" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="1199.00" y="463.00" width="136.46" height="30.00" rx="5.40" stroke="#D97706" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="1064.00" y="641.00" width="206.64" height="30.00" rx="5.40" stroke="#C11574" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="1334.00" y="463.00" width="200.26" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1792.00" y="327.00" width="238.00" height="126.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
+<rect x="1792.00" y="327.00" width="238.00" height="5.00" rx="0.90" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
+<rect x="1807.00" y="342.00" width="44.00" height="44.00" rx="3.52" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
+<rect x="2162.00" y="327.00" width="238.00" height="126.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
+<rect x="2162.00" y="327.00" width="238.00" height="5.00" rx="0.90" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
+<rect x="2177.00" y="342.00" width="44.00" height="44.00" rx="3.52" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
+<polygon points="801.00,495.00 920.00,568.00 801.00,641.00 682.00,568.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000" stroke-linejoin="round"/>
+<rect x="779.00" y="509.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="801.00" cy="531.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="801.00" cy="541.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
+<rect x="1422.00" y="505.00" width="238.00" height="126.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="1422.00" y="505.00" width="238.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
+<rect x="1437.00" y="520.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="1052.00" y="683.00" width="238.00" height="126.00" rx="18.00" stroke="#C11574" fill="#FDF2FA" stroke-width="2.2" opacity="1.000"/>
+<rect x="1052.00" y="683.00" width="238.00" height="5.00" rx="0.90" stroke="#C11574" fill="#C11574" stroke-width="0.0" opacity="1.000"/>
+<rect x="1067.00" y="698.00" width="44.00" height="44.00" rx="3.52" stroke="#FDF2FA" fill="#FDF2FA" stroke-width="0.0" opacity="1.000"/>
+<rect x="574.00" y="463.00" width="168.36" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="944.00" y="641.00" width="149.22" height="30.00" rx="5.40" stroke="#D97706" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1499.00" y="463.00" width="136.46" height="30.00" rx="5.40" stroke="#D97706" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1314.00" y="641.00" width="206.64" height="30.00" rx="5.40" stroke="#C11574" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1684.00" y="463.00" width="200.26" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <polyline points="341.56,352.31 341.56,375.69 358.56,364.00 341.56,352.31" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="1416.25,365.06 1424.75,373.56 1441.75,354.44" stroke="#15803D" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="1686.25,365.06 1694.75,373.56 1711.75,354.44" stroke="#15803D" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="695.69,525.69 697.81,522.50 703.13,522.50 706.31,525.69 706.31,528.88 702.07,532.06 701.00,535.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="1145.19,534.56 1168.57,534.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1168.57,534.56 1151.37,542.30 1151.37,526.82" fill="#7F56D9" opacity="1.000"/>
-<polyline points="1172.82,549.44 1149.44,549.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1149.44,549.44 1166.64,541.70 1166.64,557.18" fill="#7F56D9" opacity="1.000"/>
-<polyline points="901.75,711.50 884.75,711.50 877.31,720.00 884.75,728.50 898.56,728.50" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="898.56,728.50 881.36,736.24 881.36,720.76" fill="#C11574" opacity="1.000"/>
+<polyline points="1816.25,365.06 1824.75,373.56 1841.75,354.44" stroke="#15803D" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="2186.25,365.06 2194.75,373.56 2211.75,354.44" stroke="#15803D" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="795.69,525.69 797.81,522.50 803.13,522.50 806.31,525.69 806.31,528.88 802.07,532.06 801.00,535.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1445.19,534.56 1468.57,534.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1468.57,534.56 1451.37,542.30 1451.37,526.82" fill="#7F56D9" opacity="1.000"/>
+<polyline points="1472.82,549.44 1449.44,549.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1449.44,549.44 1466.64,541.70 1466.64,557.18" fill="#7F56D9" opacity="1.000"/>
+<polyline points="1101.75,711.50 1084.75,711.50 1077.31,720.00 1084.75,728.50 1098.56,728.50" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1098.56,728.50 1081.36,736.24 1081.36,720.76" fill="#C11574" opacity="1.000"/>
 <text x="125.68" y="57.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="125.68" dy="0.00">DEEP ATLAS · 검증…</tspan></text>
 <text x="56.00" y="126.50" font-size="36.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="56.00" dy="0.00">Cancel an eligible order</tspan></text>
 <text x="56.00" y="159.00" font-size="16.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="56.00" dy="0.00">Show policy, compensation, and terminal state.</tspan></text>
-<a href="[[architecture/atlas/flows/cancel-order.md]]"><text x="2092.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="2092.00" dy="0.00">흐름 문서</tspan></text></a>
+<a href="[[architecture/atlas/flows/cancel-order.md]]"><text x="2538.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="2538.00" dy="0.00">흐름 문서</tspan></text></a>
 <text x="120.00" y="249.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 1</tspan></text>
 <text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">Cancellation stream</tspan></text>
 <text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">Approved and rejected paths.</tspan></text>
@@ -65,18 +65,18 @@
 <text x="98.00" y="696.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="98.00" dy="0.00">Payment + inventory</tspan></text>
 <text x="384.00" y="362.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="384.00" dy="0.00">Request cancel</tspan></text>
 <text x="327.00" y="396.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="327.00" dy="0.00">Submit own order id.</tspan></text>
-<text x="1464.00" y="362.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1464.00" dy="0.00">Cancelled</tspan></text>
-<text x="1407.00" y="396.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1407.00" dy="0.00">Return confirmation.</tspan></text>
-<text x="1734.00" y="362.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1734.00" dy="0.00">Rejected</tspan></text>
-<text x="1677.00" y="396.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1677.00" dy="0.00">No state change.</tspan></text>
-<a href="[[flows/cancel-order#branches-and-transitions]]"><text x="701.00" y="563.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#101828" opacity="1.000"><tspan x="701.00" dy="0.00">Cancellation allowed?</tspan><tspan x="701.00" dy="17.50">Ownership, status,</tspan><tspan x="701.00" dy="17.50">fulfillment not</tspan><tspan x="701.00" dy="17.50">started.</tspan></text></a>
-<a href="[[states/order-lifecycle]]"><text x="1194.00" y="540.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1194.00" dy="0.00">Order → CANCELLED</tspan></text></a>
-<a href="[[states/order-lifecycle]]"><text x="1137.00" y="574.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1137.00" dy="0.00">Persist terminal state.</tspan><tspan x="1137.00" dy="15.00">PAID_OR_RESERVED →</tspan><tspan x="1137.00" dy="15.00">CANCELLED</tspan></text></a>
-<a href="[[flows/cancel-order#compensation]]"><text x="924.00" y="718.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="924.00" dy="0.00">Refund + release</tspan></text></a>
-<a href="[[flows/cancel-order#compensation]]"><text x="867.00" y="752.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="867.00" dy="0.00">Restore funds and stock.</tspan></text></a>
-<text x="608.18" y="482.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="608.18" dy="0.00">request · order loaded</tspan></text>
-<text x="868.61" y="660.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="868.61" dy="0.00">YES · policy passes</tspan></text>
-<text x="1267.23" y="482.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="1267.23" dy="0.00">NO · policy fails</tspan></text>
-<text x="1167.32" y="660.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#C11574" opacity="1.000"><tspan x="1167.32" dy="0.00">restored · refund/release c…</tspan></text>
-<text x="1434.13" y="482.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="1434.13" dy="0.00">cancelled · state persisted</tspan></text>
+<text x="1864.00" y="362.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1864.00" dy="0.00">Cancelled</tspan></text>
+<text x="1807.00" y="396.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1807.00" dy="0.00">Return confirmation.</tspan></text>
+<text x="2234.00" y="362.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="2234.00" dy="0.00">Rejected</tspan></text>
+<text x="2177.00" y="396.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="2177.00" dy="0.00">No state change.</tspan></text>
+<a href="[[flows/cancel-order#branches-and-transitions]]"><text x="801.00" y="563.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#101828" opacity="1.000"><tspan x="801.00" dy="0.00">Cancellation allowed?</tspan><tspan x="801.00" dy="17.50">Ownership, status,</tspan><tspan x="801.00" dy="17.50">fulfillment not</tspan><tspan x="801.00" dy="17.50">started.</tspan></text></a>
+<a href="[[states/order-lifecycle]]"><text x="1494.00" y="540.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1494.00" dy="0.00">Order → CANCELLED</tspan></text></a>
+<a href="[[states/order-lifecycle]]"><text x="1437.00" y="574.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1437.00" dy="0.00">Persist terminal state.</tspan><tspan x="1437.00" dy="15.00">PAID_OR_RESERVED →</tspan><tspan x="1437.00" dy="15.00">CANCELLED</tspan></text></a>
+<a href="[[flows/cancel-order#compensation]]"><text x="1124.00" y="718.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1124.00" dy="0.00">Refund + release</tspan></text></a>
+<a href="[[flows/cancel-order#compensation]]"><text x="1067.00" y="752.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1067.00" dy="0.00">Restore funds and stock.</tspan></text></a>
+<text x="658.18" y="482.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="658.18" dy="0.00">request · order loaded</tspan></text>
+<text x="1018.61" y="660.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="1018.61" dy="0.00">YES · policy passes</tspan></text>
+<text x="1567.23" y="482.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="1567.23" dy="0.00">NO · policy fails</tspan></text>
+<text x="1417.32" y="660.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#C11574" opacity="1.000"><tspan x="1417.32" dy="0.00">restored · refund/release c…</tspan></text>
+<text x="1784.13" y="482.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="1784.13" dy="0.00">cancelled · state persisted</tspan></text>
 </svg>

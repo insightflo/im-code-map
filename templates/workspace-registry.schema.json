@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/im-code-map/workspace-registry.schema.json",
+  "title": "im-code-map workspace registry v3",
+  "type": "object",
+  "required": ["schema_version", "workspace_id", "generated_at", "codebases"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "workspace_id": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "workspace_root": { "type": "string" },
+    "architecture_output": { "type": "string" },
+    "codebases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "root_path", "kind", "included", "confidence", "evidence"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "root_path": { "type": "string" },
+          "kind": { "type": "string", "enum": ["frontend", "backend", "worker", "mobile", "admin", "infra", "docs", "library", "unknown"] },
+          "repo_type": { "type": "string" },
+          "package_manager": { "type": ["string", "null"] },
+          "included": { "type": "boolean" },
+          "confidence": { "$ref": "#/$defs/confidence" },
+          "evidence": { "type": "array", "items": { "type": "string" } },
+          "uncertainties": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": true
+      }
+    },
+    "excluded_paths": { "type": "array", "items": { "type": "string" } },
+    "uncertainties": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "confidence": {
+      "type": "string",
+      "enum": ["VERIFIED", "PARTIAL", "DOC_ONLY", "UNVERIFIED", "CONFLICT"]
+    }
+  },
+  "additionalProperties": true
+}

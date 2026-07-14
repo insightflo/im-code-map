@@ -1,0 +1,596 @@
+{
+  "nodes": [
+    {
+      "id": "canvas_8b0ffff2524255b5",
+      "type": "file",
+      "x": 40,
+      "y": 40,
+      "width": 360,
+      "height": 220,
+      "file": "architecture/atlas/start-here.md"
+    },
+    {
+      "id": "canvas_10233b61ec5e998f",
+      "type": "file",
+      "x": 450,
+      "y": 40,
+      "width": 340,
+      "height": 220,
+      "file": "architecture/atlas/visual-index.md"
+    },
+    {
+      "id": "canvas_517c974ab15b3de6",
+      "type": "group",
+      "x": 20,
+      "y": 330,
+      "width": 1780,
+      "height": 1320,
+      "label": "1. Business streams: begin here"
+    },
+    {
+      "id": "canvas_450a1448275f7ea9",
+      "type": "group",
+      "x": 1870,
+      "y": 330,
+      "width": 1420,
+      "height": 1930,
+      "label": "2. State, eligibility, and rules"
+    },
+    {
+      "id": "canvas_8583bd88002f07ed",
+      "type": "group",
+      "x": 3360,
+      "y": 330,
+      "width": 1500,
+      "height": 1190,
+      "label": "3. Domain ownership and contracts"
+    },
+    {
+      "id": "canvas_db7b9f4b75e20c78",
+      "type": "group",
+      "x": 4930,
+      "y": 330,
+      "width": 1250,
+      "height": 760,
+      "label": "4. Codebases and evidence"
+    },
+    {
+      "id": "canvas_b4447ff0c1eca5a0",
+      "type": "file",
+      "x": 80,
+      "y": 400,
+      "width": 440,
+      "height": 210,
+      "file": "architecture/atlas/flows/browse-orderable-products.md"
+    },
+    {
+      "id": "canvas_e90f6f1715b6999c",
+      "type": "file",
+      "x": 570,
+      "y": 400,
+      "width": 500,
+      "height": 210,
+      "file": "architecture/atlas/excalidraw/stream-browse-orderable-products.excalidraw"
+    },
+    {
+      "id": "canvas_041d9ccc9a7fe2b7",
+      "type": "text",
+      "x": 1120,
+      "y": 400,
+      "width": 590,
+      "height": 210,
+      "text": "**Trigger**: open catalog\n\n**Entry**: `GET /products`\n\n**Terminal outcomes**: 1\n\n**Confidence**: `VERIFIED`"
+    },
+    {
+      "id": "canvas_acac08e7d9335d95",
+      "type": "file",
+      "x": 80,
+      "y": 730,
+      "width": 440,
+      "height": 210,
+      "file": "architecture/atlas/flows/member-place-order.md"
+    },
+    {
+      "id": "canvas_d9cc9bc03df6e387",
+      "type": "file",
+      "x": 570,
+      "y": 730,
+      "width": 500,
+      "height": 210,
+      "file": "architecture/atlas/excalidraw/stream-member-place-order.excalidraw"
+    },
+    {
+      "id": "canvas_6cde4f77fe17450d",
+      "type": "text",
+      "x": 1120,
+      "y": 730,
+      "width": 590,
+      "height": 210,
+      "text": "**Trigger**: place order\n\n**Entry**: `POST /orders`\n\n**Terminal outcomes**: 5\n\n**Confidence**: `PARTIAL`"
+    },
+    {
+      "id": "canvas_5718b331fc5cfa06",
+      "type": "file",
+      "x": 80,
+      "y": 1060,
+      "width": 440,
+      "height": 210,
+      "file": "architecture/atlas/flows/cancel-order.md"
+    },
+    {
+      "id": "canvas_09c79ec69026d859",
+      "type": "file",
+      "x": 570,
+      "y": 1060,
+      "width": 500,
+      "height": 210,
+      "file": "architecture/atlas/excalidraw/stream-cancel-order.excalidraw"
+    },
+    {
+      "id": "canvas_741ab4ebbd74b580",
+      "type": "text",
+      "x": 1120,
+      "y": 1060,
+      "width": 590,
+      "height": 210,
+      "text": "**Trigger**: cancel order\n\n**Entry**: `POST /orders/{id}/cancel`\n\n**Terminal outcomes**: 2\n\n**Confidence**: `PARTIAL`"
+    },
+    {
+      "id": "canvas_a22a2617e94926c7",
+      "type": "file",
+      "x": 1930,
+      "y": 400,
+      "width": 420,
+      "height": 170,
+      "file": "architecture/atlas/states/product-lifecycle.md"
+    },
+    {
+      "id": "canvas_5ff7b8cefe4549db",
+      "type": "file",
+      "x": 1930,
+      "y": 610,
+      "width": 420,
+      "height": 170,
+      "file": "architecture/atlas/states/order-lifecycle.md"
+    },
+    {
+      "id": "canvas_92b0bed0e1c1d50d",
+      "type": "file",
+      "x": 1930,
+      "y": 820,
+      "width": 420,
+      "height": 170,
+      "file": "architecture/atlas/states/payment-lifecycle.md"
+    },
+    {
+      "id": "canvas_f384429d178a9d4f",
+      "type": "file",
+      "x": 2410,
+      "y": 1070,
+      "width": 780,
+      "height": 150,
+      "file": "architecture/atlas/rules/rule-member-verified.md"
+    },
+    {
+      "id": "canvas_c70d55c7b986c4bf",
+      "type": "file",
+      "x": 2410,
+      "y": 1260,
+      "width": 780,
+      "height": 150,
+      "file": "architecture/atlas/rules/rule-product-active.md"
+    },
+    {
+      "id": "canvas_25deb2ffab9cf3fc",
+      "type": "file",
+      "x": 2410,
+      "y": 1450,
+      "width": 780,
+      "height": 150,
+      "file": "architecture/atlas/rules/rule-sale-window.md"
+    },
+    {
+      "id": "canvas_507146351663a9aa",
+      "type": "file",
+      "x": 2410,
+      "y": 1640,
+      "width": 780,
+      "height": 150,
+      "file": "architecture/atlas/rules/rule-stock-available.md"
+    },
+    {
+      "id": "canvas_cb82311cb5a3e687",
+      "type": "file",
+      "x": 2410,
+      "y": 1830,
+      "width": 780,
+      "height": 150,
+      "file": "architecture/atlas/rules/rule-cancel-window.md"
+    },
+    {
+      "id": "canvas_2842525e8a11ce2c",
+      "type": "file",
+      "x": 3420,
+      "y": 400,
+      "width": 620,
+      "height": 150,
+      "file": "architecture/atlas/domains/identity-access.md"
+    },
+    {
+      "id": "canvas_55987069fddc34e9",
+      "type": "file",
+      "x": 4120,
+      "y": 400,
+      "width": 620,
+      "height": 150,
+      "file": "architecture/atlas/domains/catalog.md"
+    },
+    {
+      "id": "canvas_cdef60c58ad6f8e3",
+      "type": "file",
+      "x": 3420,
+      "y": 590,
+      "width": 620,
+      "height": 150,
+      "file": "architecture/atlas/domains/inventory.md"
+    },
+    {
+      "id": "canvas_ef35a4decca6171f",
+      "type": "file",
+      "x": 4120,
+      "y": 590,
+      "width": 620,
+      "height": 150,
+      "file": "architecture/atlas/domains/ordering.md"
+    },
+    {
+      "id": "canvas_98738a2008f24f7e",
+      "type": "file",
+      "x": 3420,
+      "y": 780,
+      "width": 620,
+      "height": 150,
+      "file": "architecture/atlas/domains/payment.md"
+    },
+    {
+      "id": "canvas_21f9162b5834c475",
+      "type": "file",
+      "x": 5000,
+      "y": 400,
+      "width": 540,
+      "height": 180,
+      "file": "architecture/atlas/codebases/commerce-app.md"
+    },
+    {
+      "id": "canvas_aeb1517af3b1dad3",
+      "type": "text",
+      "x": 5580,
+      "y": 400,
+      "width": 520,
+      "height": 180,
+      "text": "**Root** `/workspace/demo-commerce`\n\n**Entry points**\n- `src/server.ts`\n- `src/routes/orders.ts`"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_55261a37b278b117",
+      "fromNode": "canvas_8b0ffff2524255b5",
+      "toNode": "canvas_10233b61ec5e998f",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "visual entry"
+    },
+    {
+      "id": "edge_11804e6cd069aeef",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_e90f6f1715b6999c",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "visual"
+    },
+    {
+      "id": "edge_041d9ccc9a7fe2b7",
+      "fromNode": "canvas_e90f6f1715b6999c",
+      "toNode": "canvas_041d9ccc9a7fe2b7",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "trigger / result"
+    },
+    {
+      "id": "edge_af6e3ac9e00bd256",
+      "fromNode": "canvas_8b0ffff2524255b5",
+      "toNode": "canvas_b4447ff0c1eca5a0",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "label": "start reading"
+    },
+    {
+      "id": "edge_39760f16c26fa2d3",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_d9cc9bc03df6e387",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "visual"
+    },
+    {
+      "id": "edge_6cde4f77fe17450d",
+      "fromNode": "canvas_d9cc9bc03df6e387",
+      "toNode": "canvas_6cde4f77fe17450d",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "trigger / result"
+    },
+    {
+      "id": "edge_b963fbd49b2ee1e5",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_09c79ec69026d859",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "visual"
+    },
+    {
+      "id": "edge_741ab4ebbd74b580",
+      "fromNode": "canvas_09c79ec69026d859",
+      "toNode": "canvas_741ab4ebbd74b580",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "trigger / result"
+    },
+    {
+      "id": "edge_b3cd62ab41a21c43",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_f384429d178a9d4f",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_138912fc61cdfe0e",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_c70d55c7b986c4bf",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_928db3a3eae0fb17",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_c70d55c7b986c4bf",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_970c7518ff8d4df5",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_25deb2ffab9cf3fc",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_56eb05fc43f88ee6",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_25deb2ffab9cf3fc",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_2a6d97ef28e59920",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_507146351663a9aa",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_415096cfa0be1f6a",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_507146351663a9aa",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_3f13f830e72f2d61",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_cb82311cb5a3e687",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evaluates"
+    },
+    {
+      "id": "edge_9480329f0d3e6824",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_2842525e8a11ce2c",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_ef820af528759eb4",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_2842525e8a11ce2c",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_a8f2fbfb9d5ada1a",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_2842525e8a11ce2c",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_982f5e56f9e31df2",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_55987069fddc34e9",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_60352809df2dcc1d",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_55987069fddc34e9",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_38dae5b6b11ce78b",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_cdef60c58ad6f8e3",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_49cd0fff80723712",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_cdef60c58ad6f8e3",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_45d5d8d55f4779b5",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_cdef60c58ad6f8e3",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_51423e73694a259a",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_ef35a4decca6171f",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_aed5619221da19a3",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_ef35a4decca6171f",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_298c93dcb9128dd8",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_98738a2008f24f7e",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_f1b9fd3a89199f75",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_98738a2008f24f7e",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "uses"
+    },
+    {
+      "id": "edge_104358ed66522fc2",
+      "fromNode": "canvas_21f9162b5834c475",
+      "toNode": "canvas_aeb1517af3b1dad3",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "evidence"
+    },
+    {
+      "id": "edge_0f78a22b7456279c",
+      "fromNode": "canvas_2842525e8a11ce2c",
+      "toNode": "canvas_21f9162b5834c475",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "implemented in"
+    },
+    {
+      "id": "edge_b9f2c3ca06aa19b2",
+      "fromNode": "canvas_55987069fddc34e9",
+      "toNode": "canvas_21f9162b5834c475",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "implemented in"
+    },
+    {
+      "id": "edge_cf4ff51c8c9b8321",
+      "fromNode": "canvas_cdef60c58ad6f8e3",
+      "toNode": "canvas_21f9162b5834c475",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "implemented in"
+    },
+    {
+      "id": "edge_3d682a5efd9ded8f",
+      "fromNode": "canvas_ef35a4decca6171f",
+      "toNode": "canvas_21f9162b5834c475",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "implemented in"
+    },
+    {
+      "id": "edge_d5fe0750503c5a7e",
+      "fromNode": "canvas_98738a2008f24f7e",
+      "toNode": "canvas_21f9162b5834c475",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "implemented in"
+    },
+    {
+      "id": "edge_3fb3d68d9a65cea9",
+      "fromNode": "canvas_b4447ff0c1eca5a0",
+      "toNode": "canvas_a22a2617e94926c7",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "changes state"
+    },
+    {
+      "id": "edge_96f0b4241786ad28",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_a22a2617e94926c7",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "changes state"
+    },
+    {
+      "id": "edge_ea7347e72400efc6",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_5ff7b8cefe4549db",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "changes state"
+    },
+    {
+      "id": "edge_143e3a0cbc43d75c",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_5ff7b8cefe4549db",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "changes state"
+    },
+    {
+      "id": "edge_f618fdfa407e65b1",
+      "fromNode": "canvas_acac08e7d9335d95",
+      "toNode": "canvas_92b0bed0e1c1d50d",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "changes state"
+    },
+    {
+      "id": "edge_27c022d8014e1d7f",
+      "fromNode": "canvas_5718b331fc5cfa06",
+      "toNode": "canvas_92b0bed0e1c1d50d",
+      "fromSide": "right",
+      "toSide": "left",
+      "label": "changes state"
+    }
+  ]
+}

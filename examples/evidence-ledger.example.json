@@ -1,0 +1,45 @@
+{
+  "schema_version": "5.0.0",
+  "workspace_id": "demo-commerce",
+  "generated_at": "2026-07-14T11:00:00+08:00",
+  "claims": [
+    {
+      "id": "claim-order-sequence",
+      "claim": "검증 회원의 주문은 회원 확인, 상품 주문 가능성, 재고 예약, 결제 승인을 거쳐 완료된다.",
+      "confidence": "PARTIAL",
+      "supports": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "services/order-service",
+          "excerpt": "End-to-end order orchestration and branches.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-14T11:00:00+08:00"
+        }
+      ],
+      "contradictions": [],
+      "used_by": [
+        "understand-member-order",
+        "member-place-order"
+      ]
+    },
+    {
+      "id": "claim-timeout-policy",
+      "claim": "결제 timeout은 주문 실패와 재고 해제를 일으킨다.",
+      "confidence": "PARTIAL",
+      "supports": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "payment-error",
+          "excerpt": "Payment failed after stock reservation; reservation released.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-14T11:00:00+08:00"
+        }
+      ],
+      "contradictions": [],
+      "used_by": [
+        "understand-member-order",
+        "exp-payment-failure"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://im-code-map.local/schema/understanding-session-v5.json",
+  "title": "im-code-map understanding session v5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace_id",
+    "session_id",
+    "created_at",
+    "question",
+    "intent",
+    "requested_depth",
+    "audience",
+    "selected_stream_id",
+    "expected_outcome",
+    "stop_condition",
+    "scope",
+    "risk_assessment",
+    "routing_decision",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "5.0.0"
+    },
+    "workspace_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "question": {
+      "type": "string",
+      "minLength": 5
+    },
+    "intent": {
+      "enum": [
+        "orient",
+        "trace",
+        "explain",
+        "before-change",
+        "debug",
+        "expand",
+        "atlas"
+      ]
+    },
+    "requested_depth": {
+      "enum": [
+        "default",
+        "focus",
+        "atlas"
+      ]
+    },
+    "audience": {
+      "enum": [
+        "newcomer",
+        "change-author",
+        "operator",
+        "reviewer",
+        "mixed"
+      ]
+    },
+    "selected_stream_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "expected_outcome": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stop_condition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "in_scope",
+        "out_of_scope"
+      ],
+      "properties": {
+        "in_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "out_of_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "risk_assessment": {
+      "type": "object",
+      "required": [
+        "level",
+        "triggers",
+        "requires_atlas",
+        "reason"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "triggers": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "authentication",
+              "authorization",
+              "payment",
+              "privacy",
+              "data-deletion",
+              "migration",
+              "concurrency",
+              "idempotency",
+              "retry-compensation",
+              "cross-repository",
+              "conflicting-evidence",
+              "dynamic-dispatch",
+              "broad-state-change",
+              "user-request"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "requires_atlas": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "routing_decision": {
+      "type": "object",
+      "required": [
+        "selected_profile",
+        "automatic_escalation",
+        "reason"
+      ],
+      "properties": {
+        "selected_profile": {
+          "enum": [
+            "focus",
+            "atlas"
+          ]
+        },
+        "automatic_escalation": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "object",
+            "required": [
+              "source",
+              "locator"
+            ],
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "locator": {
+                "type": "string"
+              },
+              "excerpt": {
+                "type": "string"
+              },
+              "tool": {
+                "type": "string"
+              },
+              "captured_at": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2
+    },
+    "presentation": {
+      "type": "object",
+      "properties": {
+        "overview_title": {
+          "type": "string"
+        },
+        "system_summary": {
+          "type": "string"
+        },
+        "flow_title": {
+          "type": "string"
+        },
+        "actor_label": {
+          "type": "string"
+        },
+        "intent_label": {
+          "type": "string"
+        },
+        "success_label": {
+          "type": "string"
+        },
+        "step_labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "label",
+              "summary"
+            ],
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "stop_reason_labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "atlas_label": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

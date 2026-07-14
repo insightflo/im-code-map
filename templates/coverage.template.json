@@ -1,0 +1,27 @@
+{
+  "schema_version": "5.0.0",
+  "workspace_id": "workspace-id",
+  "session_id": "understand-one-flow",
+  "explored": [
+    {
+      "id": "explored-entry",
+      "label": "Entry and central flow",
+      "reason": "Required to answer the question.",
+      "impact": "blocks-answer",
+      "next_check": null,
+      "source_refs": [],
+      "confidence": "UNVERIFIED"
+    }
+  ],
+  "unknown_relevant": [],
+  "unknown_out_of_scope": [],
+  "expansion_points": [],
+  "boundaries": [],
+  "completion": {
+    "question_answered": false,
+    "stop_condition_met": false,
+    "safe_to_change": "not-applicable",
+    "atlas_recommended": false,
+    "notes": []
+  }
+}

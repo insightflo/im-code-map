@@ -1,0 +1,2877 @@
+{
+  "schema_version": "5.0.0",
+  "workspace_id": "demo-commerce",
+  "generated_at": "2026-07-14T11:00:00+08:00",
+  "source_tools": [
+    {
+      "name": "git",
+      "status": "AVAILABLE",
+      "version": "2.x",
+      "scope": "demo-commerce",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "tooling/git",
+          "excerpt": "Repository root detected.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "name": "codegraph",
+      "status": "AVAILABLE",
+      "version": "current",
+      "scope": "demo-commerce workspace",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "tooling/codegraph",
+          "excerpt": "Callers, callees, impact, and query evidence captured.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ]
+    }
+  ],
+  "confidence": "PARTIAL",
+  "tool_status": {
+    "normal_mode": true,
+    "codegraph": "READY",
+    "documentation": "AGENT_NATIVE",
+    "notes": [
+      "Payment adapter behavior remains PARTIAL because the example snapshot omits provider implementation."
+    ]
+  },
+  "documentation_provider": "agent-native-docs",
+  "codebases": [
+    {
+      "id": "commerce-app",
+      "name": "Commerce application",
+      "root_path": "/workspace/demo-commerce",
+      "kind": "application",
+      "languages": [
+        "TypeScript"
+      ],
+      "entry_points": [
+        "src/server.ts",
+        "src/routes/orders.ts"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "workspace",
+          "excerpt": "Single application codebase.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    }
+  ],
+  "actors": [
+    {
+      "id": "guest",
+      "name": "Guest shopper",
+      "type": "human",
+      "roles": [
+        "GUEST"
+      ],
+      "entry_points": [
+        "GET /products"
+      ],
+      "permissions": [
+        "browse published products"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "routes/catalog",
+          "excerpt": "Anonymous catalog browsing is allowed.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "verified-member",
+      "name": "Verified member",
+      "type": "human",
+      "roles": [
+        "MEMBER",
+        "VERIFIED"
+      ],
+      "entry_points": [
+        "POST /orders"
+      ],
+      "permissions": [
+        "place orders",
+        "cancel own cancellable orders"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "auth/order-policy",
+          "excerpt": "Order placement requires MEMBER and verified=true.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "commerce-api",
+      "name": "Commerce API",
+      "type": "system",
+      "roles": [
+        "ORCHESTRATOR"
+      ],
+      "entry_points": [
+        "POST /orders"
+      ],
+      "permissions": [
+        "query catalog",
+        "create orders",
+        "reserve inventory",
+        "request payment"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "services/order-service",
+          "excerpt": "OrderService coordinates catalog, stock, and payment.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "payment-gateway",
+      "name": "Payment gateway",
+      "type": "external",
+      "roles": [
+        "PAYMENT_PROVIDER"
+      ],
+      "entry_points": [
+        "POST /charges"
+      ],
+      "permissions": [
+        "authorize or decline charge"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "adapters/payment-gateway",
+          "excerpt": "Payment adapter returns authorized or declined.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    },
+    {
+      "id": "event-worker",
+      "name": "Order event worker",
+      "type": "system",
+      "roles": [
+        "EVENT_CONSUMER"
+      ],
+      "entry_points": [
+        "order.placed"
+      ],
+      "permissions": [
+        "send confirmation",
+        "start fulfillment"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "workers/order-events",
+          "excerpt": "Worker subscribes to order.placed.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    }
+  ],
+  "domains": [
+    {
+      "id": "identity-access",
+      "name": "Identity & Access",
+      "type": "cross-cutting",
+      "purpose": "Resolve member type, verification, and permissions.",
+      "responsibilities": [
+        "authenticate member",
+        "authorize order action"
+      ],
+      "implementations_by_codebase": {
+        "commerce-app": [
+          "src/auth",
+          "src/policies/order-policy.ts"
+        ]
+      },
+      "owned_entities": [
+        "member"
+      ],
+      "owned_state_machines": [],
+      "participating_streams": [
+        "browse-orderable-products",
+        "member-place-order",
+        "cancel-order"
+      ],
+      "overview_diagram": "architecture/atlas/excalidraw/domain-commerce-overview.excalidraw",
+      "note_path": "architecture/atlas/domains/identity-access.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "auth/order-policy",
+          "excerpt": "Verified member permission is checked before order creation.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "catalog",
+      "name": "Catalog",
+      "type": "business",
+      "purpose": "Publish products and determine product sale eligibility.",
+      "responsibilities": [
+        "product publication",
+        "sale window checks",
+        "price lookup"
+      ],
+      "implementations_by_codebase": {
+        "commerce-app": [
+          "src/catalog"
+        ]
+      },
+      "owned_entities": [
+        "product"
+      ],
+      "owned_state_machines": [
+        "product-lifecycle"
+      ],
+      "participating_streams": [
+        "browse-orderable-products",
+        "member-place-order"
+      ],
+      "overview_diagram": "architecture/atlas/excalidraw/domain-commerce-overview.excalidraw",
+      "note_path": "architecture/atlas/domains/catalog.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "catalog/product-policy",
+          "excerpt": "Only ACTIVE products inside the sale window are orderable.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "inventory",
+      "name": "Inventory",
+      "type": "business",
+      "purpose": "Expose availability and reserve or release stock.",
+      "responsibilities": [
+        "availability lookup",
+        "atomic reservation",
+        "reservation release"
+      ],
+      "implementations_by_codebase": {
+        "commerce-app": [
+          "src/inventory"
+        ]
+      },
+      "owned_entities": [
+        "inventory-item"
+      ],
+      "owned_state_machines": [],
+      "participating_streams": [
+        "browse-orderable-products",
+        "member-place-order",
+        "cancel-order"
+      ],
+      "overview_diagram": "architecture/atlas/excalidraw/domain-commerce-overview.excalidraw",
+      "note_path": "architecture/atlas/domains/inventory.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "inventory/reservation",
+          "excerpt": "Reservation is atomic and fails when available quantity is insufficient.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "ordering",
+      "name": "Ordering",
+      "type": "business",
+      "purpose": "Create and evolve orders through their lifecycle.",
+      "responsibilities": [
+        "order creation",
+        "state transition",
+        "cancellation"
+      ],
+      "implementations_by_codebase": {
+        "commerce-app": [
+          "src/orders"
+        ]
+      },
+      "owned_entities": [
+        "order"
+      ],
+      "owned_state_machines": [
+        "order-lifecycle"
+      ],
+      "participating_streams": [
+        "member-place-order",
+        "cancel-order"
+      ],
+      "overview_diagram": "architecture/atlas/excalidraw/domain-commerce-overview.excalidraw",
+      "note_path": "architecture/atlas/domains/ordering.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/state-machine",
+          "excerpt": "Orders move PENDING → RESERVED → PAID or FAILED/CANCELLED.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "payment",
+      "name": "Payment",
+      "type": "supporting",
+      "purpose": "Authorize payment and record results.",
+      "responsibilities": [
+        "charge request",
+        "result recording",
+        "refund"
+      ],
+      "implementations_by_codebase": {
+        "commerce-app": [
+          "src/payments"
+        ]
+      },
+      "owned_entities": [
+        "payment"
+      ],
+      "owned_state_machines": [
+        "payment-lifecycle"
+      ],
+      "participating_streams": [
+        "member-place-order",
+        "cancel-order"
+      ],
+      "overview_diagram": "architecture/atlas/excalidraw/domain-commerce-overview.excalidraw",
+      "note_path": "architecture/atlas/domains/payment.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "payments/charge",
+          "excerpt": "Charge authorization returns AUTHORIZED or DECLINED.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "entities": [
+    {
+      "id": "member",
+      "name": "Member",
+      "domain_id": "identity-access",
+      "lifecycle_states": [
+        "GUEST",
+        "REGISTERED",
+        "VERIFIED",
+        "SUSPENDED"
+      ],
+      "eligibility_rules": [
+        "rule-member-verified"
+      ],
+      "note_path": "architecture/atlas/entities/member.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "auth/member",
+          "excerpt": "Member has verified and suspended flags.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "product",
+      "name": "Product",
+      "domain_id": "catalog",
+      "lifecycle_states": [
+        "DRAFT",
+        "ACTIVE",
+        "PAUSED",
+        "DISCONTINUED"
+      ],
+      "eligibility_rules": [
+        "rule-product-active",
+        "rule-sale-window"
+      ],
+      "state_machine_id": "product-lifecycle",
+      "note_path": "architecture/atlas/entities/product.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "catalog/product",
+          "excerpt": "Product status controls publication and ordering.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "inventory-item",
+      "name": "Inventory item",
+      "domain_id": "inventory",
+      "lifecycle_states": [
+        "AVAILABLE",
+        "LOW",
+        "OUT_OF_STOCK"
+      ],
+      "eligibility_rules": [
+        "rule-stock-available"
+      ],
+      "note_path": "architecture/atlas/entities/inventory-item.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "inventory/item",
+          "excerpt": "availableQty must cover requestedQty.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "order",
+      "name": "Order",
+      "domain_id": "ordering",
+      "lifecycle_states": [
+        "PENDING",
+        "RESERVED",
+        "PAID",
+        "FAILED",
+        "CANCELLED"
+      ],
+      "eligibility_rules": [],
+      "state_machine_id": "order-lifecycle",
+      "note_path": "architecture/atlas/entities/order.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/state-machine",
+          "excerpt": "Order state transitions are explicit.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "payment",
+      "name": "Payment",
+      "domain_id": "payment",
+      "lifecycle_states": [
+        "REQUESTED",
+        "AUTHORIZED",
+        "DECLINED",
+        "REFUNDED"
+      ],
+      "eligibility_rules": [],
+      "state_machine_id": "payment-lifecycle",
+      "note_path": "architecture/atlas/entities/payment.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "payments/payment",
+          "excerpt": "Payment result is persisted.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "state_machines": [
+    {
+      "id": "product-lifecycle",
+      "name": "Product lifecycle",
+      "entity_id": "product",
+      "initial_state": "DRAFT",
+      "states": [
+        {
+          "id": "DRAFT",
+          "label": "Draft",
+          "terminal": false,
+          "meaning": "Not visible or orderable"
+        },
+        {
+          "id": "ACTIVE",
+          "label": "Active",
+          "terminal": false,
+          "meaning": "Potentially orderable inside sale window"
+        },
+        {
+          "id": "PAUSED",
+          "label": "Paused",
+          "terminal": false,
+          "meaning": "Temporarily not orderable"
+        },
+        {
+          "id": "DISCONTINUED",
+          "label": "Discontinued",
+          "terminal": true,
+          "meaning": "No longer orderable"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "publish",
+          "from": "DRAFT",
+          "to": "ACTIVE",
+          "trigger": "admin publishes",
+          "guard": "required product data present",
+          "effect": "catalog exposes product",
+          "stream_step_refs": [],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "catalog/publish",
+              "excerpt": "Publish changes DRAFT to ACTIVE.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "pause",
+          "from": "ACTIVE",
+          "to": "PAUSED",
+          "trigger": "admin pauses",
+          "guard": "none",
+          "effect": "ordering rejects product",
+          "stream_step_refs": [
+            "place-order.check-product"
+          ],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "catalog/pause",
+              "excerpt": "Paused product is rejected.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        }
+      ],
+      "diagram_path": "architecture/atlas/excalidraw/state-product-order-eligibility.excalidraw",
+      "note_path": "architecture/atlas/states/product-lifecycle.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "catalog/product-state",
+          "excerpt": "Product state enum and transition service.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "order-lifecycle",
+      "name": "Order lifecycle",
+      "entity_id": "order",
+      "initial_state": "PENDING",
+      "states": [
+        {
+          "id": "PENDING",
+          "label": "Pending",
+          "terminal": false,
+          "meaning": "Order exists, stock not yet guaranteed"
+        },
+        {
+          "id": "RESERVED",
+          "label": "Reserved",
+          "terminal": false,
+          "meaning": "Stock reserved, payment pending"
+        },
+        {
+          "id": "PAID",
+          "label": "Paid",
+          "terminal": true,
+          "meaning": "Payment authorized"
+        },
+        {
+          "id": "FAILED",
+          "label": "Failed",
+          "terminal": true,
+          "meaning": "Order cannot complete"
+        },
+        {
+          "id": "CANCELLED",
+          "label": "Cancelled",
+          "terminal": true,
+          "meaning": "Order cancelled and resources released"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "reserve",
+          "from": "PENDING",
+          "to": "RESERVED",
+          "trigger": "stock reservation succeeds",
+          "guard": "availableQty >= requestedQty",
+          "effect": "persist reservation",
+          "stream_step_refs": [
+            "place-order.reserve-stock",
+            "place-order.mark-reserved"
+          ],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "orders/reserve",
+              "excerpt": "Successful reservation marks order RESERVED.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "pay",
+          "from": "RESERVED",
+          "to": "PAID",
+          "trigger": "payment authorized",
+          "guard": "payment result AUTHORIZED",
+          "effect": "mark order paid and emit event",
+          "stream_step_refs": [
+            "place-order.mark-paid"
+          ],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "orders/pay",
+              "excerpt": "Authorized payment marks order PAID.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "fail",
+          "from": "PENDING",
+          "to": "FAILED",
+          "trigger": "eligibility or stock failure",
+          "guard": "validation fails",
+          "effect": "record failure reason",
+          "stream_step_refs": [
+            "place-order.end-rejected"
+          ],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "orders/fail",
+              "excerpt": "Failure reason is persisted.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        }
+      ],
+      "diagram_path": "architecture/atlas/excalidraw/state-product-order-eligibility.excalidraw",
+      "note_path": "architecture/atlas/states/order-lifecycle.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/state-machine",
+          "excerpt": "Order lifecycle implementation.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "payment-lifecycle",
+      "name": "Payment lifecycle",
+      "entity_id": "payment",
+      "initial_state": "REQUESTED",
+      "states": [
+        {
+          "id": "REQUESTED",
+          "label": "Requested",
+          "terminal": false,
+          "meaning": "Charge requested"
+        },
+        {
+          "id": "AUTHORIZED",
+          "label": "Authorized",
+          "terminal": true,
+          "meaning": "Charge accepted"
+        },
+        {
+          "id": "DECLINED",
+          "label": "Declined",
+          "terminal": true,
+          "meaning": "Charge rejected"
+        },
+        {
+          "id": "REFUNDED",
+          "label": "Refunded",
+          "terminal": true,
+          "meaning": "Authorized payment reversed"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "authorize",
+          "from": "REQUESTED",
+          "to": "AUTHORIZED",
+          "trigger": "gateway authorizes",
+          "guard": "gateway response authorized",
+          "effect": "store authorization id",
+          "stream_step_refs": [
+            "place-order.check-payment"
+          ],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "payments/authorize",
+              "excerpt": "Adapter maps successful response to AUTHORIZED.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "decline",
+          "from": "REQUESTED",
+          "to": "DECLINED",
+          "trigger": "gateway declines",
+          "guard": "decline response",
+          "effect": "store decline reason",
+          "stream_step_refs": [
+            "place-order.payment-failed"
+          ],
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "payments/decline",
+              "excerpt": "Decline reason is stored.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        }
+      ],
+      "diagram_path": "architecture/atlas/excalidraw/state-product-order-eligibility.excalidraw",
+      "note_path": "architecture/atlas/states/payment-lifecycle.md",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "payments/state",
+          "excerpt": "Payment state enum.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "business_rules": [
+    {
+      "id": "rule-member-verified",
+      "name": "Verified member required",
+      "scope": "order placement",
+      "condition": "member.role contains MEMBER and member.status == VERIFIED",
+      "outcome": "allow order request; otherwise reject before order creation",
+      "used_by_streams": [
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "auth/order-policy",
+          "excerpt": "Policy denies guest, unverified, or suspended members.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "rule-product-active",
+      "name": "Product must be active",
+      "scope": "order eligibility",
+      "condition": "product.status == ACTIVE",
+      "outcome": "continue; otherwise PRODUCT_NOT_ORDERABLE",
+      "used_by_streams": [
+        "browse-orderable-products",
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "catalog/product-policy",
+          "excerpt": "Only ACTIVE products can be ordered.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "rule-sale-window",
+      "name": "Sale window must be open",
+      "scope": "order eligibility",
+      "condition": "saleStartsAt <= now < saleEndsAt",
+      "outcome": "continue; otherwise SALE_WINDOW_CLOSED",
+      "used_by_streams": [
+        "browse-orderable-products",
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "catalog/product-policy",
+          "excerpt": "Current time must be within sale window.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "rule-stock-available",
+      "name": "Requested stock must be available",
+      "scope": "inventory reservation",
+      "condition": "availableQty >= requestedQty",
+      "outcome": "reserve atomically; otherwise OUT_OF_STOCK",
+      "used_by_streams": [
+        "browse-orderable-products",
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "inventory/reservation",
+          "excerpt": "Conditional update prevents overselling.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "rule-cancel-window",
+      "name": "Only cancellable orders can be cancelled",
+      "scope": "order cancellation",
+      "condition": "order.status in [RESERVED, PAID] and fulfillment not started",
+      "outcome": "cancel and compensate; otherwise CANCELLATION_REJECTED",
+      "used_by_streams": [
+        "cancel-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/cancel-policy",
+          "excerpt": "Cancellation is blocked after fulfillment begins.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "domain_interactions": [
+    {
+      "id": "ordering-queries-catalog",
+      "from_domain": "ordering",
+      "to_domain": "catalog",
+      "kind": "query",
+      "contract": "GetOrderability(productId, now)",
+      "direction": "sync",
+      "used_by_streams": [
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/catalog-port",
+          "excerpt": "Order service queries catalog port.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "ordering-reserves-stock",
+      "from_domain": "ordering",
+      "to_domain": "inventory",
+      "kind": "command",
+      "contract": "Reserve(productId, qty, orderId)",
+      "direction": "sync",
+      "used_by_streams": [
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/inventory-port",
+          "excerpt": "Order service invokes atomic reservation.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "ordering-requests-payment",
+      "from_domain": "ordering",
+      "to_domain": "payment",
+      "kind": "command",
+      "contract": "Authorize(orderId, amount, token)",
+      "direction": "sync",
+      "used_by_streams": [
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/payment-port",
+          "excerpt": "Payment is requested after stock reservation.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "ordering-emits-placed",
+      "from_domain": "ordering",
+      "to_domain": "payment",
+      "kind": "event",
+      "contract": "order.placed",
+      "direction": "async",
+      "used_by_streams": [
+        "member-place-order"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/events",
+          "excerpt": "Paid order emits order.placed.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED"
+    }
+  ],
+  "business_streams": [
+    {
+      "id": "browse-orderable-products",
+      "name": "Browse products with orderability",
+      "purpose": "Explain why each visible product can or cannot be ordered.",
+      "actor_ids": [
+        "guest",
+        "commerce-api"
+      ],
+      "domain_ids": [
+        "catalog",
+        "inventory"
+      ],
+      "trigger": {
+        "kind": "user-intent",
+        "source": "guest",
+        "event": "open catalog",
+        "entry_point": "GET /products"
+      },
+      "preconditions": [],
+      "start_step_id": "browse.start",
+      "steps": [
+        {
+          "id": "browse.start",
+          "sequence": 0,
+          "name": "Open catalog",
+          "kind": "start",
+          "actor_id": "guest",
+          "domain_id": "catalog",
+          "action": "Request visible products.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#start",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "browse.start",
+              "excerpt": "Request visible products.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "browse.filter",
+          "sequence": 1,
+          "name": "Filter orderable products",
+          "kind": "process",
+          "actor_id": "commerce-api",
+          "domain_id": "catalog",
+          "action": "Return products that are active and inside sale window.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [
+            "rule-product-active",
+            "rule-sale-window"
+          ],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#filter",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "browse.filter",
+              "excerpt": "Return products that are active and inside sale window.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "browse.add-stock",
+          "sequence": 2,
+          "name": "Attach availability",
+          "kind": "data-read",
+          "actor_id": "commerce-api",
+          "domain_id": "inventory",
+          "action": "Read whether at least one unit is available.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [
+            "rule-stock-available"
+          ],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#add-stock",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "browse.add-stock",
+              "excerpt": "Read whether at least one unit is available.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "browse.end",
+          "sequence": 3,
+          "name": "Show orderability",
+          "kind": "end",
+          "actor_id": "guest",
+          "domain_id": "catalog",
+          "action": "Show product plus orderable reason.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#end",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "browse.end",
+              "excerpt": "Show product plus orderable reason.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "br-t1",
+          "from": "browse.start",
+          "to": "browse.filter",
+          "kind": "happy-path",
+          "label": "request",
+          "condition": "catalog opened",
+          "priority": 1,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "br-t1",
+              "excerpt": "browse.start -> browse.filter: catalog opened",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "br-t2",
+          "from": "browse.filter",
+          "to": "browse.add-stock",
+          "kind": "happy-path",
+          "label": "eligible catalog items",
+          "condition": "product policy passed",
+          "priority": 2,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "br-t2",
+              "excerpt": "browse.filter -> browse.add-stock: product policy passed",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "br-t3",
+          "from": "browse.add-stock",
+          "to": "browse.end",
+          "kind": "happy-path",
+          "label": "availability attached",
+          "condition": "stock read completed",
+          "priority": 3,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "br-t3",
+              "excerpt": "browse.add-stock -> browse.end: stock read completed",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        }
+      ],
+      "outcomes": [
+        {
+          "id": "browse-shown",
+          "type": "success",
+          "terminal_step_id": "browse.end",
+          "description": "Catalog displayed",
+          "observable_result": "Each item has price and orderability reason"
+        }
+      ],
+      "error_paths": [],
+      "compensations": [],
+      "state_changes": [],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "routes/catalog",
+          "excerpt": "Catalog query enriches products with orderability.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "VERIFIED",
+      "diagram_paths": [
+        "architecture/atlas/excalidraw/stream-browse-orderable-products.excalidraw"
+      ],
+      "note_path": "architecture/atlas/flows/browse-orderable-products.md"
+    },
+    {
+      "id": "member-place-order",
+      "name": "Verified member places an order",
+      "purpose": "Trace member eligibility, product eligibility, stock reservation, payment, state transitions, and compensation from request to terminal result.",
+      "actor_ids": [
+        "verified-member",
+        "commerce-api",
+        "payment-gateway",
+        "event-worker"
+      ],
+      "domain_ids": [
+        "identity-access",
+        "catalog",
+        "inventory",
+        "ordering",
+        "payment"
+      ],
+      "trigger": {
+        "kind": "user-intent",
+        "source": "verified-member",
+        "event": "place order",
+        "entry_point": "POST /orders"
+      },
+      "preconditions": [
+        {
+          "id": "pre-authenticated",
+          "description": "Request resolves to a member identity.",
+          "rule_refs": [
+            "rule-member-verified"
+          ],
+          "failure_outcome": "ineligible"
+        },
+        {
+          "id": "pre-request-shape",
+          "description": "productId, positive quantity, and payment token are present.",
+          "rule_refs": [],
+          "failure_outcome": "validation error"
+        }
+      ],
+      "start_step_id": "place-order.start",
+      "steps": [
+        {
+          "id": "place-order.start",
+          "sequence": 0,
+          "name": "Member starts checkout",
+          "kind": "start",
+          "actor_id": "verified-member",
+          "domain_id": "ordering",
+          "action": "Submit product, quantity, and payment token.",
+          "inputs": [
+            "productId",
+            "quantity",
+            "paymentToken"
+          ],
+          "outputs": [
+            "order request"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [
+            "POST /orders"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#start",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.start",
+              "excerpt": "Submit product, quantity, and payment token.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.check-member",
+          "sequence": 1,
+          "name": "Check member eligibility",
+          "kind": "decision",
+          "actor_id": "commerce-api",
+          "domain_id": "identity-access",
+          "action": "Resolve member type, verification, and suspension status.",
+          "inputs": [
+            "memberId"
+          ],
+          "outputs": [
+            "eligible:boolean"
+          ],
+          "reads": [
+            "member.status",
+            "member.roles"
+          ],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [
+            "rule-member-verified"
+          ],
+          "implementation_refs": [
+            "OrderPolicy.canPlaceOrder"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#check-member",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.check-member",
+              "excerpt": "Resolve member type, verification, and suspension status.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.load-product",
+          "sequence": 2,
+          "name": "Load product and price",
+          "kind": "data-read",
+          "actor_id": "commerce-api",
+          "domain_id": "catalog",
+          "action": "Read product status, sale window, and current price.",
+          "inputs": [
+            "productId"
+          ],
+          "outputs": [
+            "product snapshot"
+          ],
+          "reads": [
+            "product.status",
+            "saleStartsAt",
+            "saleEndsAt",
+            "price"
+          ],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [
+            "CatalogPort.getOrderability"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#load-product",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.load-product",
+              "excerpt": "Read product status, sale window, and current price.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.check-product",
+          "sequence": 3,
+          "name": "Is product orderable?",
+          "kind": "decision",
+          "actor_id": "commerce-api",
+          "domain_id": "catalog",
+          "action": "Evaluate active state and sale window.",
+          "inputs": [
+            "product snapshot",
+            "now"
+          ],
+          "outputs": [
+            "orderable:boolean",
+            "reason"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [
+            "rule-product-active",
+            "rule-sale-window"
+          ],
+          "implementation_refs": [
+            "ProductPolicy.isOrderable"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#check-product",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.check-product",
+              "excerpt": "Evaluate active state and sale window.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.create-pending",
+          "sequence": 4,
+          "name": "Create pending order",
+          "kind": "state-change",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Create order with immutable product/price snapshot.",
+          "inputs": [
+            "memberId",
+            "product snapshot",
+            "quantity"
+          ],
+          "outputs": [
+            "orderId"
+          ],
+          "reads": [],
+          "writes": [
+            "order"
+          ],
+          "state_changes": [
+            {
+              "entity_id": "order",
+              "from": "NONE",
+              "to": "PENDING",
+              "reason": "validated request"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [
+            "OrderRepository.insert"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#create-pending",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.create-pending",
+              "excerpt": "Create order with immutable product/price snapshot.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.reserve-stock",
+          "sequence": 5,
+          "name": "Reserve stock atomically",
+          "kind": "process",
+          "actor_id": "commerce-api",
+          "domain_id": "inventory",
+          "action": "Reserve requested quantity for order.",
+          "inputs": [
+            "productId",
+            "quantity",
+            "orderId"
+          ],
+          "outputs": [
+            "reservation result"
+          ],
+          "reads": [
+            "inventory.availableQty"
+          ],
+          "writes": [
+            "inventory.reservedQty"
+          ],
+          "state_changes": [],
+          "rule_refs": [
+            "rule-stock-available"
+          ],
+          "implementation_refs": [
+            "InventoryPort.reserve"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#reserve-stock",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.reserve-stock",
+              "excerpt": "Reserve requested quantity for order.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.check-reservation",
+          "sequence": 6,
+          "name": "Was stock reserved?",
+          "kind": "decision",
+          "actor_id": "commerce-api",
+          "domain_id": "inventory",
+          "action": "Branch on atomic reservation result.",
+          "inputs": [
+            "reservation result"
+          ],
+          "outputs": [
+            "reserved:boolean"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [
+            "ReservationResult"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#check-reservation",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.check-reservation",
+              "excerpt": "Branch on atomic reservation result.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.mark-reserved",
+          "sequence": 7,
+          "name": "Mark order reserved",
+          "kind": "state-change",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Persist successful reservation on the order.",
+          "inputs": [
+            "orderId",
+            "reservationId"
+          ],
+          "outputs": [
+            "RESERVED order"
+          ],
+          "reads": [],
+          "writes": [
+            "order.status",
+            "order.reservationId"
+          ],
+          "state_changes": [
+            {
+              "entity_id": "order",
+              "from": "PENDING",
+              "to": "RESERVED",
+              "reason": "stock reservation succeeded"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [
+            "Order.markReserved"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#mark-reserved",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.mark-reserved",
+              "excerpt": "Persist successful reservation on the order.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.request-payment",
+          "sequence": 8,
+          "name": "Request payment authorization",
+          "kind": "external-call",
+          "actor_id": "commerce-api",
+          "domain_id": "payment",
+          "action": "Send amount and payment token to gateway.",
+          "inputs": [
+            "orderId",
+            "amount",
+            "paymentToken"
+          ],
+          "outputs": [
+            "payment result"
+          ],
+          "reads": [],
+          "writes": [
+            "payment"
+          ],
+          "state_changes": [
+            {
+              "entity_id": "payment",
+              "from": "NONE",
+              "to": "REQUESTED",
+              "reason": "authorization requested"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [
+            "PaymentGateway.authorize"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#request-payment",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.request-payment",
+              "excerpt": "Send amount and payment token to gateway.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "place-order.check-payment",
+          "sequence": 9,
+          "name": "Was payment authorized?",
+          "kind": "decision",
+          "actor_id": "commerce-api",
+          "domain_id": "payment",
+          "action": "Branch on gateway result.",
+          "inputs": [
+            "payment result"
+          ],
+          "outputs": [
+            "authorized:boolean",
+            "reason"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [
+            "PaymentResult"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#check-payment",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.check-payment",
+              "excerpt": "Branch on gateway result.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "place-order.mark-paid",
+          "sequence": 10,
+          "name": "Mark order paid",
+          "kind": "state-change",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Record authorization and complete order.",
+          "inputs": [
+            "orderId",
+            "authorizationId"
+          ],
+          "outputs": [
+            "PAID order"
+          ],
+          "reads": [],
+          "writes": [
+            "order.status",
+            "order.paymentId"
+          ],
+          "state_changes": [
+            {
+              "entity_id": "order",
+              "from": "RESERVED",
+              "to": "PAID",
+              "reason": "payment authorized"
+            },
+            {
+              "entity_id": "payment",
+              "from": "REQUESTED",
+              "to": "AUTHORIZED",
+              "reason": "gateway authorized"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [
+            "Order.markPaid"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#mark-paid",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.mark-paid",
+              "excerpt": "Record authorization and complete order.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.emit-event",
+          "sequence": 11,
+          "name": "Publish order.placed",
+          "kind": "event",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Emit the completed-order event for downstream work.",
+          "inputs": [
+            "PAID order"
+          ],
+          "outputs": [
+            "order.placed"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [
+            "EventBus.publish"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#emit-event",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.emit-event",
+              "excerpt": "Emit the completed-order event for downstream work.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.confirm",
+          "sequence": 12,
+          "name": "Show confirmation",
+          "kind": "end",
+          "actor_id": "verified-member",
+          "domain_id": "ordering",
+          "action": "Return order number and paid status.",
+          "inputs": [
+            "PAID order"
+          ],
+          "outputs": [
+            "order confirmation"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#confirm",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.confirm",
+              "excerpt": "Return order number and paid status.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.end-ineligible",
+          "sequence": 20,
+          "name": "Reject ineligible member",
+          "kind": "end",
+          "actor_id": "commerce-api",
+          "domain_id": "identity-access",
+          "action": "Return MEMBER_NOT_ELIGIBLE without creating an order.",
+          "inputs": [],
+          "outputs": [
+            "rejection"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#end-ineligible",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.end-ineligible",
+              "excerpt": "Return MEMBER_NOT_ELIGIBLE without creating an order.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.end-not-orderable",
+          "sequence": 21,
+          "name": "Reject unavailable product",
+          "kind": "end",
+          "actor_id": "commerce-api",
+          "domain_id": "catalog",
+          "action": "Return product-state or sale-window reason.",
+          "inputs": [],
+          "outputs": [
+            "rejection"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#end-not-orderable",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.end-not-orderable",
+              "excerpt": "Return product-state or sale-window reason.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.stock-failed",
+          "sequence": 22,
+          "name": "Fail order for stock",
+          "kind": "error-handler",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Mark pending order failed with OUT_OF_STOCK.",
+          "inputs": [
+            "orderId"
+          ],
+          "outputs": [],
+          "reads": [],
+          "writes": [
+            "order.status",
+            "order.failureReason"
+          ],
+          "state_changes": [
+            {
+              "entity_id": "order",
+              "from": "PENDING",
+              "to": "FAILED",
+              "reason": "reservation failed"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [
+            "Order.fail"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#stock-failed",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.stock-failed",
+              "excerpt": "Mark pending order failed with OUT_OF_STOCK.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.end-stock-failed",
+          "sequence": 23,
+          "name": "Return out-of-stock result",
+          "kind": "end",
+          "actor_id": "commerce-api",
+          "domain_id": "inventory",
+          "action": "Return OUT_OF_STOCK and no payment request.",
+          "inputs": [],
+          "outputs": [
+            "failure"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#end-stock-failed",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.end-stock-failed",
+              "excerpt": "Return OUT_OF_STOCK and no payment request.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "place-order.payment-failed",
+          "sequence": 24,
+          "name": "Record decline and release stock",
+          "kind": "compensation",
+          "actor_id": "commerce-api",
+          "domain_id": "payment",
+          "action": "Mark payment declined, fail order, and release reservation.",
+          "inputs": [
+            "orderId",
+            "decline reason"
+          ],
+          "outputs": [],
+          "reads": [],
+          "writes": [
+            "payment.status",
+            "order.status",
+            "inventory.reservedQty"
+          ],
+          "state_changes": [
+            {
+              "entity_id": "payment",
+              "from": "REQUESTED",
+              "to": "DECLINED",
+              "reason": "gateway declined"
+            },
+            {
+              "entity_id": "order",
+              "from": "RESERVED",
+              "to": "FAILED",
+              "reason": "payment declined"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [
+            "PaymentFailureHandler.compensate"
+          ],
+          "details_note": "architecture/atlas/flows/member-place-order.md#payment-failed",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.payment-failed",
+              "excerpt": "Mark payment declined, fail order, and release reservation.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "place-order.end-payment-failed",
+          "sequence": 25,
+          "name": "Return payment failure",
+          "kind": "end",
+          "actor_id": "commerce-api",
+          "domain_id": "payment",
+          "action": "Return PAYMENT_DECLINED after compensation.",
+          "inputs": [],
+          "outputs": [
+            "failure"
+          ],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#end-payment-failed",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "place-order.end-payment-failed",
+              "excerpt": "Return PAYMENT_DECLINED after compensation.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "po-t1",
+          "from": "place-order.start",
+          "to": "place-order.check-member",
+          "kind": "happy-path",
+          "label": "submit",
+          "condition": "request received",
+          "priority": 1,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t1",
+              "excerpt": "place-order.start -> place-order.check-member: request received",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t2",
+          "from": "place-order.check-member",
+          "to": "place-order.load-product",
+          "kind": "conditional",
+          "label": "eligible",
+          "condition": "member is VERIFIED and not SUSPENDED",
+          "priority": 2,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t2",
+              "excerpt": "place-order.check-member -> place-order.load-product: member is VERIFIED and not SUSPENDED",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t3",
+          "from": "place-order.check-member",
+          "to": "place-order.end-ineligible",
+          "kind": "conditional",
+          "label": "not eligible",
+          "condition": "guest, unverified, or suspended",
+          "priority": 3,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t3",
+              "excerpt": "place-order.check-member -> place-order.end-ineligible: guest, unverified, or suspended",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t4",
+          "from": "place-order.load-product",
+          "to": "place-order.check-product",
+          "kind": "happy-path",
+          "label": "loaded",
+          "condition": "product found",
+          "priority": 4,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t4",
+              "excerpt": "place-order.load-product -> place-order.check-product: product found",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t5",
+          "from": "place-order.check-product",
+          "to": "place-order.create-pending",
+          "kind": "conditional",
+          "label": "orderable",
+          "condition": "status ACTIVE and sale window open",
+          "priority": 5,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t5",
+              "excerpt": "place-order.check-product -> place-order.create-pending: status ACTIVE and sale window open",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t6",
+          "from": "place-order.check-product",
+          "to": "place-order.end-not-orderable",
+          "kind": "conditional",
+          "label": "not orderable",
+          "condition": "inactive or sale window closed",
+          "priority": 6,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t6",
+              "excerpt": "place-order.check-product -> place-order.end-not-orderable: inactive or sale window closed",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t7",
+          "from": "place-order.create-pending",
+          "to": "place-order.reserve-stock",
+          "kind": "happy-path",
+          "label": "pending order",
+          "condition": "orderId created",
+          "priority": 7,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t7",
+              "excerpt": "place-order.create-pending -> place-order.reserve-stock: orderId created",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t8",
+          "from": "place-order.reserve-stock",
+          "to": "place-order.check-reservation",
+          "kind": "happy-path",
+          "label": "reservation result",
+          "condition": "atomic update returned",
+          "priority": 8,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t8",
+              "excerpt": "place-order.reserve-stock -> place-order.check-reservation: atomic update returned",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t9",
+          "from": "place-order.check-reservation",
+          "to": "place-order.mark-reserved",
+          "kind": "conditional",
+          "label": "reserved",
+          "condition": "availableQty >= requestedQty",
+          "priority": 9,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t9",
+              "excerpt": "place-order.check-reservation -> place-order.mark-reserved: availableQty >= requestedQty",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t10",
+          "from": "place-order.check-reservation",
+          "to": "place-order.stock-failed",
+          "kind": "error",
+          "label": "out of stock",
+          "condition": "reservation rejected",
+          "priority": 10,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t10",
+              "excerpt": "place-order.check-reservation -> place-order.stock-failed: reservation rejected",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t11",
+          "from": "place-order.stock-failed",
+          "to": "place-order.end-stock-failed",
+          "kind": "error",
+          "label": "failed",
+          "condition": "order marked FAILED",
+          "priority": 11,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t11",
+              "excerpt": "place-order.stock-failed -> place-order.end-stock-failed: order marked FAILED",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t12",
+          "from": "place-order.mark-reserved",
+          "to": "place-order.request-payment",
+          "kind": "happy-path",
+          "label": "reserved",
+          "condition": "order status RESERVED",
+          "priority": 12,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t12",
+              "excerpt": "place-order.mark-reserved -> place-order.request-payment: order status RESERVED",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t13",
+          "from": "place-order.request-payment",
+          "to": "place-order.check-payment",
+          "kind": "happy-path",
+          "label": "gateway result",
+          "condition": "response received",
+          "priority": 13,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t13",
+              "excerpt": "place-order.request-payment -> place-order.check-payment: response received",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "po-t14",
+          "from": "place-order.check-payment",
+          "to": "place-order.mark-paid",
+          "kind": "conditional",
+          "label": "authorized",
+          "condition": "gateway status AUTHORIZED",
+          "priority": 14,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t14",
+              "excerpt": "place-order.check-payment -> place-order.mark-paid: gateway status AUTHORIZED",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "po-t15",
+          "from": "place-order.check-payment",
+          "to": "place-order.payment-failed",
+          "kind": "error",
+          "label": "declined or timeout",
+          "condition": "authorization not obtained",
+          "priority": 15,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t15",
+              "excerpt": "place-order.check-payment -> place-order.payment-failed: authorization not obtained",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "po-t16",
+          "from": "place-order.payment-failed",
+          "to": "place-order.end-payment-failed",
+          "kind": "compensation",
+          "label": "released",
+          "condition": "order failed and stock released",
+          "priority": 16,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t16",
+              "excerpt": "place-order.payment-failed -> place-order.end-payment-failed: order failed and stock released",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "po-t17",
+          "from": "place-order.mark-paid",
+          "to": "place-order.emit-event",
+          "kind": "happy-path",
+          "label": "paid",
+          "condition": "order status PAID",
+          "priority": 17,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t17",
+              "excerpt": "place-order.mark-paid -> place-order.emit-event: order status PAID",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "po-t18",
+          "from": "place-order.emit-event",
+          "to": "place-order.confirm",
+          "kind": "async-event",
+          "label": "published",
+          "condition": "event accepted; response does not wait for worker",
+          "priority": 18,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "po-t18",
+              "excerpt": "place-order.emit-event -> place-order.confirm: event accepted; response does not wait for worker",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        }
+      ],
+      "outcomes": [
+        {
+          "id": "order-paid",
+          "type": "success",
+          "terminal_step_id": "place-order.confirm",
+          "description": "Order paid and event published",
+          "observable_result": "HTTP 201 with PAID order number"
+        },
+        {
+          "id": "member-ineligible",
+          "type": "rejected",
+          "terminal_step_id": "place-order.end-ineligible",
+          "description": "Member cannot place order",
+          "observable_result": "HTTP 403 MEMBER_NOT_ELIGIBLE"
+        },
+        {
+          "id": "product-not-orderable",
+          "type": "rejected",
+          "terminal_step_id": "place-order.end-not-orderable",
+          "description": "Product state or sale window blocks order",
+          "observable_result": "HTTP 409 with reason"
+        },
+        {
+          "id": "stock-failed",
+          "type": "failed",
+          "terminal_step_id": "place-order.end-stock-failed",
+          "description": "Stock reservation failed",
+          "observable_result": "HTTP 409 OUT_OF_STOCK and order FAILED"
+        },
+        {
+          "id": "payment-failed",
+          "type": "failed",
+          "terminal_step_id": "place-order.end-payment-failed",
+          "description": "Payment failed after stock reservation",
+          "observable_result": "HTTP 402/409 and reservation released"
+        }
+      ],
+      "error_paths": [
+        {
+          "id": "stock-error",
+          "from_step_id": "place-order.check-reservation",
+          "error": "OUT_OF_STOCK",
+          "handler_step_id": "place-order.stock-failed",
+          "terminal_outcome_id": "stock-failed",
+          "retry_policy": "User may retry after quantity change or restock."
+        },
+        {
+          "id": "payment-error",
+          "from_step_id": "place-order.check-payment",
+          "error": "DECLINED_OR_TIMEOUT",
+          "handler_step_id": "place-order.payment-failed",
+          "terminal_outcome_id": "payment-failed",
+          "retry_policy": "No automatic charge retry; user may submit a new payment attempt."
+        }
+      ],
+      "compensations": [
+        {
+          "id": "release-on-payment-failure",
+          "trigger": "payment not authorized after reservation",
+          "action": "release inventory reservation and fail order",
+          "restores": "inventory availability; no paid order remains"
+        }
+      ],
+      "state_changes": [
+        "order NONE→PENDING→RESERVED→PAID",
+        "payment NONE→REQUESTED→AUTHORIZED",
+        "error: order PENDING/RESERVED→FAILED",
+        "error: payment REQUESTED→DECLINED"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "services/order-service",
+          "excerpt": "End-to-end order orchestration and branches.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL",
+      "diagram_paths": [
+        "architecture/atlas/excalidraw/stream-member-place-order.excalidraw",
+        "architecture/atlas/excalidraw/state-product-order-eligibility.excalidraw"
+      ],
+      "note_path": "architecture/atlas/flows/member-place-order.md"
+    },
+    {
+      "id": "cancel-order",
+      "name": "Cancel an eligible order",
+      "purpose": "Trace cancellation policy, refund/release compensation, and terminal order state.",
+      "actor_ids": [
+        "verified-member",
+        "commerce-api",
+        "payment-gateway"
+      ],
+      "domain_ids": [
+        "identity-access",
+        "ordering",
+        "inventory",
+        "payment"
+      ],
+      "trigger": {
+        "kind": "user-intent",
+        "source": "verified-member",
+        "event": "cancel order",
+        "entry_point": "POST /orders/{id}/cancel"
+      },
+      "preconditions": [
+        {
+          "id": "owns-order",
+          "description": "Member owns the order or has admin permission.",
+          "rule_refs": [
+            "rule-cancel-window"
+          ],
+          "failure_outcome": "cancellation rejected"
+        }
+      ],
+      "start_step_id": "cancel.start",
+      "steps": [
+        {
+          "id": "cancel.start",
+          "sequence": 0,
+          "name": "Request cancellation",
+          "kind": "start",
+          "actor_id": "verified-member",
+          "domain_id": "ordering",
+          "action": "Submit own order id.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#start",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "cancel.start",
+              "excerpt": "Submit own order id.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "cancel.check",
+          "sequence": 1,
+          "name": "Is cancellation allowed?",
+          "kind": "decision",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Check ownership, status, and fulfillment state.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [
+            "rule-cancel-window"
+          ],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#check",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "cancel.check",
+              "excerpt": "Check ownership, status, and fulfillment state.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "cancel.compensate",
+          "sequence": 2,
+          "name": "Refund and release",
+          "kind": "compensation",
+          "actor_id": "commerce-api",
+          "domain_id": "payment",
+          "action": "Refund payment when present and release stock.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#compensate",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "cancel.compensate",
+              "excerpt": "Refund payment when present and release stock.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "cancel.mark",
+          "sequence": 3,
+          "name": "Mark order cancelled",
+          "kind": "state-change",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Persist CANCELLED.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [
+            {
+              "entity_id": "order",
+              "from": "PAID",
+              "to": "CANCELLED",
+              "reason": "approved cancellation"
+            }
+          ],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#mark",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "cancel.mark",
+              "excerpt": "Persist CANCELLED.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "cancel.success",
+          "sequence": 4,
+          "name": "Return cancelled",
+          "kind": "end",
+          "actor_id": "verified-member",
+          "domain_id": "ordering",
+          "action": "Show cancellation confirmation.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#success",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "cancel.success",
+              "excerpt": "Show cancellation confirmation.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "cancel.rejected",
+          "sequence": 5,
+          "name": "Reject cancellation",
+          "kind": "end",
+          "actor_id": "commerce-api",
+          "domain_id": "ordering",
+          "action": "Return policy reason without state change.",
+          "inputs": [],
+          "outputs": [],
+          "reads": [],
+          "writes": [],
+          "state_changes": [],
+          "rule_refs": [],
+          "implementation_refs": [],
+          "details_note": "architecture/atlas/flows/member-place-order.md#rejected",
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "cancel.rejected",
+              "excerpt": "Return policy reason without state change.",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        }
+      ],
+      "transitions": [
+        {
+          "id": "ca-t1",
+          "from": "cancel.start",
+          "to": "cancel.check",
+          "kind": "happy-path",
+          "label": "request",
+          "condition": "order loaded",
+          "priority": 1,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "ca-t1",
+              "excerpt": "cancel.start -> cancel.check: order loaded",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "ca-t2",
+          "from": "cancel.check",
+          "to": "cancel.compensate",
+          "kind": "conditional",
+          "label": "allowed",
+          "condition": "own order and fulfillment not started",
+          "priority": 2,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "ca-t2",
+              "excerpt": "cancel.check -> cancel.compensate: own order and fulfillment not started",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "ca-t3",
+          "from": "cancel.check",
+          "to": "cancel.rejected",
+          "kind": "conditional",
+          "label": "not allowed",
+          "condition": "policy failed",
+          "priority": 3,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "ca-t3",
+              "excerpt": "cancel.check -> cancel.rejected: policy failed",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "ca-t4",
+          "from": "cancel.compensate",
+          "to": "cancel.mark",
+          "kind": "compensation",
+          "label": "resources restored",
+          "condition": "refund/release succeeded",
+          "priority": 4,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "ca-t4",
+              "excerpt": "cancel.compensate -> cancel.mark: refund/release succeeded",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "ca-t5",
+          "from": "cancel.mark",
+          "to": "cancel.success",
+          "kind": "happy-path",
+          "label": "cancelled",
+          "condition": "state persisted",
+          "priority": 5,
+          "evidence": [
+            {
+              "source": "examples/demo-commerce/source-snapshot.md",
+              "locator": "ca-t5",
+              "excerpt": "cancel.mark -> cancel.success: state persisted",
+              "tool": "agent-native-docs",
+              "captured_at": "2026-07-10T12:00:00+09:00"
+            }
+          ],
+          "confidence": "PARTIAL"
+        }
+      ],
+      "outcomes": [
+        {
+          "id": "cancelled",
+          "type": "success",
+          "terminal_step_id": "cancel.success",
+          "description": "Order cancelled and resources restored",
+          "observable_result": "CANCELLED order"
+        },
+        {
+          "id": "cancel-rejected",
+          "type": "rejected",
+          "terminal_step_id": "cancel.rejected",
+          "description": "Policy rejected cancellation",
+          "observable_result": "No state change"
+        }
+      ],
+      "error_paths": [],
+      "compensations": [
+        {
+          "id": "cancel-refund-release",
+          "trigger": "approved cancellation",
+          "action": "refund authorized payment and release reserved stock",
+          "restores": "member funds and inventory availability"
+        }
+      ],
+      "state_changes": [
+        "order RESERVED/PAID→CANCELLED",
+        "payment AUTHORIZED→REFUNDED when paid"
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "orders/cancel",
+          "excerpt": "Cancellation path inferred from explicit policy and handlers.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL",
+      "diagram_paths": [
+        "architecture/atlas/excalidraw/stream-cancel-order.excalidraw"
+      ],
+      "note_path": "architecture/atlas/flows/cancel-order.md"
+    }
+  ],
+  "visual_outputs": [
+    {
+      "id": "vis-focus-overview",
+      "kind": "excalidraw",
+      "path": "architecture/excalidraw/human-overview.excalidraw",
+      "source_refs": [
+        "member-place-order"
+      ],
+      "generated": true
+    },
+    {
+      "id": "vis-focus-order",
+      "kind": "excalidraw",
+      "path": "architecture/excalidraw/focus-member-place-order.excalidraw",
+      "source_refs": [
+        "member-place-order"
+      ],
+      "generated": true
+    },
+    {
+      "id": "vis-focus-canvas",
+      "kind": "canvas",
+      "path": "architecture/understanding-map.canvas",
+      "source_refs": [
+        "member-place-order"
+      ],
+      "generated": true
+    },
+    {
+      "id": "vis-atlas-order",
+      "kind": "excalidraw",
+      "path": "architecture/atlas/excalidraw/stream-member-place-order.excalidraw",
+      "source_refs": [
+        "member-place-order"
+      ],
+      "generated": true
+    },
+    {
+      "id": "vis-atlas-state",
+      "kind": "excalidraw",
+      "path": "architecture/atlas/excalidraw/state-product-order-eligibility.excalidraw",
+      "source_refs": [
+        "product-lifecycle",
+        "order-lifecycle"
+      ],
+      "generated": true
+    },
+    {
+      "id": "vis-atlas-master",
+      "kind": "excalidraw",
+      "path": "architecture/atlas/excalidraw/atlas-master-commerce-map.excalidraw",
+      "source_refs": [
+        "member-place-order",
+        "domain-commerce-overview",
+        "product-lifecycle"
+      ],
+      "generated": true
+    },
+    {
+      "id": "vis-atlas-canvas",
+      "kind": "canvas",
+      "path": "architecture/atlas/workspace-stream-map.canvas",
+      "source_refs": [
+        "member-place-order",
+        "browse-orderable-products",
+        "cancel-order"
+      ],
+      "generated": true
+    }
+  ],
+  "risks": [
+    {
+      "id": "payment-uncertain",
+      "severity": "MEDIUM",
+      "description": "Payment provider timeout and idempotency behavior is not fully evidenced in this demo snapshot.",
+      "mitigation": "Inspect adapter retry/idempotency implementation before change.",
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "payments/adapter",
+          "excerpt": "Provider internals omitted.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "uncertainties": [
+    {
+      "id": "worker-delivery",
+      "question": "Is order.placed delivery at-least-once?",
+      "impact": "Duplicate notifications or fulfillment work may occur.",
+      "resolution": "Inspect event bus and consumer idempotency configuration.",
+      "confidence": "UNVERIFIED"
+    }
+  ],
+  "profile_support": {
+    "default_profile": "focus",
+    "supported_profiles": [
+      "focus",
+      "atlas"
+    ],
+    "default_workflows": [
+      "orient",
+      "trace",
+      "explain",
+      "before-change",
+      "debug",
+      "expand"
+    ],
+    "atlas_escalation_triggers": [
+      "authentication",
+      "authorization",
+      "payment",
+      "privacy",
+      "data-deletion",
+      "migration",
+      "concurrency",
+      "idempotency",
+      "retry-compensation",
+      "cross-repository",
+      "conflicting-evidence",
+      "dynamic-dispatch",
+      "broad-state-change",
+      "user-request"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "workspace_id": "example-workspace",
+  "generated_at": "2026-07-06T14:00:00+09:00",
+  "codebases": [
+    {
+      "id": "web-app",
+      "name": "web-app",
+      "root_path": "./web-app",
+      "kind": "frontend",
+      "repo_type": "git-repo",
+      "package_manager": "pnpm",
+      "included": true,
+      "confidence": "PARTIAL",
+      "evidence": ["web-app/package.json", "web-app/src/pages"],
+      "uncertainties": ["Example only. Not generated from a real repository."]
+    },
+    {
+      "id": "api-server",
+      "name": "api-server",
+      "root_path": "./api-server",
+      "kind": "backend",
+      "repo_type": "git-repo",
+      "package_manager": "pnpm",
+      "included": true,
+      "confidence": "PARTIAL",
+      "evidence": ["api-server/package.json", "api-server/src/routes"],
+      "uncertainties": ["Example only. Not generated from a real repository."]
+    }
+  ],
+  "excluded_paths": ["node_modules", "dist", "build"],
+  "uncertainties": ["This is a package example, not an analysis of the user's actual workspace."]
+}

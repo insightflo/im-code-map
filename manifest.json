@@ -1,0 +1,79 @@
+{
+  "name": "im-code-map",
+  "version": "5.1.0",
+  "created_at": "2026-07-06",
+  "updated_at": "2026-07-14",
+  "description": "Human-first, evidence-grounded codebase understanding with a default Focus profile, a shared Deep Atlas, and a reusable native-Excalidraw visual design system.",
+  "status": "validated",
+  "requires_preflight_gate": true,
+  "mandatory_preflight": true,
+  "default_profile": "focus",
+  "supported_profiles": [
+    "focus",
+    "atlas"
+  ],
+  "default_policy": "QUESTION_SCOPED_PROGRESSIVE_DISCLOSURE_WITH_NO_SILENT_FALLBACK",
+  "required_tools_for_normal_mode": [
+    "git",
+    "codegraph",
+    "python3"
+  ],
+  "default_documentation_provider": "agent-native-docs",
+  "optional_documentation_providers": [
+    "openwiki-cli"
+  ],
+  "optional_viewer_tools": [
+    "obsidian",
+    "obsidian-excalidraw-plugin",
+    "excalidraw-automate"
+  ],
+  "atlas_escalation_triggers": [
+    "authentication",
+    "authorization",
+    "payment",
+    "privacy",
+    "data-deletion",
+    "migration",
+    "concurrency",
+    "idempotency",
+    "retry-compensation",
+    "cross-repository",
+    "conflicting-evidence",
+    "dynamic-dispatch",
+    "broad-state-change",
+    "user-request"
+  ],
+  "primary_outputs": [
+    "understanding session and routing decision",
+    "coverage and explicit unknown boundaries",
+    "shared evidence ledger and business stream model",
+    "human overview and Focus Excalidraw flow",
+    "Deep Atlas child diagrams and master composition",
+    "SVG/PNG render-based visual QA previews",
+    "question-centered Obsidian entry path",
+    "detailed Atlas Obsidian graph and JSON Canvas",
+    "package-owned Excalidraw stencil library and design tokens",
+    "clean and whiteboard themed editable drawings"
+  ],
+  "commands": [
+    "/im-code-map tools-check",
+    "/im-code-map init",
+    "/im-code-map orient",
+    "/im-code-map trace",
+    "/im-code-map explain",
+    "/im-code-map before-change",
+    "/im-code-map debug",
+    "/im-code-map expand",
+    "/im-code-map atlas",
+    "/im-code-map validate",
+    "/im-code-map after-change",
+    "/im-code-map migrate-v4",
+    "/im-code-map migrate-v3"
+  ],
+  "visual_themes": [
+    "clean",
+    "whiteboard"
+  ],
+  "default_visual_theme": "clean",
+  "bundled_stencil_library": "libraries/im-code-map-architecture.excalidrawlib"
+}

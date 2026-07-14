@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://im-code-map.local/schema/evidence-ledger-v5.json",
+  "title": "im-code-map evidence ledger v5",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "workspace_id",
+    "generated_at",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "5.0.0"
+    },
+    "workspace_id": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "claim",
+          "confidence",
+          "supports",
+          "contradictions",
+          "used_by"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "claim": {
+            "type": "string"
+          },
+          "confidence": {
+            "enum": [
+              "VERIFIED",
+              "PARTIAL",
+              "DOC_ONLY",
+              "UNVERIFIED",
+              "CONFLICT"
+            ]
+          },
+          "supports": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "locator",
+                "tool"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string"
+                },
+                "locator": {
+                  "type": "string"
+                },
+                "excerpt": {
+                  "type": "string"
+                },
+                "tool": {
+                  "type": "string"
+                },
+                "captured_at": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "contradictions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "source",
+                "locator",
+                "description"
+              ],
+              "properties": {
+                "source": {
+                  "type": "string"
+                },
+                "locator": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "used_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

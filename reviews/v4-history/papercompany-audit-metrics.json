@@ -1,0 +1,356 @@
+{
+  "audited_at": "2026-07-10",
+  "scope": {
+    "skill_archive": "im-code-map-skill-v3 3.zip",
+    "result_archive": "701. Papercompany.zip",
+    "papercompany_source_code_included": false
+  },
+  "v3_skill": {
+    "map_schema_top_properties": [
+      "schema_version",
+      "workspace_id",
+      "generated_at",
+      "source_tools",
+      "confidence",
+      "codebases",
+      "domains",
+      "domain_edges",
+      "flows",
+      "visual_outputs",
+      "risks",
+      "uncertainties",
+      "documentation_provider",
+      "tool_status"
+    ],
+    "visual_schema_top_properties": [
+      "schema_version",
+      "workspace_id",
+      "generated_at",
+      "source_map_model",
+      "diagrams"
+    ],
+    "generator_uses_random_ids": true,
+    "generator_primary_shapes": [
+      "rectangle",
+      "text",
+      "arrow"
+    ]
+  },
+  "papercompany": {
+    "map_model_top_keys": [
+      "schema_version",
+      "workspace_id",
+      "generated_at",
+      "analysis_basis",
+      "product_model",
+      "domains",
+      "cross_domain_flows"
+    ],
+    "domains": 22,
+    "cross_domain_flow_summaries": 4,
+    "visual_diagrams": 14,
+    "visual_diagrams_with_nodes": 1,
+    "visual_diagrams_with_edges": 0,
+    "visual_nodes_total": 6,
+    "visual_edges_total": 0,
+    "excalidraw_files": 14,
+    "excalidraw_stats": [
+      {
+        "file": "domain-execution-workspace-overview.excalidraw",
+        "elements": 23,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 10
+        }
+      },
+      {
+        "file": "domain-governance-approval-overview.excalidraw",
+        "elements": 23,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 10
+        }
+      },
+      {
+        "file": "domain-heartbeat-execution-overview.excalidraw",
+        "elements": 24,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 11
+        }
+      },
+      {
+        "file": "domain-mission-operations-overview.excalidraw",
+        "elements": 23,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 10
+        }
+      },
+      {
+        "file": "domain-quality-evidence-overview.excalidraw",
+        "elements": 23,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 10
+        }
+      },
+      {
+        "file": "domain-realtime-events-overview.excalidraw",
+        "elements": 25,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 9,
+          "text": 11
+        }
+      },
+      {
+        "file": "domain-work-products-overview.excalidraw",
+        "elements": 25,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 9,
+          "text": 11
+        }
+      },
+      {
+        "file": "domain-work-tracking-overview.excalidraw",
+        "elements": 23,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 10
+        }
+      },
+      {
+        "file": "domain-workflow-dag-engine-overview.excalidraw",
+        "elements": 23,
+        "element_types": {
+          "arrow": 5,
+          "rectangle": 8,
+          "text": 10
+        }
+      },
+      {
+        "file": "heartbeat-lifecycle-flow.excalidraw",
+        "elements": 30,
+        "element_types": {
+          "arrow": 4,
+          "rectangle": 10,
+          "text": 16
+        }
+      },
+      {
+        "file": "monorepo-package-map.excalidraw",
+        "elements": 25,
+        "element_types": {
+          "arrow": 4,
+          "rectangle": 10,
+          "text": 11
+        }
+      },
+      {
+        "file": "runtime-domain-map.excalidraw",
+        "elements": 9,
+        "element_types": {
+          "rectangle": 4,
+          "text": 5
+        }
+      },
+      {
+        "file": "system-overview.excalidraw",
+        "elements": 36,
+        "element_types": {
+          "arrow": 10,
+          "rectangle": 12,
+          "text": 14
+        }
+      },
+      {
+        "file": "workflow-dag-flow.excalidraw",
+        "elements": 30,
+        "element_types": {
+          "arrow": 6,
+          "rectangle": 8,
+          "text": 16
+        }
+      }
+    ],
+    "canvas": {
+      "nodes": 26,
+      "edges": 18,
+      "node_types": {
+        "text": 9,
+        "file": 17
+      }
+    },
+    "domain_documents": 22,
+    "domain_document_wikilinks_total": 0,
+    "domain_document_markdown_links_total": 27,
+    "domain_document_stats": [
+      {
+        "file": "domain-adapter-runtime.md",
+        "lines": 135,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-agent-management.md",
+        "lines": 118,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-auth-access.md",
+        "lines": 143,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-channel-relay.md",
+        "lines": 106,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-cli-tool.md",
+        "lines": 127,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-company-operations.md",
+        "lines": 118,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-cost-budget.md",
+        "lines": 101,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-cross-company-federation.md",
+        "lines": 114,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-db-data-platform.md",
+        "lines": 125,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-execution-workspace.md",
+        "lines": 104,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-governance-approval.md",
+        "lines": 147,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-heartbeat-execution.md",
+        "lines": 139,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-infra-ci.md",
+        "lines": 132,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-mission-operations.md",
+        "lines": 108,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-plugin-platform.md",
+        "lines": 107,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-quality-evidence.md",
+        "lines": 105,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-realtime-events.md",
+        "lines": 132,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-routines-scheduler.md",
+        "lines": 133,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-storage-secrets.md",
+        "lines": 112,
+        "wikilinks": 0,
+        "markdown_links": 0
+      },
+      {
+        "file": "domain-work-products.md",
+        "lines": 107,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-work-tracking.md",
+        "lines": 127,
+        "wikilinks": 0,
+        "markdown_links": 3
+      },
+      {
+        "file": "domain-workflow-dag-engine.md",
+        "lines": 121,
+        "wikilinks": 0,
+        "markdown_links": 3
+      }
+    ],
+    "map_model_v3_schema_validation": {
+      "validator": "jsonschema.Draft202012Validator",
+      "errors": 76,
+      "by_keyword": {
+        "required": 54,
+        "enum": 22
+      }
+    },
+    "visual_model_v3_schema_validation": {
+      "validator": "jsonschema.Draft202012Validator",
+      "errors": 98,
+      "by_keyword": {
+        "required": 84,
+        "type": 6,
+        "enum": 8
+      }
+    }
+  },
+  "v4_example": {
+    "excalidraw_files": 6,
+    "svg_previews": 6,
+    "png_previews": 6,
+    "excalidraw_automate_scripts": 4,
+    "obsidian_markdown_notes": 32,
+    "canvas_nodes": 30,
+    "canvas_edges": 40
+  }
+}

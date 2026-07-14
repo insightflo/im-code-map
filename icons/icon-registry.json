@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.1.0",
+  "policy": "Package-owned native Excalidraw vector pictograms first; ASCII labels are fallbacks only. Emoji and third-party library assets are not bundled.",
+  "icons": {
+    "actor": {
+      "symbol": "ACTOR",
+      "fallback": "ACTOR",
+      "primitive": "actor"
+    },
+    "start": {
+      "symbol": "START",
+      "fallback": "START",
+      "primitive": "start"
+    },
+    "process": {
+      "symbol": "PROCESS",
+      "fallback": "PROCESS",
+      "primitive": "process"
+    },
+    "decision": {
+      "symbol": "DECISION",
+      "fallback": "DECISION",
+      "primitive": "decision"
+    },
+    "state-change": {
+      "symbol": "STATE",
+      "fallback": "STATE",
+      "primitive": "state-change"
+    },
+    "event": {
+      "symbol": "EVENT",
+      "fallback": "EVENT",
+      "primitive": "event"
+    },
+    "wait": {
+      "symbol": "WAIT",
+      "fallback": "WAIT",
+      "primitive": "wait"
+    },
+    "data": {
+      "symbol": "DATA",
+      "fallback": "DATA",
+      "primitive": "data"
+    },
+    "storage": {
+      "symbol": "STORE",
+      "fallback": "STORE",
+      "primitive": "storage"
+    },
+    "external": {
+      "symbol": "EXT",
+      "fallback": "EXT",
+      "primitive": "external"
+    },
+    "error": {
+      "symbol": "ERROR",
+      "fallback": "ERROR",
+      "primitive": "error"
+    },
+    "compensation": {
+      "symbol": "UNDO",
+      "fallback": "UNDO",
+      "primitive": "compensation"
+    },
+    "end": {
+      "symbol": "END",
+      "fallback": "END",
+      "primitive": "end"
+    },
+    "domain": {
+      "symbol": "DOMAIN",
+      "fallback": "DOMAIN",
+      "primitive": "domain"
+    },
+    "codebase": {
+      "symbol": "CODE",
+      "fallback": "CODE",
+      "primitive": "codebase"
+    },
+    "note": {
+      "symbol": "NOTE",
+      "fallback": "NOTE",
+      "primitive": "note"
+    },
+    "risk": {
+      "symbol": "RISK",
+      "fallback": "RISK",
+      "primitive": "risk"
+    },
+    "test": {
+      "symbol": "TEST",
+      "fallback": "TEST",
+      "primitive": "test"
+    },
+    "service": {
+      "symbol": "SERVICE",
+      "fallback": "SERVICE",
+      "primitive": "service"
+    },
+    "api": {
+      "symbol": "API",
+      "fallback": "API",
+      "primitive": "api"
+    },
+    "queue": {
+      "symbol": "QUEUE",
+      "fallback": "QUEUE",
+      "primitive": "queue"
+    },
+    "worker": {
+      "symbol": "WORKER",
+      "fallback": "WORKER",
+      "primitive": "worker"
+    },
+    "product": {
+      "symbol": "PRODUCT",
+      "fallback": "PRODUCT",
+      "primitive": "product"
+    },
+    "order": {
+      "symbol": "ORDER",
+      "fallback": "ORDER",
+      "primitive": "order"
+    },
+    "payment": {
+      "symbol": "PAYMENT",
+      "fallback": "PAYMENT",
+      "primitive": "payment"
+    },
+    "shield": {
+      "symbol": "SHIELD",
+      "fallback": "SHIELD",
+      "primitive": "shield"
+    },
+    "search": {
+      "symbol": "SEARCH",
+      "fallback": "SEARCH",
+      "primitive": "search"
+    },
+    "browser": {
+      "symbol": "BROWSER",
+      "fallback": "BROWSER",
+      "primitive": "browser"
+    },
+    "unknown": {
+      "symbol": "UNKNOWN",
+      "fallback": "UNKNOWN",
+      "primitive": "unknown"
+    },
+    "atlas": {
+      "symbol": "ATLAS",
+      "fallback": "ATLAS",
+      "primitive": "atlas"
+    },
+    "flow": {
+      "symbol": "FLOW",
+      "fallback": "FLOW",
+      "primitive": "flow"
+    },
+    "question": {
+      "symbol": "QUESTION",
+      "fallback": "QUESTION",
+      "primitive": "question"
+    },
+    "boundary": {
+      "symbol": "BOUNDARY",
+      "fallback": "BOUNDARY",
+      "primitive": "boundary"
+    }
+  },
+  "license": {
+    "type": "Package-owned native Excalidraw vector primitives and ASCII labels",
+    "redistribution": "No bundled third-party icon files or font files"
+  }
+}

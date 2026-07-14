@@ -1,0 +1,144 @@
+{
+  "schema_version": "5.0.0",
+  "workspace_id": "demo-commerce",
+  "session_id": "understand-member-order",
+  "explored": [
+    {
+      "id": "cov-order-entry",
+      "label": "주문 요청과 회원 자격",
+      "reason": "질문의 시작점과 첫 판단이다.",
+      "impact": "blocks-answer",
+      "next_check": null,
+      "source_refs": [
+        "member-place-order",
+        "rule-member-verified"
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "cov-orderability",
+      "label": "상품 주문 가능 여부",
+      "reason": "판매 상태와 판매 기간이 주문을 막을 수 있다.",
+      "impact": "blocks-answer",
+      "next_check": null,
+      "source_refs": [
+        "rule-product-active",
+        "rule-sale-window"
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "cov-inventory",
+      "label": "재고 확보와 주문 상태",
+      "reason": "결제 전 재고 예약과 주문 상태 변화가 발생한다.",
+      "impact": "blocks-answer",
+      "next_check": null,
+      "source_refs": [
+        "rule-stock-available",
+        "order-lifecycle"
+      ],
+      "confidence": "VERIFIED"
+    },
+    {
+      "id": "cov-payment",
+      "label": "결제 승인과 주문 완료",
+      "reason": "성공 결과를 결정하는 마지막 외부 경계다.",
+      "impact": "blocks-answer",
+      "next_check": null,
+      "source_refs": [
+        "payment",
+        "member-place-order"
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "unknown_relevant": [
+    {
+      "id": "unk-payment-timeout",
+      "label": "결제 timeout 후 실제 재조회 정책",
+      "reason": "예제 근거는 보상 방향만 부분적으로 설명하며 운영 재조회 정책은 입증하지 않는다.",
+      "impact": "blocks-change",
+      "next_check": "gateway adapter, retry scheduler, idempotency test를 확인한다.",
+      "source_refs": [
+        "payment-error"
+      ],
+      "confidence": "UNVERIFIED"
+    }
+  ],
+  "unknown_out_of_scope": [
+    {
+      "id": "out-fulfillment",
+      "label": "주문 완료 이후 배송·fulfillment",
+      "reason": "현재 질문은 주문 생성과 결제 완료까지다.",
+      "impact": "none-for-current-purpose",
+      "next_check": null,
+      "source_refs": [
+        "order.placed"
+      ],
+      "confidence": "UNVERIFIED"
+    },
+    {
+      "id": "out-settlement",
+      "label": "판매자 정산",
+      "reason": "주문 접수 흐름과 별도의 후속 가치 흐름이다.",
+      "impact": "none-for-current-purpose",
+      "next_check": null,
+      "source_refs": [],
+      "confidence": "UNVERIFIED"
+    }
+  ],
+  "expansion_points": [
+    {
+      "id": "exp-payment-failure",
+      "label": "결제 실패·timeout·재고 해제",
+      "reason": "위험도가 높고 보상 처리가 있어 별도 상세 흐름이 유용하다.",
+      "impact": "relevant-later",
+      "next_check": "Atlas의 payment failure branch를 연다.",
+      "source_refs": [
+        "payment-error",
+        "release-on-payment-failure"
+      ],
+      "confidence": "PARTIAL"
+    },
+    {
+      "id": "exp-cancel",
+      "label": "결제 후 주문 취소",
+      "reason": "취소 가능 시간과 재고 복구는 독립적인 사용자 목적이다.",
+      "impact": "relevant-later",
+      "next_check": "cancel-order stream을 연다.",
+      "source_refs": [
+        "cancel-order"
+      ],
+      "confidence": "VERIFIED"
+    }
+  ],
+  "boundaries": [
+    {
+      "from": "ordering",
+      "to": "payment-gateway",
+      "status": "external-boundary",
+      "reason": "외부 승인 결과와 timeout 정책은 adapter/runtime 근거가 필요하다.",
+      "source_refs": [
+        "payment"
+      ]
+    },
+    {
+      "from": "order.placed",
+      "to": "fulfillment-worker",
+      "status": "not-explored",
+      "reason": "현재 stop condition 이후의 비동기 처리다.",
+      "source_refs": [
+        "order.placed"
+      ]
+    }
+  ],
+  "completion": {
+    "question_answered": true,
+    "stop_condition_met": true,
+    "safe_to_change": "not-applicable",
+    "atlas_recommended": true,
+    "notes": [
+      "현재 결과는 이해용 Focus다. 결제·보상 코드를 변경할 때는 Atlas와 런타임 검증으로 승격한다."
+    ]
+  }
+}

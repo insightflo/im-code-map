@@ -1,0 +1,29 @@
+{
+  "schema_version": "5.0.0",
+  "workspace_id": "workspace-id",
+  "session_id": "understand-one-flow",
+  "created_at": "2026-07-14T00:00:00Z",
+  "question": "What concrete behavior must the reader understand?",
+  "intent": "trace",
+  "requested_depth": "default",
+  "audience": "newcomer",
+  "selected_stream_id": "stream-id",
+  "expected_outcome": "The reader can explain the central behavior and its evidence boundary.",
+  "stop_condition": "The reader can state who starts, key decisions, success change, and relevant unknowns.",
+  "scope": {
+    "in_scope": ["selected behavior"],
+    "out_of_scope": ["unrelated downstream behavior"]
+  },
+  "risk_assessment": {
+    "level": "low",
+    "triggers": [],
+    "requires_atlas": false,
+    "reason": "No mandatory Atlas trigger was identified for this explanation-only task."
+  },
+  "routing_decision": {
+    "selected_profile": "focus",
+    "automatic_escalation": false,
+    "reason": "One bounded explanation is sufficient for the present purpose."
+  },
+  "evidence": []
+}

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1931" height="803" viewBox="-12.00 -22.00 1931.00 803.00">
+<rect x="-12.00" y="-22.00" width="1931.00" height="803.00" fill="#F7F8FC"/>
+<rect x="55.00" y="219.00" width="1804.00" height="322.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="48.00" y="212.00" width="1804.00" height="322.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
+<rect x="55.00" y="569.00" width="900.00" height="152.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="48.00" y="562.00" width="900.00" height="152.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
+<rect x="987.00" y="569.00" width="872.00" height="152.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="980.00" y="562.00" width="872.00" height="152.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
+<rect x="99.00" y="335.00" width="320.00" height="174.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="453.00" y="335.00" width="320.00" height="174.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="807.00" y="335.00" width="320.00" height="174.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1161.00" y="335.00" width="320.00" height="174.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1515.00" y="335.00" width="320.00" height="174.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<polyline points="418.00,415.00 440.00,415.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="440.00,415.00 421.00,423.55 421.00,406.45" fill="#4F46E5" opacity="1.000"/>
+<polyline points="772.00,415.00 794.00,415.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="794.00,415.00 775.00,423.55 775.00,406.45" fill="#4F46E5" opacity="1.000"/>
+<polyline points="1126.00,415.00 1148.00,415.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1148.00,415.00 1129.00,423.55 1129.00,406.45" fill="#4F46E5" opacity="1.000"/>
+<polyline points="1480.00,415.00 1502.00,415.00" stroke="#4F46E5" fill="none" stroke-width="3.0" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1502.00,415.00 1483.00,423.55 1483.00,406.45" fill="#4F46E5" opacity="1.000"/>
+<rect x="56.00" y="38.00" width="120.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1740.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1626.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1512.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1398.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="48.00" y="212.00" width="8.00" height="322.00" rx="0.64" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="48.00" y="562.00" width="8.00" height="152.00" rx="0.64" stroke="#D92D20" fill="#D92D20" stroke-width="0.0" opacity="1.000"/>
+<rect x="980.00" y="562.00" width="8.00" height="152.00" rx="0.64" stroke="#98A2B3" fill="#98A2B3" stroke-width="0.0" opacity="1.000"/>
+<rect x="92.00" y="328.00" width="320.00" height="174.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="92.00" y="328.00" width="320.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="110.00" y="346.00" width="52.00" height="52.00" rx="4.16" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="95.00" cy="331.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
+<rect x="446.00" y="328.00" width="320.00" height="174.00" rx="18.00" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.6" opacity="1.000"/>
+<rect x="446.00" y="328.00" width="320.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="464.00" y="346.00" width="52.00" height="52.00" rx="4.16" stroke="#FFFFFF" fill="#FFFFFF" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="490.00" cy="372.00" rx="16.25" ry="16.25" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="490.00" cy="383.88" rx="1.88" ry="1.88" stroke="#4F46E5" fill="#4F46E5" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="449.00" cy="331.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
+<rect x="800.00" y="328.00" width="320.00" height="174.00" rx="18.00" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.6" opacity="1.000"/>
+<rect x="800.00" y="328.00" width="320.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="818.00" y="346.00" width="52.00" height="52.00" rx="4.16" stroke="#FFFFFF" fill="#FFFFFF" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="803.00" cy="331.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
+<rect x="1154.00" y="328.00" width="320.00" height="174.00" rx="18.00" stroke="#D92D20" fill="#FEF3F2" stroke-width="2.2" opacity="1.000"/>
+<rect x="1154.00" y="328.00" width="320.00" height="6.00" rx="1.08" stroke="#D92D20" fill="#D92D20" stroke-width="0.0" opacity="1.000"/>
+<rect x="1172.00" y="346.00" width="52.00" height="52.00" rx="4.16" stroke="#FEF3F2" fill="#FEF3F2" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="1197.99" cy="383.88" rx="1.88" ry="1.88" stroke="#D92D20" fill="#D92D20" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="1157.00" cy="331.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
+<rect x="1508.00" y="328.00" width="320.00" height="174.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
+<rect x="1508.00" y="328.00" width="320.00" height="6.00" rx="1.08" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
+<rect x="1526.00" y="346.00" width="52.00" height="52.00" rx="4.16" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
+<rect x="1538.25" y="354.50" width="27.50" height="35.00" rx="2.20" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="1511.00" cy="331.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
+<polyline points="127.25,358.25 127.25,385.75 147.25,372.00 127.25,358.25" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="483.75,365.75 486.25,362.00 492.50,362.00 496.25,365.75 496.25,369.50 491.25,373.25 490.00,377.00" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="835.25,358.25 835.25,385.75 855.25,372.00 835.25,358.25" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1198.00,354.50 1215.50,388.25 1180.50,388.25 1198.00,354.50" stroke="#D92D20" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1198.00,364.50 1198.00,377.00" stroke="#D92D20" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1557.00,354.50 1565.75,363.25 1557.00,363.25 1557.00,354.50" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1543.25,369.50 1560.75,369.50" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1543.25,377.00 1560.75,377.00" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1543.25,384.50 1555.75,384.50" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="116.00" y="57.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="116.00" dy="0.00">FOCUS · 3분 개요</tspan></text>
+<text x="56.00" y="126.50" font-size="36.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="56.00" dy="0.00">이 코드베이스를 이해하는 가장 빠른 길</tspan></text>
+<text x="56.00" y="159.00" font-size="16.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="56.00" dy="0.00">질문에서 시작해 한 흐름을 이해하고, 모름과 Atlas 확장 지점을 잃지 않는다.</tspan></text>
+<a href="[[architecture/unknowns.md]]"><text x="1792.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1792.00" dy="0.00">미확인 사항</tspan></text></a>
+<a href="[[architecture/flows/member-place-order-focus.md]]"><text x="1678.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1678.00" dy="0.00">흐름 문서</tspan></text></a>
+<a href="[[architecture/understanding/understand-member-order.md]]"><text x="1564.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1564.00" dy="0.00">질문 문서</tspan></text></a>
+<a href="[[architecture/start-here.md]]"><text x="1450.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1450.00" dy="0.00">시작 문서</tspan></text></a>
+<text x="76.00" y="254.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="76.00" dy="0.00">질문에서 시작해 필요한 만큼만 깊어집니다</tspan></text>
+<text x="76.00" y="283.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">전체 코드를 암기하는 대신, 한 가지 사용자 행동과 현재 근거의 경계를 따라갑니다.</tspan></text>
+<text x="76.00" y="604.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="76.00" dy="0.00">현재 확인이 필요한 것</tspan></text>
+<text x="76.00" y="633.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">결제 timeout 후 실제 재조회 정책</tspan></text>
+<text x="1008.00" y="604.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1008.00" dy="0.00">이번 지도에서 다루지 않는 것</tspan></text>
+<text x="1008.00" y="633.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1008.00" dy="0.00">관리자 상품 등록 · 판매자 정산 · 추천 상품 생성 · 배송 이후 처리</tspan></text>
+<text x="95.00" y="336.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="95.00" dy="0.00">1</tspan></text>
+<a href="[[architecture/start-here]]"><text x="178.00" y="369.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="178.00" dy="0.00">START HERE · 시스템 한 줄</tspan></text></a>
+<a href="[[architecture/start-here]]"><text x="110.00" y="410.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="110.00" dy="0.00">회원이 판매 가능한 상품을 주문하면 재고를</tspan><tspan x="110.00" dy="17.50">확보하고 결제를 승인한 뒤 주문을 완료하는</tspan><tspan x="110.00" dy="17.50">예제 시스템</tspan></text></a>
+<text x="449.00" y="336.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="449.00" dy="0.00">2</tspan></text>
+<a href="[[understanding/understand-member-order]]"><text x="532.00" y="369.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="532.00" dy="0.00">질문에서 시작</tspan></text></a>
+<a href="[[understanding/understand-member-order]]"><text x="464.00" y="410.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="464.00" dy="0.00">회원이 상품을 주문하면 어떤 처리가</tspan><tspan x="464.00" dy="17.50">시작되고, 무엇을 확인한 뒤 주문이</tspan><tspan x="464.00" dy="17.50">완료되는가?</tspan></text></a>
+<text x="803.00" y="336.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="803.00" dy="0.00">3</tspan></text>
+<a href="[[flows/member-place-order-focus]]"><text x="886.00" y="369.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="886.00" dy="0.00">한 흐름을 끝까지</tspan></text></a>
+<a href="[[flows/member-place-order-focus]]"><text x="818.00" y="410.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="818.00" dy="0.00">12개의 중심 단계 · 실패 이유 4개</tspan></text></a>
+<text x="1157.00" y="336.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="1157.00" dy="0.00">4</tspan></text>
+<a href="[[unknowns]]"><text x="1240.00" y="369.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1240.00" dy="0.00">현재 이해의 경계</tspan></text></a>
+<a href="[[unknowns]]"><text x="1172.00" y="410.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1172.00" dy="0.00">관련 미확인 1개 · 범위 밖 2개</tspan></text></a>
+<text x="1511.00" y="336.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="1511.00" dy="0.00">5</tspan></text>
+<a href="[[atlas/index]]"><text x="1594.00" y="369.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1594.00" dy="0.00">Deep Atlas 열기</tspan></text></a>
+<a href="[[atlas/index]]"><text x="1526.00" y="410.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1526.00" dy="0.00">상태 전이, 오류, timeout, 보상,</tspan><tspan x="1526.00" dy="17.50">도메인, 코드 근거를 확인한다.</tspan></text></a>
+</svg>

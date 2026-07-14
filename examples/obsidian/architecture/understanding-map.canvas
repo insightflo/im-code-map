@@ -1,0 +1,110 @@
+{
+  "nodes": [
+    {
+      "id": "g-question",
+      "type": "group",
+      "label": "1. 질문과 범위",
+      "x": 0,
+      "y": 0,
+      "width": 500,
+      "height": 360
+    },
+    {
+      "id": "n-session",
+      "type": "file",
+      "file": "architecture/understanding/understand-member-order.md",
+      "x": 40,
+      "y": 80,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "g-focus",
+      "type": "group",
+      "label": "2. 사람이 먼저 읽는 흐름",
+      "x": 600,
+      "y": 0,
+      "width": 520,
+      "height": 620
+    },
+    {
+      "id": "n-focus",
+      "type": "file",
+      "file": "architecture/flows/member-place-order-focus.md",
+      "x": 650,
+      "y": 80,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "n-unknown",
+      "type": "file",
+      "file": "architecture/unknowns.md",
+      "x": 650,
+      "y": 340,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "g-atlas",
+      "type": "group",
+      "label": "3. 필요할 때만 상세 확장",
+      "x": 1220,
+      "y": 0,
+      "width": 520,
+      "height": 620
+    },
+    {
+      "id": "n-atlas",
+      "type": "file",
+      "file": "architecture/atlas/index.md",
+      "x": 1270,
+      "y": 80,
+      "width": 420,
+      "height": 220
+    },
+    {
+      "id": "n-atlas-flow",
+      "type": "file",
+      "file": "architecture/atlas/flows/member-place-order.md",
+      "x": 1270,
+      "y": 340,
+      "width": 420,
+      "height": 220
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "fromNode": "n-session",
+      "fromSide": "right",
+      "toNode": "n-focus",
+      "toSide": "left",
+      "label": "질문을 한 흐름으로 좁힘"
+    },
+    {
+      "id": "e2",
+      "fromNode": "n-focus",
+      "fromSide": "right",
+      "toNode": "n-unknown",
+      "toSide": "left",
+      "label": "모름과 범위 확인"
+    },
+    {
+      "id": "e3",
+      "fromNode": "n-unknown",
+      "fromSide": "right",
+      "toNode": "n-atlas",
+      "toSide": "left",
+      "label": "위험·변경·추가 질문이면 확장"
+    },
+    {
+      "id": "e4",
+      "fromNode": "n-atlas",
+      "fromSide": "right",
+      "toNode": "n-atlas-flow",
+      "toSide": "left",
+      "label": "전체 단계와 근거"
+    }
+  ]
+}

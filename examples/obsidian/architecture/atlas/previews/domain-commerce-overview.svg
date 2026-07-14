@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1871" height="1057" viewBox="-12.00 -22.00 1871.00 1057.00">
+<rect x="-12.00" y="-22.00" width="1871.00" height="1057.00" fill="#F7F8FC"/>
+<rect x="55.00" y="215.00" width="1744.00" height="760.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="48.00" y="208.00" width="1744.00" height="760.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
+<rect x="117.00" y="345.00" width="330.00" height="160.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="117.00" y="685.00" width="330.00" height="160.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="707.00" y="485.00" width="360.00" height="190.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1407.00" y="335.00" width="330.00" height="160.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="1407.00" y="685.00" width="330.00" height="160.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<rect x="727.00" y="805.00" width="320.00" height="150.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
+<polyline points="700.00,573.00 570.00,573.00 570.00,418.00 440.00,418.00" stroke="#667085" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="440.00,418.00 457.40,410.17 457.40,425.83" fill="#667085" opacity="1.000"/>
+<polyline points="700.00,573.00 570.00,573.00 570.00,758.00 440.00,758.00" stroke="#667085" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="440.00,758.00 457.40,750.17 457.40,765.83" fill="#667085" opacity="1.000"/>
+<polyline points="1060.00,573.00 1230.00,573.00 1230.00,408.00 1400.00,408.00" stroke="#667085" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1400.00,408.00 1382.60,415.83 1382.60,400.17" fill="#667085" opacity="1.000"/>
+<polyline points="1060.00,573.00 1230.00,573.00 1230.00,758.00 1400.00,758.00" stroke="#667085" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1400.00,758.00 1382.60,765.83 1382.60,750.17" fill="#667085" opacity="1.000"/>
+<polyline points="880.00,668.00 880.00,733.00 880.00,733.00 880.00,798.00" stroke="#0E7490" fill="none" stroke-width="2.2" opacity="1.000" stroke-dasharray="12 8" stroke-linejoin="round" stroke-linecap="round"/><polygon points="880.00,798.00 872.17,780.60 887.83,780.60" fill="#0E7490" opacity="1.000"/>
+<rect x="56.00" y="38.00" width="146.32" height="30.00" rx="5.40" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1680.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1566.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="48.00" y="208.00" width="8.00" height="760.00" rx="0.64" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="110.00" y="338.00" width="330.00" height="160.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="110.00" y="338.00" width="330.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="128.00" y="356.00" width="52.00" height="52.00" rx="4.16" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="136.50" y="364.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="156.50" y="364.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="136.50" y="384.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="156.50" y="384.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="110.00" y="678.00" width="330.00" height="160.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="110.00" y="678.00" width="330.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="128.00" y="696.00" width="52.00" height="52.00" rx="4.16" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="136.50" y="704.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="156.50" y="704.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="136.50" y="724.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="156.50" y="724.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="700.00" y="478.00" width="360.00" height="190.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="700.00" y="478.00" width="360.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="718.00" y="496.00" width="52.00" height="52.00" rx="4.16" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="726.50" y="504.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="746.50" y="504.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="726.50" y="524.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="746.50" y="524.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1400.00" y="328.00" width="330.00" height="160.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="1400.00" y="328.00" width="330.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="1418.00" y="346.00" width="52.00" height="52.00" rx="4.16" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="1426.50" y="354.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1446.50" y="354.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1426.50" y="374.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1446.50" y="374.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1400.00" y="678.00" width="330.00" height="160.00" rx="18.00" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="1400.00" y="678.00" width="330.00" height="6.00" rx="1.08" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="1418.00" y="696.00" width="52.00" height="52.00" rx="4.16" stroke="#EEF2FF" fill="#EEF2FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="1426.50" y="704.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1446.50" y="704.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1426.50" y="724.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1446.50" y="724.50" width="15.00" height="15.00" rx="1.20" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="720.00" y="798.00" width="320.00" height="150.00" rx="18.00" stroke="#C11574" fill="#FDF2FA" stroke-width="1.6" opacity="1.000"/>
+<rect x="720.00" y="798.00" width="320.00" height="6.00" rx="1.08" stroke="#C11574" fill="#C11574" stroke-width="0.0" opacity="1.000"/>
+<rect x="738.00" y="816.00" width="52.00" height="52.00" rx="4.16" stroke="#FDF2FA" fill="#FDF2FA" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="764.00" cy="842.00" rx="13.75" ry="13.75" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="764.00" cy="842.00" rx="5.00" ry="5.00" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="528.00" y="479.50" width="206.64" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="528.00" y="649.50" width="174.74" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1188.00" y="474.50" width="155.60" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1188.00" y="649.50" width="168.36" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="838.00" y="717.00" width="193.88" height="30.00" rx="5.40" stroke="#0E7490" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<polyline points="764.00,823.25 764.00,829.50 764.00,854.50 764.00,860.75 745.25,842.00 751.50,842.00 776.50,842.00 782.75,842.00" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="129.16" y="57.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="129.16" dy="0.00">DEEP ATLAS · 도메인…</tspan></text>
+<text x="56.00" y="126.50" font-size="36.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="56.00" dy="0.00">Commerce responsibility and contract map</tspan></text>
+<text x="56.00" y="159.00" font-size="16.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="56.00" dy="0.00">Show domain ownership and typed contracts. This is context, not a substitute for a</tspan><tspan x="56.00" dy="20.00">business stream.</tspan></text>
+<a href="[[architecture/atlas/flows/member-place-order.md]]"><text x="1732.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1732.00" dy="0.00">흐름 문서</tspan></text></a>
+<a href="[[architecture/atlas/domains/ordering.md]]"><text x="1618.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1618.00" dy="0.00">Deep Atlas</tspan></text></a>
+<text x="76.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="76.00" dy="0.00">업무 소유권과 계약</tspan></text>
+<text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">Ordering이 중심 조정자이며 각 도메인은 명시된 계약으로만 협력합니다.</tspan></text>
+<a href="[[domains/identity-access]]"><text x="196.00" y="379.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="196.00" dy="0.00">Identity &amp; access</tspan></text></a>
+<a href="[[domains/identity-access]]"><text x="128.00" y="420.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="128.00" dy="0.00">Member type,</tspan><tspan x="128.00" dy="17.50">verification,</tspan><tspan x="128.00" dy="17.50">permission.</tspan></text></a>
+<a href="[[domains/catalog]]"><text x="196.00" y="719.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="196.00" dy="0.00">Catalog</tspan></text></a>
+<a href="[[domains/catalog]]"><text x="128.00" y="760.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="128.00" dy="0.00">Product state, sale</tspan><tspan x="128.00" dy="17.50">window, price.</tspan></text></a>
+<a href="[[domains/ordering]]"><text x="786.00" y="519.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="786.00" dy="0.00">Ordering</tspan></text></a>
+<a href="[[domains/ordering]]"><text x="718.00" y="560.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="718.00" dy="0.00">Order orchestration and</tspan><tspan x="718.00" dy="17.50">lifecycle.</tspan></text></a>
+<a href="[[domains/inventory]]"><text x="1486.00" y="369.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1486.00" dy="0.00">Inventory</tspan></text></a>
+<a href="[[domains/inventory]]"><text x="1418.00" y="410.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1418.00" dy="0.00">Availability, reserve,</tspan><tspan x="1418.00" dy="17.50">release.</tspan></text></a>
+<a href="[[domains/payment]]"><text x="1486.00" y="719.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1486.00" dy="0.00">Payment</tspan></text></a>
+<a href="[[domains/payment]]"><text x="1418.00" y="760.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1418.00" dy="0.00">Authorization, decline,</tspan><tspan x="1418.00" dy="17.50">refund.</tspan></text></a>
+<a href="[[flows/member-place-order#event]]"><text x="806.00" y="839.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="806.00" dy="0.00">Order event worker</tspan></text></a>
+<a href="[[flows/member-place-order#event]]"><text x="738.00" y="880.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="738.00" dy="0.00">Consumes order.placed</tspan><tspan x="738.00" dy="17.50">for downstream work.</tspan></text></a>
+<text x="631.32" y="498.62" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="631.32" dy="0.00">authorize · CanPlaceOrder p…</tspan></text>
+<text x="615.37" y="668.62" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="615.37" dy="0.00">query · GetOrderability</tspan></text>
+<text x="1265.80" y="493.62" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1265.80" dy="0.00">command · Reserve /…</tspan></text>
+<text x="1272.18" y="668.62" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1272.18" dy="0.00">command · Authorize /…</tspan></text>
+<text x="934.94" y="736.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#0E7490" opacity="1.000"><tspan x="934.94" dy="0.00">order.placed · after PAID…</tspan></text>
+</svg>

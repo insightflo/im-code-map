@@ -1,0 +1,866 @@
+{
+  "schema_version": "5.0.0",
+  "profile": "focus",
+  "workspace_id": "demo-commerce",
+  "generated_at": "2026-07-14T11:00:00+08:00",
+  "source_map_model": "architecture/machine/map-model.json",
+  "source_understanding_session": "architecture/machine/understanding-session.json",
+  "icon_registry": "icons/icon-registry.json",
+  "reader_policy": {
+    "intended_reader": "newcomer",
+    "primary_question": "회원이 상품을 주문하면 어떤 처리가 시작되고, 무엇을 확인한 뒤 주문이 완료되는가?",
+    "first_view_target_seconds": 30,
+    "detail_policy": "progressive-disclosure",
+    "implementation_identifiers": "notes-only",
+    "max_primary_story_nodes": 12,
+    "failure_detail_mode": "summary-card",
+    "show_step_numbers": true
+  },
+  "style_profile": {
+    "theme": "clean",
+    "font_family": 2,
+    "max_card_words": 32,
+    "max_nodes_per_frame": 14,
+    "default_direction": "left-to-right",
+    "happy_path_emphasis": true,
+    "failure_detail_mode": "summary-card",
+    "show_step_numbers": true
+  },
+  "diagrams": [
+    {
+      "id": "human-overview",
+      "profile": "focus",
+      "title": "이 코드베이스를 이해하는 가장 빠른 길",
+      "type": "human-overview",
+      "purpose": "질문에서 시작해 한 흐름을 이해하고, 모름과 Atlas 확장 지점을 잃지 않는다.",
+      "source_refs": [
+        "understand-member-order",
+        "member-place-order"
+      ],
+      "format_targets": [
+        "excalidraw",
+        "excalidraw-automate",
+        "svg-preview"
+      ],
+      "layout": {
+        "direction": "left-to-right",
+        "lane_axis": "none",
+        "node_width": 285,
+        "node_height": 140,
+        "horizontal_gap": 78,
+        "vertical_gap": 55
+      },
+      "frames": [
+        {
+          "id": "overview-main",
+          "label": "START HERE · 질문에서 깊이로",
+          "order": 0,
+          "purpose": "Focus를 먼저 읽고 필요한 경우에만 Atlas로 이동한다.",
+          "source_refs": [
+            "understand-member-order"
+          ]
+        }
+      ],
+      "lanes": [
+        {
+          "id": "overview-lane",
+          "label": "사람이 읽는 순서",
+          "order": 0,
+          "kind": "context",
+          "icon": "note",
+          "source_ref": "understand-member-order"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "overview-start",
+          "label": "START HERE · 시스템 한 줄",
+          "kind": "start",
+          "frame": "overview-main",
+          "lane": "overview-lane",
+          "order": 0,
+          "summary": "회원이 판매 가능한 상품을 주문하면 재고를 확보하고 결제를 승인한 뒤 주문을 완료하는 예제 시스템",
+          "icon": "auto",
+          "source_refs": [
+            "demo-commerce"
+          ],
+          "confidence": "PARTIAL",
+          "details_link": "[[architecture/start-here]]",
+          "role": "context",
+          "step_number": 1
+        },
+        {
+          "id": "overview-question",
+          "label": "질문에서 시작",
+          "kind": "process",
+          "frame": "overview-main",
+          "lane": "overview-lane",
+          "order": 1,
+          "summary": "회원이 상품을 주문하면 어떤 처리가 시작되고, 무엇을 확인한 뒤 주문이 완료되는가?",
+          "icon": "auto",
+          "source_refs": [
+            "understand-member-order"
+          ],
+          "confidence": "VERIFIED",
+          "details_link": "[[understanding/understand-member-order]]",
+          "role": "primary-story",
+          "step_number": 2
+        },
+        {
+          "id": "overview-flow",
+          "label": "한 흐름을 끝까지",
+          "kind": "process",
+          "frame": "overview-main",
+          "lane": "overview-lane",
+          "order": 2,
+          "summary": "12개의 중심 단계 · 실패 이유 4개",
+          "icon": "auto",
+          "source_refs": [
+            "member-place-order"
+          ],
+          "confidence": "PARTIAL",
+          "details_link": "[[flows/member-place-order-focus]]",
+          "role": "primary-story",
+          "step_number": 3
+        },
+        {
+          "id": "overview-boundary",
+          "label": "현재 이해의 경계",
+          "kind": "risk",
+          "frame": "overview-main",
+          "lane": "overview-lane",
+          "order": 3,
+          "summary": "관련 미확인 1개 · 범위 밖 2개",
+          "icon": "auto",
+          "source_refs": [
+            "unk-payment-timeout"
+          ],
+          "confidence": "PARTIAL",
+          "details_link": "[[unknowns]]",
+          "role": "unknown",
+          "step_number": 4
+        },
+        {
+          "id": "overview-atlas",
+          "label": "Deep Atlas 열기",
+          "kind": "note",
+          "frame": "overview-main",
+          "lane": "overview-lane",
+          "order": 4,
+          "summary": "상태 전이, 오류, timeout, 보상, 도메인, 코드 근거를 확인한다.",
+          "icon": "auto",
+          "source_refs": [
+            "atlas"
+          ],
+          "confidence": "PARTIAL",
+          "details_link": "[[atlas/index]]",
+          "role": "atlas-link",
+          "step_number": 5
+        }
+      ],
+      "edges": [
+        {
+          "id": "overview-edge-1",
+          "from": "overview-start",
+          "to": "overview-question",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 1,
+          "source_refs": [
+            "understand-member-order"
+          ],
+          "confidence": "VERIFIED",
+          "style": "solid"
+        },
+        {
+          "id": "overview-edge-2",
+          "from": "overview-question",
+          "to": "overview-flow",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 2,
+          "source_refs": [
+            "understand-member-order"
+          ],
+          "confidence": "VERIFIED",
+          "style": "solid"
+        },
+        {
+          "id": "overview-edge-3",
+          "from": "overview-flow",
+          "to": "overview-boundary",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 3,
+          "source_refs": [
+            "understand-member-order"
+          ],
+          "confidence": "VERIFIED",
+          "style": "solid"
+        },
+        {
+          "id": "overview-edge-4",
+          "from": "overview-boundary",
+          "to": "overview-atlas",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 4,
+          "source_refs": [
+            "understand-member-order"
+          ],
+          "confidence": "VERIFIED",
+          "style": "solid"
+        }
+      ],
+      "navigation": {
+        "parent": "",
+        "children": [
+          "focus-member-place-order"
+        ],
+        "related_notes": [
+          "architecture/start-here.md",
+          "architecture/understanding/understand-member-order.md",
+          "architecture/flows/member-place-order-focus.md",
+          "architecture/unknowns.md",
+          "architecture/atlas/index.md"
+        ]
+      },
+      "reader_contract": {
+        "start_here_node_id": "overview-start",
+        "primary_story_node_ids": [
+          "overview-start",
+          "overview-question",
+          "overview-flow",
+          "overview-boundary",
+          "overview-atlas"
+        ],
+        "answers": {
+          "who_starts": "검증된 회원",
+          "what_they_want": "주문 성공의 중심 흐름과 주문이 멈추는 핵심 이유를 이해한다.",
+          "key_decisions": "Focus first; Atlas when risk, change, or unresolved boundaries require it.",
+          "success_change": "The reader can explain the selected flow and its current evidence boundary."
+        },
+        "does_not_answer": [
+          "관리자 상품 등록",
+          "판매자 정산",
+          "추천 상품 생성",
+          "배송 이후 처리"
+        ],
+        "stop_reasons": [],
+        "deeper_links": [
+          "[[flows/member-place-order-focus]]",
+          "[[atlas/index]]"
+        ],
+        "required_unknowns": [
+          "결제 timeout 후 실제 재조회 정책"
+        ]
+      },
+      "legend": [],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "services/order-service",
+          "excerpt": "The synthetic example traces ordering, inventory, and payment behavior.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-14T11:00:00+08:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    },
+    {
+      "id": "focus-member-place-order",
+      "profile": "focus",
+      "title": "회원이 상품을 주문하는 흐름",
+      "type": "focus-flow",
+      "purpose": "주문 성공의 중심 흐름과 주문이 멈추는 핵심 이유를 이해한다.",
+      "source_refs": [
+        "member-place-order",
+        "understand-member-order"
+      ],
+      "format_targets": [
+        "excalidraw",
+        "excalidraw-automate",
+        "svg-preview"
+      ],
+      "layout": {
+        "direction": "phase-rows",
+        "lane_axis": "phase",
+        "node_width": 295,
+        "node_height": 142,
+        "horizontal_gap": 78,
+        "vertical_gap": 84
+      },
+      "frames": [
+        {
+          "id": "focus-main",
+          "label": "START HERE · 중심 흐름",
+          "order": 0,
+          "purpose": "정상 흐름을 왼쪽에서 오른쪽으로 읽는다.",
+          "source_refs": [
+            "member-place-order"
+          ]
+        },
+        {
+          "id": "focus-context",
+          "label": "경계와 다음 탐색",
+          "order": 1,
+          "purpose": "실패 상세를 펼치지 않고 핵심 이유, 미확인 사항, Atlas 진입점을 보여 준다.",
+          "source_refs": [
+            "understand-member-order"
+          ]
+        }
+      ],
+      "lanes": [
+        {
+          "id": "focus-phase-1",
+          "label": "1단계 · 주문 요청 → 주문 접수",
+          "order": 0,
+          "kind": "phase",
+          "icon": "process",
+          "source_ref": "place-order.start"
+        },
+        {
+          "id": "focus-phase-2",
+          "label": "2단계 · 재고 확보 → 결제 승인 요청",
+          "order": 1,
+          "kind": "phase",
+          "icon": "process",
+          "source_ref": "place-order.reserve-stock"
+        },
+        {
+          "id": "focus-phase-3",
+          "label": "3단계 · 결제가 승인됐는가? → 주문 완료",
+          "order": 2,
+          "kind": "phase",
+          "icon": "process",
+          "source_ref": "place-order.check-payment"
+        },
+        {
+          "id": "focus-context-lane",
+          "label": "처음에는 요약하고 필요할 때 확장",
+          "order": 0,
+          "kind": "context",
+          "icon": "note",
+          "source_ref": "understand-member-order"
+        }
+      ],
+      "nodes": [
+        {
+          "id": "focus-place-order-start",
+          "label": "1. 주문 요청",
+          "kind": "start",
+          "frame": "focus-main",
+          "lane": "focus-phase-1",
+          "order": 0,
+          "summary": "회원이 상품, 수량, 결제 정보를 제출한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.start"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.start",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 1
+        },
+        {
+          "id": "focus-place-order-check-member",
+          "label": "2. 주문할 수 있는 회원인가?",
+          "kind": "decision",
+          "frame": "focus-main",
+          "lane": "focus-phase-1",
+          "order": 1,
+          "summary": "회원 유형, 인증 상태, 정지 여부를 확인한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.check-member"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.check-member",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "decision",
+          "step_number": 2
+        },
+        {
+          "id": "focus-place-order-check-product",
+          "label": "3. 현재 주문 가능한 상품인가?",
+          "kind": "decision",
+          "frame": "focus-main",
+          "lane": "focus-phase-1",
+          "order": 2,
+          "summary": "판매 중이고 판매 기간 안인지 판단한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.check-product"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.check-product",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "decision",
+          "step_number": 3,
+          "collapsed_refs": [
+            "place-order.load-product"
+          ]
+        },
+        {
+          "id": "focus-place-order-create-pending",
+          "label": "4. 주문 접수",
+          "kind": "state-change",
+          "frame": "focus-main",
+          "lane": "focus-phase-1",
+          "order": 3,
+          "summary": "상품과 가격을 고정해 주문을 접수 상태로 만든다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.create-pending"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.create-pending",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 4,
+          "state_before": "NONE",
+          "state_after": "PENDING"
+        },
+        {
+          "id": "focus-place-order-reserve-stock",
+          "label": "5. 재고 확보",
+          "kind": "process",
+          "frame": "focus-main",
+          "lane": "focus-phase-2",
+          "order": 0,
+          "summary": "요청 수량을 주문에 맞춰 원자적으로 예약한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.reserve-stock"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.reserve-stock",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 5
+        },
+        {
+          "id": "focus-place-order-check-reservation",
+          "label": "6. 재고가 확보됐는가?",
+          "kind": "decision",
+          "frame": "focus-main",
+          "lane": "focus-phase-2",
+          "order": 1,
+          "summary": "남은 수량이 주문 수량보다 충분한지 확인한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.check-reservation"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.check-reservation",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "decision",
+          "step_number": 6
+        },
+        {
+          "id": "focus-place-order-mark-reserved",
+          "label": "7. 재고 확보 완료",
+          "kind": "state-change",
+          "frame": "focus-main",
+          "lane": "focus-phase-2",
+          "order": 2,
+          "summary": "주문에 재고 예약 정보를 기록한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.mark-reserved"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.mark-reserved",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 7,
+          "state_before": "PENDING",
+          "state_after": "RESERVED"
+        },
+        {
+          "id": "focus-place-order-request-payment",
+          "label": "8. 결제 승인 요청",
+          "kind": "external",
+          "frame": "focus-main",
+          "lane": "focus-phase-2",
+          "order": 3,
+          "summary": "재고가 확보된 뒤 결제 시스템에 승인을 요청한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.request-payment"
+          ],
+          "confidence": "PARTIAL",
+          "stream_step_ref": "place-order.request-payment",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 8,
+          "state_before": "NONE",
+          "state_after": "REQUESTED"
+        },
+        {
+          "id": "focus-place-order-check-payment",
+          "label": "9. 결제가 승인됐는가?",
+          "kind": "decision",
+          "frame": "focus-main",
+          "lane": "focus-phase-3",
+          "order": 0,
+          "summary": "승인, 거절, 응답 없음으로 결과를 나눈다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.check-payment"
+          ],
+          "confidence": "PARTIAL",
+          "stream_step_ref": "place-order.check-payment",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "decision",
+          "step_number": 9
+        },
+        {
+          "id": "focus-place-order-mark-paid",
+          "label": "10. 주문 결제 완료",
+          "kind": "state-change",
+          "frame": "focus-main",
+          "lane": "focus-phase-3",
+          "order": 1,
+          "summary": "결제 승인 정보를 저장하고 주문을 완료한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.mark-paid"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.mark-paid",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 10,
+          "state_before": "RESERVED, REQUESTED",
+          "state_after": "PAID, AUTHORIZED"
+        },
+        {
+          "id": "focus-place-order-emit-event",
+          "label": "11. 후속 처리 알림",
+          "kind": "event",
+          "frame": "focus-main",
+          "lane": "focus-phase-3",
+          "order": 2,
+          "summary": "확인·배송 처리를 위해 주문 완료 이벤트를 보낸다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.emit-event"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.emit-event",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 11
+        },
+        {
+          "id": "focus-place-order-confirm",
+          "label": "12. 주문 완료",
+          "kind": "end",
+          "frame": "focus-main",
+          "lane": "focus-phase-3",
+          "order": 3,
+          "summary": "회원에게 주문 번호와 완료 상태를 반환한다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.confirm"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.confirm",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 12
+        },
+        {
+          "id": "focus-stop-reasons",
+          "label": "왜 흐름이 멈추는가",
+          "kind": "risk",
+          "frame": "focus-context",
+          "lane": "focus-context-lane",
+          "order": 0,
+          "summary": "• 회원이 미인증·정지 상태임\n• 상품이 판매 중이 아니거나 판매 기간 밖임\n• 주문할 재고가 부족함\n• 결제가 거절되거나 응답을 확인할 수 없음",
+          "icon": "auto",
+          "source_refs": [
+            "member-ineligible",
+            "product-not-orderable",
+            "stock-failed",
+            "payment-failed"
+          ],
+          "confidence": "PARTIAL",
+          "details_link": "[[atlas/flows/member-place-order#errors-timeouts-and-retries]]",
+          "role": "failure-summary",
+          "collapsed_refs": [
+            "stock-error",
+            "payment-error"
+          ]
+        },
+        {
+          "id": "focus-required-unknowns",
+          "label": "아직 확인되지 않은 것",
+          "kind": "note",
+          "frame": "focus-context",
+          "lane": "focus-context-lane",
+          "order": 1,
+          "summary": "• 결제 timeout 후 실제 재조회 정책",
+          "icon": "auto",
+          "source_refs": [
+            "unk-payment-timeout"
+          ],
+          "confidence": "UNVERIFIED",
+          "details_link": "[[unknowns]]",
+          "role": "unknown"
+        },
+        {
+          "id": "focus-open-atlas",
+          "label": "결제 실패·보상·상태 전이를 포함한 전체 지도 열기",
+          "kind": "note",
+          "frame": "focus-context",
+          "lane": "focus-context-lane",
+          "order": 2,
+          "summary": "• 결제 실패·timeout·재고 해제\n• 결제 후 주문 취소",
+          "icon": "auto",
+          "source_refs": [
+            "exp-payment-failure",
+            "exp-cancel"
+          ],
+          "confidence": "PARTIAL",
+          "details_link": "[[atlas/index]]",
+          "role": "atlas-link"
+        }
+      ],
+      "edges": [
+        {
+          "id": "focus-edge-1",
+          "from": "focus-place-order-start",
+          "to": "focus-place-order-check-member",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 1,
+          "source_refs": [
+            "po-t1"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-2",
+          "from": "focus-place-order-check-member",
+          "to": "focus-place-order-check-product",
+          "kind": "happy-path",
+          "label": "통과",
+          "condition": "",
+          "sequence": 2,
+          "source_refs": [
+            "po-t2",
+            "po-t4"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-3",
+          "from": "focus-place-order-check-product",
+          "to": "focus-place-order-create-pending",
+          "kind": "happy-path",
+          "label": "통과",
+          "condition": "",
+          "sequence": 3,
+          "source_refs": [
+            "po-t5"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-4",
+          "from": "focus-place-order-create-pending",
+          "to": "focus-place-order-reserve-stock",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 4,
+          "source_refs": [
+            "po-t7"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-5",
+          "from": "focus-place-order-reserve-stock",
+          "to": "focus-place-order-check-reservation",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 5,
+          "source_refs": [
+            "po-t8"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-6",
+          "from": "focus-place-order-check-reservation",
+          "to": "focus-place-order-mark-reserved",
+          "kind": "happy-path",
+          "label": "통과",
+          "condition": "",
+          "sequence": 6,
+          "source_refs": [
+            "po-t9"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-7",
+          "from": "focus-place-order-mark-reserved",
+          "to": "focus-place-order-request-payment",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 7,
+          "source_refs": [
+            "po-t12"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-8",
+          "from": "focus-place-order-request-payment",
+          "to": "focus-place-order-check-payment",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 8,
+          "source_refs": [
+            "po-t13"
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "focus-edge-9",
+          "from": "focus-place-order-check-payment",
+          "to": "focus-place-order-mark-paid",
+          "kind": "happy-path",
+          "label": "통과",
+          "condition": "",
+          "sequence": 9,
+          "source_refs": [
+            "po-t14"
+          ],
+          "confidence": "PARTIAL"
+        },
+        {
+          "id": "focus-edge-10",
+          "from": "focus-place-order-mark-paid",
+          "to": "focus-place-order-emit-event",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 10,
+          "source_refs": [
+            "po-t17"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-11",
+          "from": "focus-place-order-emit-event",
+          "to": "focus-place-order-confirm",
+          "kind": "async-event",
+          "label": "비동기",
+          "condition": "",
+          "sequence": 11,
+          "source_refs": [
+            "po-t18"
+          ],
+          "confidence": "VERIFIED",
+          "style": "dashed"
+        }
+      ],
+      "navigation": {
+        "parent": "human-overview",
+        "children": [],
+        "related_notes": [
+          "architecture/understanding/understand-member-order.md",
+          "architecture/flows/member-place-order-focus.md",
+          "architecture/unknowns.md",
+          "architecture/atlas/index.md"
+        ]
+      },
+      "reader_contract": {
+        "start_here_node_id": "focus-place-order-start",
+        "primary_story_node_ids": [
+          "focus-place-order-start",
+          "focus-place-order-check-member",
+          "focus-place-order-check-product",
+          "focus-place-order-create-pending",
+          "focus-place-order-reserve-stock",
+          "focus-place-order-check-reservation",
+          "focus-place-order-mark-reserved",
+          "focus-place-order-request-payment",
+          "focus-place-order-check-payment",
+          "focus-place-order-mark-paid",
+          "focus-place-order-emit-event",
+          "focus-place-order-confirm"
+        ],
+        "answers": {
+          "who_starts": "검증된 회원",
+          "what_they_want": "상품을 주문한다",
+          "key_decisions": "주문할 수 있는 회원인가?, 현재 주문 가능한 상품인가?, 재고가 확보됐는가?, 결제가 승인됐는가?",
+          "success_change": "결제된 주문이 생성되고 주문 번호가 반환된다"
+        },
+        "does_not_answer": [
+          "관리자 상품 등록",
+          "판매자 정산",
+          "추천 상품 생성",
+          "배송 이후 처리"
+        ],
+        "stop_reasons": [
+          "회원이 미인증·정지 상태임",
+          "상품이 판매 중이 아니거나 판매 기간 밖임",
+          "주문할 재고가 부족함",
+          "결제가 거절되거나 응답을 확인할 수 없음"
+        ],
+        "deeper_links": [
+          "[[atlas/flows/member-place-order]]",
+          "[[atlas/index]]",
+          "[[unknowns#unk-payment-timeout]]"
+        ],
+        "required_unknowns": [
+          "결제 timeout 후 실제 재조회 정책"
+        ]
+      },
+      "legend": [
+        {
+          "kind": "primary-story",
+          "label": "1→N",
+          "meaning": "처음 읽는 중심 흐름"
+        },
+        {
+          "kind": "failure-summary",
+          "label": "STOP",
+          "meaning": "실패 분기를 상세 선 대신 요약"
+        },
+        {
+          "kind": "atlas-link",
+          "label": "DETAIL",
+          "meaning": "상태·오류·보상·코드 근거를 더 깊이 탐색"
+        }
+      ],
+      "evidence": [
+        {
+          "source": "examples/demo-commerce/source-snapshot.md",
+          "locator": "services/order-service",
+          "excerpt": "End-to-end order orchestration and branches.",
+          "tool": "agent-native-docs",
+          "captured_at": "2026-07-10T12:00:00+09:00"
+        }
+      ],
+      "confidence": "PARTIAL"
+    }
+  ],
+  "compositions": []
+}

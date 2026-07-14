@@ -259,8 +259,11 @@ def main() -> int:
         print(f"FAIL: {message}")
     if not errors:
         print(f"PASS: map-model schema and stream semantics ({len(data.get('business_streams', []))} streams)")
+    # jsonschema is an optional dependency in the skill spec; its absence is a skip warning,
+    # not a strict-mode failure. Only genuine semantic/schema warnings are fatal under --strict-warnings.
+    strict_warnings = [w for w in warnings if not w.startswith("jsonschema")]
     print(f"SUMMARY errors={len(errors)} warnings={len(warnings)}")
-    return 1 if errors or (args.strict_warnings and warnings) else 0
+    return 1 if errors or (args.strict_warnings and strict_warnings) else 0
 
 
 if __name__ == "__main__":

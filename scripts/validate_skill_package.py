@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import py_compile
 import shutil
 import subprocess
@@ -38,7 +39,9 @@ def run(cmd: list[str], *, cwd: Path) -> None:
     # pipes can stall long clean-room runs in constrained agent containers, while inheriting the
     # current stdout/stderr preserves the same audit trail without buffering surprises.
     print("RUN:", " ".join(cmd), flush=True)
-    result = subprocess.run(cmd, cwd=cwd, text=True)
+    env = dict(os.environ)
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    result = subprocess.run(cmd, cwd=cwd, text=True, env=env)
     if result.returncode:
         fail(f"command failed with exit code {result.returncode}: {' '.join(cmd)}")
 
@@ -115,6 +118,11 @@ def validate_json_files(root: Path) -> None:
 
 
 def validate_clean_tree(root: Path) -> None:
+    # Drop any bytecode caches produced by validation subprocesses before scanning, so the
+    # checker does not flag its own side effects as transient package files.
+    for cached in root.rglob("__pycache__"):
+        if cached.is_dir() and "/.git/" not in cached.as_posix():
+            shutil.rmtree(cached, ignore_errors=True)
     junk=[]
     for path in root.rglob("*"):
         if path.name in {".DS_Store", "__pycache__"} or path.suffix in {".pyc", ".pyo"}:

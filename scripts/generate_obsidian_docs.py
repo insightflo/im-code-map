@@ -64,7 +64,8 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
     start += f"# {model['workspace_id']} architecture\n\n"
     start += "> Read the business stream first. Domain ownership explains *where* work lives; it does not explain *what happens*.\n\n"
     if primary:
-        start += f"## Primary reading path\n\n1. {wikilink(f'flows/{primary['id']}', primary['name'])}\n2. {wikilink('visual-index', 'Visual index')}\n3. {wikilink('workspace-stream-map.canvas', 'Workspace stream canvas')}\n"
+        primary_link = wikilink("flows/" + primary["id"], primary["name"])
+        start += f"## Primary reading path\n\n1. {primary_link}\n2. {wikilink('visual-index', 'Visual index')}\n3. {wikilink('workspace-stream-map.canvas', 'Workspace stream canvas')}\n"
         if primary.get("diagram_paths"):
             diagram_name = Path(primary["diagram_paths"][0]).name
             start += f"4. {wikilink(f'excalidraw/{diagram_name}', 'Primary Excalidraw stream')}\n"
@@ -114,16 +115,18 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
         content += bullets(impl)
         content += f"\n\n## Visuals\n\n- {wikilink('../visual-index', 'Visual index')}\n"
         if domain.get("overview_diagram"):
-            content += f"- {wikilink(f'../excalidraw/{Path(domain['overview_diagram']).name}', 'Domain overview')}\n"
+            content += f"- {wikilink('../excalidraw/' + Path(domain['overview_diagram']).name, 'Domain overview')}\n"
         content += f"\n## Evidence\n\n{evidence_section(domain.get('evidence',[]))}"
         write(root, f"domains/{domain['id']}.md", content)
 
     # Entity notes.
     for entity in entities.values():
         content = frontmatter("entity", entity["id"], entity["confidence"], {"domain": entity["domain_id"], "states": entity.get("lifecycle_states", [])})
-        content += f"# {entity['name']}\n\n- Owner: {wikilink(f'../domains/{entity['domain_id']}', domains.get(entity['domain_id'], {'name':entity['domain_id']})['name'])}\n"
+        domain_name = domains.get(entity["domain_id"], {"name": entity["domain_id"]})["name"]
+        content += f"# {entity['name']}\n\n- Owner: {wikilink('../domains/' + entity['domain_id'], domain_name)}\n"
         if entity.get("state_machine_id"):
-            content += f"- State machine: {wikilink(f'../states/{entity['state_machine_id']}', machines.get(entity['state_machine_id'], {'name':entity['state_machine_id']})['name'])}\n"
+            machine_name = machines.get(entity["state_machine_id"], {"name": entity["state_machine_id"]})["name"]
+            content += f"- State machine: {wikilink('../states/' + entity['state_machine_id'], machine_name)}\n"
         content += f"\n## Lifecycle states\n\n{bullets([f'`{s}`' for s in entity.get('lifecycle_states',[])])}\n\n"
         content += "## Eligibility rules\n\n" + bullets([wikilink(f"../rules/{r}", rules[r]["name"]) for r in entity.get("eligibility_rules", []) if r in rules])
         related = []
@@ -137,7 +140,8 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
     for machine in machines.values():
         entity = entities.get(machine["entity_id"], {"name": machine["entity_id"]})
         content = frontmatter("state-machine", machine["id"], machine["confidence"], {"entity": machine["entity_id"], "initial_state": machine["initial_state"]})
-        content += f"# {machine['name']}\n\n- Entity: {wikilink(f'../entities/{machine['entity_id']}', entity['name'])}\n- Initial state: `{machine['initial_state']}`\n"
+        entity_name = entity["name"]
+        content += f"# {machine['name']}\n\n- Entity: {wikilink('../entities/' + machine['entity_id'], entity_name)}\n- Initial state: `{machine['initial_state']}`\n"
         content += "\n## States\n\n| State | Terminal | Meaning |\n|---|---:|---|\n"
         for state in machine.get("states", []):
             content += f"| `{state['id']}` | {'yes' if state['terminal'] else 'no'} | {state.get('meaning','')} |\n"
@@ -146,7 +150,8 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
             refs = ", ".join(f"`{r}`" for r in t.get("stream_step_refs", []))
             content += f"| `{t['from']}` | `{t['to']}` | {t['trigger']} | {t['guard']} | {t['effect']} | {refs} |\n"
         if machine.get("diagram_path"):
-            content += f"\n## Diagram\n\n![[../excalidraw/{Path(machine['diagram_path']).name}]]\n"
+            diagram_name = Path(machine["diagram_path"]).name
+            content += f"\n## Diagram\n\n![[../excalidraw/{diagram_name}]]\n"
         content += f"\n## Evidence\n\n{evidence_section(machine.get('evidence',[]))}"
         write(root, f"states/{machine['id']}.md", content)
 
@@ -188,7 +193,9 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
             rw = "; ".join((["R: " + ", ".join(f"`{x}`" for x in step.get("reads", []))] if step.get("reads") else []) + (["W: " + ", ".join(f"`{x}`" for x in step.get("writes", []))] if step.get("writes") else []))
             changes = "; ".join(f"`{c['entity_id']} {c['from']}→{c['to']}`" for c in step.get("state_changes", []))
             rule_links = ", ".join(wikilink(f"../rules/{r}", rules.get(r,{"name":r})["name"]) for r in step.get("rule_refs", []))
-            content += f"| {step['sequence']} | {wikilink(f'../actors/{step['actor_id']}', actor)} | {wikilink(f'../domains/{step['domain_id']}', domain)} | `{step['kind']}` | <a id=\"{slugify(step['id'].split('.')[-1])}\"></a>**{step['name']}**: {step['action']} | {rw} | {changes} | {rule_links} | `{step['confidence']}` |\n"
+            actor_link = wikilink("../actors/" + step["actor_id"], actor)
+            domain_link = wikilink("../domains/" + step["domain_id"], domain)
+            content += f"| {step['sequence']} | {actor_link} | {domain_link} | `{step['kind']}` | <a id=\"{slugify(step['id'].split('.')[-1])}\"></a>**{step['name']}**: {step['action']} | {rw} | {changes} | {rule_links} | `{step['confidence']}` |\n"
         content += "\n## Branches and transitions\n\n| From | Condition / reason | To | Type |\n|---|---|---|---|\n"
         step_names = {s["id"]: s["name"] for s in stream.get("steps", [])}
         for t in sorted(stream.get("transitions", []), key=lambda t: (t.get("priority",0),t["id"])):
@@ -221,15 +228,15 @@ def generate(model: dict[str, Any], visual: dict[str, Any], root: Path) -> None:
     content += "## Master map\n\n"
     for comp in visual.get("compositions", []):
         if comp.get("mode") == "merge-elements":
-            content += f"- {wikilink(f'excalidraw/{Path(comp['output_path']).name}', comp['title'])}: composed snapshot of child diagrams.\n"
+            content += f"- {wikilink('excalidraw/' + Path(comp['output_path']).name, comp['title'])}: composed snapshot of child diagrams.\n"
     content += "\n## Business streams\n\n"
     for d in visual.get("diagrams", []):
         if d["type"] == "business-stream":
-            content += f"- {wikilink(f'excalidraw/{d['id']}.excalidraw', d['title'])}: {d['purpose']}\n"
+            content += f"- {wikilink('excalidraw/' + d['id'] + '.excalidraw', d['title'])}: {d['purpose']}\n"
     content += "\n## State, rules, and context\n\n"
     for d in visual.get("diagrams", []):
         if d["type"] != "business-stream":
-            content += f"- {wikilink(f'excalidraw/{d['id']}.excalidraw', d['title'])}: {d['purpose']}\n"
+            content += f"- {wikilink('excalidraw/' + d['id'] + '.excalidraw', d['title'])}: {d['purpose']}\n"
     content += "\n## Navigation\n\n- " + wikilink("start-here", "Architecture start") + "\n- " + wikilink("workspace-stream-map.canvas", "Workspace stream canvas")
     write(root, "visual-index.md", content)
 

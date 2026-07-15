@@ -91,7 +91,7 @@ def panel_elements(
             background=theme["surface"], stroke_width=1.4, role=role,
         ),
         rectangle(
-            key + ":accent", x, y, 8, h, theme=theme, stroke=accent,
+            key + ":accent", x, y, 4, h, theme=theme, stroke=accent,
             background=accent, stroke_width=0, role=role + "-accent",
         ),
     ]
@@ -150,7 +150,7 @@ def render_human_overview(diagram: dict[str, Any], theme: dict[str, Any]) -> dic
     ))
 
     nodes = sorted(diagram.get("nodes", []), key=lambda n: int(n.get("step_number", n.get("order", 0))))
-    card_w, card_h, gap = 320.0, 174.0, 34.0
+    card_w, card_h, gap = 220.0, 122.0, 34.0
     start_x = 92.0
     card_y = guide_y + 116
     boxes: dict[str, tuple[float, float, float, float]] = {}
@@ -235,7 +235,7 @@ def render_focus_flow(diagram: dict[str, Any], theme: dict[str, Any]) -> dict[st
     lane_order = [lane["id"] for lane in diagram.get("lanes", []) if lane.get("kind") == "phase"]
 
     panel_x, panel_w, panel_h = 48.0, width - 96, 270.0
-    card_w, card_h, card_gap = 354.0, 138.0, 34.0
+    card_w, card_h, card_gap = 220.0, 138.0, 34.0
     card_start_x = panel_x + 130
     boxes: dict[str, tuple[float, float, float, float]] = {}
     shapes: dict[str, dict[str, Any]] = {}
@@ -411,7 +411,7 @@ def render_state_machine(diagram: dict[str, Any], theme: dict[str, Any]) -> dict
     )
     column_step = 470.0
     node_start_x = 318.0
-    card_w, card_h = 238.0, 126.0
+    card_w, card_h = 220.0, 126.0
     width = max(2200.0, node_start_x + max(0, max_columns - 1) * column_step + card_w + 110.0)
     header, content_y = header_elements(
         diagram, theme=theme, width=width, profile_label="DEEP ATLAS · 상태 분기"
@@ -569,7 +569,7 @@ def generic_atlas_layout(diagram: dict[str, Any], theme: dict[str, Any]) -> dict
     # transition labels need real whitespace; the old fixed 270px column step left only
     # ~32px between 238px cards, so every non-trivial guard was painted over the nodes.
     dtype = diagram.get("type")
-    column_step = 430.0 if dtype == "state-machine" else 370.0
+    column_step = 430.0 if dtype == "state-machine" else 256.0
     widest = 0
     for frame_id in ordered_frames:
         orders = sorted({int(n.get("order", 0)) for n in nodes_by_frame.get(frame_id, [])})
@@ -616,7 +616,7 @@ def generic_atlas_layout(diagram: dict[str, Any], theme: dict[str, Any]) -> dict
                 rank = order_rank[int(node.get("order", 0))]
                 compact = True
                 is_decision = node.get("kind") == "decision"
-                w, h = (238.0, 146.0) if is_decision else (238.0, 126.0)
+                w, h = (220.0, 146.0) if is_decision else (220.0, 126.0)
                 x = node_start_x + rank * column_step
                 y = ly + (lane_h - 14 - h) / 2
                 box = (x, y, w, h)
@@ -758,7 +758,7 @@ def render_domain_overview(diagram: dict[str, Any], theme: dict[str, Any]) -> di
     foundation = [nid for nid, node in nodes.items() if is_foundation_domain(node)]
     support = [nid for nid in nodes if nid not in backbone and nid not in foundation]
 
-    card_w, card_h, gap = 286.0, 158.0, 110.0
+    card_w, card_h, gap = 220.0, 158.0, 110.0
     margin = 78.0
     main_count = max(1, len(backbone))
     width = max(1900.0, margin * 2 + main_count * card_w + max(0, main_count - 1) * gap)

@@ -3,36 +3,36 @@
   "default_theme": "clean",
   "themes": {
     "clean": {
-      "canvas": "#F7F8FC",
-      "surface": "#FFFFFF",
-      "surface_alt": "#F2F4F7",
-      "ink": "#101828",
+      "canvas": "#fcfcfb",
+      "surface": "#ffffff",
+      "surface_alt": "#f7f8fa",
+      "ink": "#1f2937",
       "muted": "#667085",
-      "subtle": "#98A2B3",
-      "border": "#D0D5DD",
-      "border_strong": "#98A2B3",
-      "primary": "#4F46E5",
-      "primary_soft": "#EEF2FF",
-      "success": "#15803D",
-      "success_soft": "#ECFDF3",
-      "warning": "#D97706",
-      "warning_soft": "#FFFAEB",
-      "danger": "#D92D20",
-      "danger_soft": "#FEF3F2",
-      "info": "#0E7490",
-      "info_soft": "#ECFDFF",
-      "purple": "#7F56D9",
-      "purple_soft": "#F4F3FF",
-      "blue": "#175CD3",
-      "blue_soft": "#EFF8FF",
-      "pink": "#C11574",
-      "pink_soft": "#FDF2FA",
+      "subtle": "#9aa4b2",
+      "border": "#d8dee7",
+      "border_strong": "#c3c9d4",
+      "primary": "#3b82f6",
+      "primary_soft": "#eff6ff",
+      "success": "#16a34a",
+      "success_soft": "#f0fdf4",
+      "warning": "#7c3aed",
+      "warning_soft": "#f5f3ff",
+      "danger": "#dc2626",
+      "danger_soft": "#fef2f2",
+      "info": "#0284c7",
+      "info_soft": "#f0f9ff",
+      "purple": "#7c3aed",
+      "purple_soft": "#f5f3ff",
+      "blue": "#3b82f6",
+      "blue_soft": "#eff6ff",
+      "pink": "#0284c7",
+      "pink_soft": "#f0f9ff",
       "shadow": "#101828",
       "font_family": 2,
       "roughness": 0,
-      "card_radius": 18,
+      "card_radius": 14,
       "shadow_offset": 7,
-      "shadow_opacity": 10
+      "shadow_opacity": 0
     },
     "whiteboard": {
       "canvas": "#FFFEFB",
@@ -68,37 +68,135 @@
     }
   },
   "semantic": {
-    "actor": ["blue", "blue_soft"],
-    "start": ["primary", "primary_soft"],
-    "process": ["primary", "surface"],
-    "decision": ["warning", "warning_soft"],
-    "state-change": ["purple", "purple_soft"],
-    "event": ["info", "info_soft"],
-    "wait": ["purple", "purple_soft"],
-    "data": ["blue", "blue_soft"],
-    "storage": ["blue", "blue_soft"],
-    "external": ["pink", "pink_soft"],
-    "error": ["danger", "danger_soft"],
-    "compensation": ["pink", "pink_soft"],
-    "end": ["success", "success_soft"],
-    "domain": ["primary", "primary_soft"],
-    "codebase": ["ink", "surface_alt"],
-    "note": ["success", "success_soft"],
-    "risk": ["danger", "danger_soft"],
-    "test": ["success", "success_soft"]
+    "entry": [
+      "primary",
+      "surface_alt"
+    ],
+    "schedule": [
+      "warning",
+      "warning_soft"
+    ],
+    "actor": [
+      "danger",
+      "danger_soft"
+    ],
+    "process": [
+      "primary",
+      "surface"
+    ],
+    "decision": [
+      "warning",
+      "warning_soft"
+    ],
+    "state-change": [
+      "purple",
+      "purple_soft"
+    ],
+    "event": [
+      "info",
+      "info_soft"
+    ],
+    "wait": [
+      "purple",
+      "purple_soft"
+    ],
+    "data": [
+      "success",
+      "success_soft"
+    ],
+    "storage": [
+      "success",
+      "success_soft"
+    ],
+    "service": [
+      "primary",
+      "surface"
+    ],
+    "external": [
+      "info",
+      "info_soft"
+    ],
+    "error": [
+      "danger",
+      "danger_soft"
+    ],
+    "compensation": [
+      "pink",
+      "pink_soft"
+    ],
+    "end": [
+      "success",
+      "success_soft"
+    ],
+    "domain": [
+      "primary",
+      "primary_soft"
+    ],
+    "outcome": [
+      "success",
+      "success_soft"
+    ],
+    "risk": [
+      "danger",
+      "danger_soft"
+    ],
+    "actor-start-end": [
+      "primary",
+      "primary_soft"
+    ]
   },
   "edges": {
-    "happy-path": ["primary", "solid"],
-    "conditional": ["warning", "solid"],
-    "async-event": ["info", "dashed"],
-    "retry": ["purple", "dashed"],
-    "error": ["danger", "dashed"],
-    "timeout": ["danger", "dashed"],
-    "compensation": ["pink", "dotted"],
-    "cancel": ["danger", "dashed"],
-    "data": ["blue", "solid"],
-    "reference": ["subtle", "dotted"],
-    "dependency": ["muted", "solid"],
-    "ownership": ["primary", "dashed"]
+    "happy-path": [
+      "subtle",
+      "solid"
+    ],
+    "conditional": [
+      "warning",
+      "solid"
+    ],
+    "async-event": [
+      "info",
+      "dashed"
+    ],
+    "retry": [
+      "purple",
+      "dashed"
+    ],
+    "error": [
+      "danger",
+      "dashed"
+    ],
+    "timeout": [
+      "danger",
+      "dashed"
+    ],
+    "compensation": [
+      "pink",
+      "dotted"
+    ],
+    "cancel": [
+      "danger",
+      "dashed"
+    ],
+    "data": [
+      "success",
+      "solid"
+    ],
+    "reference": [
+      "subtle",
+      "dotted"
+    ],
+    "dependency": [
+      "muted",
+      "solid"
+    ],
+    "ownership": [
+      "primary",
+      "dashed"
+    ],
+    "recovery": [
+      "warning",
+      "dashed"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json
+import argparse, json, os
 from pathlib import Path
 from overview_map_core import build_overview_map, dump_json, load_json, validate_overview_map
 from clean_map_renderer import render_bundle
@@ -20,7 +20,15 @@ def main()->int:
     if not report["ok"]: raise SystemExit("overview validation failed: "+"; ".join(report["errors"]))
     overview=out/"overview-map.json"; dump_json(overview,data)
     render=render_bundle(data,out/"overview-map.excalidraw",out/"previews/overview-map.svg",out/"previews/overview-map.png",out/"overview-map.layout.json")
-    manifest={"version":"5.3.0","profile":a.profile,"question":a.question,"source":str(Path(a.input).resolve()),"overview":str(overview),"render":render,"validation":report}
+    manifest={
+        "version":"5.3.1",
+        "profile":a.profile,
+        "question":a.question,
+        "source":os.path.relpath(Path(a.input).resolve(), out.resolve()),
+        "overview":overview.name,
+        "render":{**render, "excalidraw":Path(render["excalidraw"]).name},
+        "validation":report,
+    }
     dump_json(out/"overview-map.manifest.json",manifest)
     print(json.dumps(manifest,ensure_ascii=False,indent=2)); return 0
 if __name__=="__main__": raise SystemExit(main())

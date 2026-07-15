@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.3.1 — 2026-07-15
+
+- Fixed clean-overview SVG/PNG previews that rendered Korean text as square boxes because the renderer declared Arial first.
+- Added a Korean-capable deterministic SVG font stack led by `Noto Sans CJK KR`, with Nanum, Apple SD Gothic Neo, Malgun Gothic, and Arial Unicode fallbacks.
+- Added local font coverage preflight with `fontTools`; multilingual preview generation now fails closed with an installation instruction when no compatible system font exists. No font files are bundled.
+- Added `validate_preview_fonts.py` and integrated the multilingual preview check into clean-room package validation.
+- Moved numbered Focus steps into small external badges so long labels no longer collide with two-digit step numbers.
+- Regenerated the clean overview SVG, PNG, and editable Excalidraw example.
+
 ## 5.3.0 — 2026-07-14
 
 - Fixed Focus projection ranking so a rule-bearing preflight immediately before an external call cannot be silently collapsed merely because earlier context/process cards filled the 12-node budget.

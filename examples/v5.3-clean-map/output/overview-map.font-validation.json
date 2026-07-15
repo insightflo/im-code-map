@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "font": {
+    "fontStack": "'Noto Sans CJK KR', 'NanumGothic', 'NanumBarunGothic', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Arial Unicode MS', 'DejaVu Sans', sans-serif",
+    "selectedFamily": "Noto Sans CJK KR",
+    "coverageVerified": true,
+    "requiredCodepoints": 122
+  },
+  "inputs": {
+    "data": "overview-map.json",
+    "svg": "previews/overview-map.svg",
+    "png": "previews/overview-map.png"
+  }
+}

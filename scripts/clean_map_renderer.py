@@ -15,6 +15,8 @@ import math
 from pathlib import Path
 from typing import Any
 
+from font_support import SVG_FONT_STACK, FontResolution, resolve_text_font
+
 CANVAS_BG = "#fcfcfb"
 CARD_BG = "#ffffff"
 CARD_STROKE = "#d8dee7"
@@ -392,7 +394,15 @@ def build_excalidraw(data: dict[str, Any], layout: dict[str, Any]) -> dict[str, 
             elements.append(text_el(element_id(node["id"], "sub"), nb["x"]+52, nb["y"]+37, nb["width"]-68, 18, sub, size=11, color=MUTED, group_ids=[card_gid]))
         if node["id"] in focus_index:
             number = str(focus_index[node["id"]])
-            elements.append(text_el(element_id(node["id"], "step"), nb["x"]+nb["width"]-28, nb["y"]+14, 16, 16, number, size=10, color=MUTED, align="center", weight="600", group_ids=[card_gid]))
+            badge_x, badge_y = nb["x"] - 8, nb["y"] - 8
+            elements.append(ellipse(
+                element_id(node["id"], "step-badge"), badge_x, badge_y, 20, 20,
+                stroke=accent, fill=CANVAS_BG, stroke_width=1.2, group_ids=[card_gid],
+            ))
+            elements.append(text_el(
+                element_id(node["id"], "step"), badge_x+2, badge_y+3, 16, 14, number,
+                size=10, color=accent, align="center", weight="600", group_ids=[card_gid],
+            ))
         embeds = node.get("embeds", []) if isinstance(node.get("embeds"), list) else []
         if embeds:
             row_y = nb["y"] + 62
@@ -414,7 +424,7 @@ def build_excalidraw(data: dict[str, Any], layout: dict[str, Any]) -> dict[str, 
     return {
         "type": "excalidraw",
         "version": 2,
-        "source": "im-code-map-v5.3.0",
+        "source": "im-code-map-v5.3.1",
         "elements": elements,
         "appState": {
             "viewBackgroundColor": CANVAS_BG,
@@ -426,8 +436,8 @@ def build_excalidraw(data: dict[str, Any], layout: dict[str, Any]) -> dict[str, 
         },
         "files": {},
         "imCodeMap": {
-            "version": "5.3.0",
-            "renderer": "clean-overview-v1",
+            "version": "5.3.1",
+            "renderer": "clean-overview-v1.1",
             "mapHash": data.get("mapHash"),
             "question": data.get("question"),
         },
@@ -454,6 +464,29 @@ def rounded_path(points: list[tuple[float, float]], radius: float = 10) -> str:
     return d
 
 
+def collect_render_text(data: dict[str, Any]) -> str:
+    """Collect every string that can reach the SVG/PNG preview."""
+    values: list[str] = [
+        str((data.get("project") or {}).get("name", "Codebase map")),
+        str(data.get("question", "")),
+        "입력 처리 판단 저장 외부 결과 복구",
+    ]
+    for group in data.get("groups", []):
+        if isinstance(group, dict):
+            values.append(str(group.get("label", "")))
+    for node in data.get("nodes", []):
+        if not isinstance(node, dict):
+            continue
+        values.extend([str(node.get("label", "")), str(node.get("sub", ""))])
+        for embed in node.get("embeds", []) if isinstance(node.get("embeds"), list) else []:
+            if isinstance(embed, dict):
+                values.append(str(embed.get("label", "")))
+    for edge in data.get("edges", []):
+        if isinstance(edge, dict):
+            values.append(str(edge.get("label", "")))
+    return "\n".join(values)
+
+
 def svg_document(data: dict[str, Any], layout: dict[str, Any]) -> str:
     width, height = int(layout["width"]), int(layout["height"])
     project = data.get("project", {})
@@ -461,13 +494,13 @@ def svg_document(data: dict[str, Any], layout: dict[str, Any]) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<defs><filter id="card" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#101828" flood-opacity="0.05"/></filter><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#9aa4b2" stroke-width="1.2"/></marker></defs>',
         f'<rect width="100%" height="100%" fill="{CANVAS_BG}"/>',
-        f'<text x="80" y="70" font-family="Arial, sans-serif" font-size="27" font-weight="600" fill="{TEXT}">{escape(str(project.get("name", "Codebase map")))}</text>',
-        f'<text x="80" y="108" font-family="Arial, sans-serif" font-size="14" fill="{MUTED}">{escape(str(data.get("question", "")))}</text>',
+        f'<text x="80" y="70" font-family="{SVG_FONT_STACK}" font-size="27" font-weight="600" fill="{TEXT}">{escape(str(project.get("name", "Codebase map")))}</text>',
+        f'<text x="80" y="108" font-family="{SVG_FONT_STACK}" font-size="14" fill="{MUTED}">{escape(str(data.get("question", "")))}</text>',
     ]
     for gb in layout["groups"]:
         g = gb["group"]
         parts.append(f'<rect x="{gb["x"]}" y="{gb["y"]}" width="{gb["width"]}" height="{gb["height"]}" rx="18" fill="{GROUP_BG}" stroke="{GROUP_STROKE}"/>')
-        parts.append(f'<text x="{gb["x"]+18}" y="{gb["y"]+31}" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="{MUTED}">{escape(str(g.get("label", g["id"])).upper())}</text>')
+        parts.append(f'<text x="{gb["x"]+18}" y="{gb["y"]+31}" font-family="{SVG_FONT_STACK}" font-size="12" font-weight="600" fill="{MUTED}">{escape(str(g.get("label", g["id"])).upper())}</text>')
     for item in layout["edges"]:
         edge = item["edge"]
         points = [(float(x), float(y)) for x, y in item["points"]]
@@ -479,7 +512,7 @@ def svg_document(data: dict[str, Any], layout: dict[str, Any]) -> str:
             ax, ay = longest_segment_anchor(points)
             pill_w = min(164, max(42, 13 + len(label)*7.2))
             parts.append(f'<rect x="{ax-pill_w/2}" y="{ay-11}" width="{pill_w}" height="22" rx="11" fill="{CANVAS_BG}" stroke="#eef0f3"/>')
-            parts.append(f'<text x="{ax}" y="{ay+4}" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="{color}">{escape(label)}</text>')
+            parts.append(f'<text x="{ax}" y="{ay+4}" text-anchor="middle" font-family="{SVG_FONT_STACK}" font-size="11" fill="{color}">{escape(label)}</text>')
     focus_index = {nid: i+1 for i, nid in enumerate(data.get("focusPath", []))}
     for nb in layout["nodes"]:
         node = nb["node"]
@@ -491,12 +524,14 @@ def svg_document(data: dict[str, Any], layout: dict[str, Any]) -> str:
         parts.append(f'<rect x="{x+14}" y="{y+14}" width="28" height="28" rx="9" fill="{soft}"/>')
         # Clean preview glyph: small semantic dot and letter; Excalidraw carries native line icons.
         parts.append(f'<circle cx="{x+28}" cy="{y+28}" r="5" fill="none" stroke="{accent}" stroke-width="1.5"/>')
-        parts.append(f'<text x="{x+52}" y="{y+29}" font-family="Arial, sans-serif" font-size="16" font-weight="600" fill="{TEXT}">{escape(str(node.get("label", "")))}</text>')
+        parts.append(f'<text x="{x+52}" y="{y+29}" font-family="{SVG_FONT_STACK}" font-size="16" font-weight="600" fill="{TEXT}">{escape(str(node.get("label", "")))}</text>')
         sub = str(node.get("sub", "")).strip()
         if sub:
-            parts.append(f'<text x="{x+52}" y="{y+50}" font-family="Arial, sans-serif" font-size="11" fill="{MUTED}">{escape(sub)}</text>')
+            parts.append(f'<text x="{x+52}" y="{y+50}" font-family="{SVG_FONT_STACK}" font-size="11" fill="{MUTED}">{escape(sub)}</text>')
         if node["id"] in focus_index:
-            parts.append(f'<text x="{x+w-20}" y="{y+25}" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="{MUTED}">{focus_index[node["id"]]}</text>')
+            badge_x, badge_y = x-8, y-8
+            parts.append(f'<circle cx="{badge_x+10}" cy="{badge_y+10}" r="10" fill="{CANVAS_BG}" stroke="{accent}" stroke-width="1.2"/>')
+            parts.append(f'<text x="{badge_x+10}" y="{badge_y+14}" text-anchor="middle" font-family="{SVG_FONT_STACK}" font-size="10" font-weight="600" fill="{accent}">{focus_index[node["id"]]}</text>')
         embeds = node.get("embeds", []) if isinstance(node.get("embeds"), list) else []
         if embeds:
             row_y, col_x = y+62, x+14
@@ -508,13 +543,13 @@ def svg_document(data: dict[str, Any], layout: dict[str, Any]) -> str:
                 pw = min(94, max(66, 26+len(label)*5.5))
                 parts.append(f'<rect x="{col_x}" y="{row_y}" width="{pw}" height="19" rx="9.5" fill="#f9fafb" stroke="#e7eaf0"/>')
                 parts.append(f'<circle cx="{col_x+9.5}" cy="{row_y+9.5}" r="2.5" fill="{accent}"/>')
-                parts.append(f'<text x="{col_x+16}" y="{row_y+13}" font-family="Arial, sans-serif" font-size="9" fill="{MUTED}">{escape(display)}</text>')
+                parts.append(f'<text x="{col_x+16}" y="{row_y+13}" font-family="{SVG_FONT_STACK}" font-size="9" fill="{MUTED}">{escape(display)}</text>')
                 col_x += pw+8
     parts.append('</svg>')
     return "".join(parts)
 
 
-def write_png(svg: str, path: Path, width: int, height: int) -> None:
+def write_png(svg: str, path: Path, width: int, height: int, font: FontResolution) -> None:
     try:
         import cairosvg  # type: ignore
         cairosvg.svg2png(bytestring=svg.encode("utf-8"), write_to=str(path), output_width=width, output_height=height)
@@ -524,14 +559,11 @@ def write_png(svg: str, path: Path, width: int, height: int) -> None:
     from PIL import Image, ImageDraw, ImageFont
     image = Image.new("RGB", (width, height), CANVAS_BG)
     draw = ImageDraw.Draw(image)
-    font_paths = [
-        "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
-        "/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc",
-        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
-    ]
-    font_path = next((p for p in font_paths if Path(p).exists()), None)
+    font_path = str(font.path) if font.path else None
     def f(size: int):
-        return ImageFont.truetype(font_path, size) if font_path else ImageFont.load_default()
+        if font_path:
+            return ImageFont.truetype(font_path, size)
+        return ImageFont.truetype("DejaVuSans.ttf", size)
     draw.text((80, 44), str(data_global.get("project", {}).get("name", "Codebase map")), fill=TEXT, font=f(27))
     draw.text((80, 86), str(data_global.get("question", "")), fill=MUTED, font=f(14))
     for gb in layout_global["groups"]:
@@ -564,6 +596,7 @@ layout_global: dict[str, Any] = {}
 def render_bundle(data: dict[str, Any], output_excalidraw: str | Path, output_svg: str | Path | None = None, output_png: str | Path | None = None, layout_json: str | Path | None = None) -> dict[str, Any]:
     global data_global, layout_global
     layout = compute_layout(data)
+    font = resolve_text_font(collect_render_text(data))
     excalidraw = build_excalidraw(data, layout)
     exc_path = Path(output_excalidraw)
     exc_path.parent.mkdir(parents=True, exist_ok=True)
@@ -574,7 +607,7 @@ def render_bundle(data: dict[str, Any], output_excalidraw: str | Path, output_sv
     if output_png:
         data_global, layout_global = data, layout
         png_path = Path(output_png); png_path.parent.mkdir(parents=True, exist_ok=True)
-        write_png(svg, png_path, int(layout["width"]), int(layout["height"]))
+        write_png(svg, png_path, int(layout["width"]), int(layout["height"]), font)
     if layout_json:
         clean_layout = {
             "width": layout["width"], "height": layout["height"],
@@ -584,4 +617,4 @@ def render_bundle(data: dict[str, Any], output_excalidraw: str | Path, output_sv
         }
         lp = Path(layout_json); lp.parent.mkdir(parents=True, exist_ok=True)
         lp.write_text(json.dumps(clean_layout, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    return {"excalidraw": str(exc_path), "width": layout["width"], "height": layout["height"], "elements": len(excalidraw["elements"])}
+    return {"excalidraw": str(exc_path), "width": layout["width"], "height": layout["height"], "elements": len(excalidraw["elements"]), "font": font.public_report()}

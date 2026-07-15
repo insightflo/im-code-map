@@ -73,7 +73,7 @@ def polish_scene(scene: dict[str, Any]) -> dict[str, Any]:
         result.append(el)
     scene["elements"] = result
     meta = dict(scene.get("imCodeMap") or {})
-    meta.update({"theme": "clean-v2", "polishedBy": "im-code-map-v5.3.0"})
+    meta.update({"theme": "clean-v2", "polishedBy": "im-code-map-v5.3.1"})
     scene["imCodeMap"] = meta
     return scene
 

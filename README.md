@@ -1,4 +1,4 @@
-# im-code-map v5.3.0
+# im-code-map v5.3.1
 
 `im-code-map` now defaults to **human understanding**, not maximum diagram coverage.
 
@@ -21,6 +21,12 @@ v5.1 keeps the Focus/Atlas evidence model from v5.0 and replaces the old generat
 - Atlas uses subdued boundaries, readable swimlanes, system component cards, explicit conditional branches, and a curated infinite-canvas index.
 - `libraries/im-code-map-architecture.excalidrawlib` contains 14 package-owned reusable stencils built only from native Excalidraw primitives.
 - external template repositories are references, not copied dependencies, unless an exact asset passes the license gate.
+
+## v5.3.1 multilingual preview fix
+
+The clean overview renderer now performs a local font-coverage preflight before creating SVG/PNG previews. Korean and other CJK text uses a deterministic fallback stack led by `Noto Sans CJK KR`; if no installed font covers the required glyphs, preview generation fails with an actionable message instead of silently producing square boxes. Font files are never bundled.
+
+Numbered Focus steps also use small external badges so long Korean labels no longer collide with step numbers.
 
 ## Output structure
 
@@ -71,7 +77,7 @@ The validator rebuilds both profiles in a temporary clean-room directory, render
 
 ## Requirements
 
-Normal mode requires Git, CodeGraph, Python 3.10+, and a writable output directory. Obsidian, Excalidraw plugins, ExcalidrawAutomate, and OpenWiki are optional.
+Normal mode requires Git, CodeGraph, Python 3.10+, and a writable output directory. Clean multilingual preview validation additionally uses `fonttools`; PNG rendering uses CairoSVG when available and Pillow as a fallback. A Korean-capable local font such as Noto Sans CJK KR or NanumGothic is required when the map contains Korean. Obsidian, Excalidraw plugins, ExcalidrawAutomate, and OpenWiki are optional viewers/editors.
 
 ## License note
 

@@ -19,7 +19,7 @@ import tempfile
 from pathlib import Path
 from typing import Iterable
 
-VERSION = "5.3.0"
+VERSION = "5.3.1"
 
 
 def fail(message: str) -> None:
@@ -73,6 +73,7 @@ def validate_frontmatter(skill_path: Path) -> None:
         "human-overview.excalidraw", "atlas-master", "validate_human_understanding.py",
         "openwiki code --init", "CodeGraph", "im-code-map-architecture.excalidrawlib",
         "whiteboard", "curated section index", "remote-connector-snapshot", "repository-snapshot.json",
+        "Multilingual font preflight",
     ]
     absent = [p for p in phrases if p not in text]
     if absent:
@@ -116,7 +117,14 @@ def validate_manifest(root: Path) -> None:
         fail("manifest visual_themes must include clean and whiteboard")
     if manifest.get("bundled_stencil_library") != "libraries/im-code-map-architecture.excalidrawlib":
         fail("manifest bundled_stencil_library path mismatch")
-    print("OK: manifest v5.2 local/remote evidence policy")
+    font_policy = manifest.get("preview_font_policy") or {}
+    if font_policy.get("bundled_fonts") is not False:
+        fail("preview font policy must not bundle or redistribute font files")
+    if font_policy.get("fail_on_missing_multilingual_coverage") is not True:
+        fail("preview font policy must fail closed on missing multilingual glyph coverage")
+    if font_policy.get("validator") != "scripts/validate_preview_fonts.py":
+        fail("preview font validator path mismatch")
+    print("OK: manifest v5.3.1 evidence, visual, and multilingual font policy")
 
 
 def validate_json_files(root: Path) -> None:
@@ -199,6 +207,38 @@ def validate_artifact_set(root: Path) -> None:
                 fail(f"invalid PNG signature: {png}")
     print("OK: included Focus and Atlas drawings/previews")
 
+
+
+def validate_clean_overview_artifact(root: Path) -> None:
+    clean = root / "examples/v5.3-clean-map/output"
+    required = [
+        clean / "overview-map.json",
+        clean / "overview-map.excalidraw",
+        clean / "overview-map.layout.json",
+        clean / "overview-map.manifest.json",
+        clean / "overview-map.validation.json",
+        clean / "overview-map.excalidraw.validation.json",
+        clean / "overview-map.font-validation.json",
+        clean / "previews/overview-map.svg",
+        clean / "previews/overview-map.png",
+    ]
+    missing = [str(path.relative_to(root)) for path in required if not path.is_file()]
+    if missing:
+        fail(f"clean overview example is incomplete: {missing}")
+    manifest = read_json(clean / "overview-map.manifest.json")
+    if manifest.get("version") != VERSION:
+        fail("clean overview manifest version mismatch")
+    font_report = read_json(clean / "overview-map.font-validation.json")
+    if not font_report.get("ok") or not (font_report.get("font") or {}).get("coverageVerified"):
+        fail("clean overview multilingual font coverage was not verified")
+    svg = (clean / "previews/overview-map.svg").read_text(encoding="utf-8")
+    if "Noto Sans CJK KR" not in svg or "NanumGothic" not in svg:
+        fail("clean overview SVG is missing the Korean-capable font stack")
+    if 'font-family="Arial, sans-serif"' in svg:
+        fail("clean overview SVG regressed to an Arial-only font declaration")
+    if (clean / "previews/overview-map.png").read_bytes()[:8] != b"\x89PNG\r\n\x1a\n":
+        fail("clean overview PNG signature is invalid")
+    print("OK: clean overview bundle and multilingual font coverage")
 
 
 def validate_focus_selection_regression() -> None:
@@ -312,6 +352,8 @@ def clean_room(root: Path, temp: Path) -> None:
     generated_library = library_dir / "im-code-map-architecture.excalidrawlib"
     generated_library_preview = library_dir / "im-code-map-architecture-preview.excalidraw"
     focus_regenerated = generated / "focus-visual-model.json"
+    clean_source = ex / "v5.3-clean-map/source-map.json"
+    clean_out = temp / "clean-overview"
 
     q = lambda value: shlex.quote(str(value))
     shell = f"""
@@ -335,6 +377,8 @@ ATLAS_SAMPLE_PREV={q(atlas_sample_prev)}
 MASTER_CHECK={q(master_check)}
 LIBRARY_DIR={q(library_dir)}
 FOCUS_MODEL={q(focus_regenerated)}
+CLEAN_SOURCE={q(clean_source)}
+CLEAN_OUT={q(clean_out)}
 
 step() {{
   printf 'RUN:'
@@ -345,7 +389,7 @@ step() {{
 
 mkdir -p "$GENERATED" "$MACHINE" "$FOCUS_DRAW" "$FOCUS_PREV" "$FOCUS_AUTO" \
   "$WHITEBOARD" "$ATLAS_DRAW" "$ATLAS_PREV" "$ATLAS_AUTO" \
-  "$ATLAS_SAMPLE" "$ATLAS_SAMPLE_PREV" "$MASTER_CHECK" "$LIBRARY_DIR"
+  "$ATLAS_SAMPLE" "$ATLAS_SAMPLE_PREV" "$MASTER_CHECK" "$LIBRARY_DIR" "$CLEAN_OUT"
 
 step "$PY" "$ROOT/scripts/generate_excalidraw_stencil_library.py" \
   {q(generated_library)} --preview {q(generated_library_preview)}
@@ -388,6 +432,17 @@ cp "$EX/atlas/previews/"*.svg "$ATLAS_PREV/"
 step "$PY" "$ROOT/scripts/generate_excalidraw_automate_scripts.py" {q(atlas)} "$ATLAS_AUTO" \
   --vault-folder architecture/atlas/excalidraw
 
+step "$PY" "$ROOT/scripts/build_clean_map_bundle.py" \
+  --input "$CLEAN_SOURCE" --output-dir "$CLEAN_OUT" \
+  --project-name "Agent Operations" --project-slug agent-operations \
+  --question "배정된 Task가 실제 Agent 실행을 거쳐 완료되기까지 어떻게 이어지는가?" \
+  --profile focus
+step "$PY" "$ROOT/scripts/validate_clean_excalidraw.py" \
+  "$CLEAN_OUT/overview-map.excalidraw" --strict
+step "$PY" "$ROOT/scripts/validate_preview_fonts.py" \
+  "$CLEAN_OUT/overview-map.json" --svg "$CLEAN_OUT/previews/overview-map.svg" \
+  --png "$CLEAN_OUT/previews/overview-map.png" --strict-warnings
+
 step "$PY" "$ROOT/scripts/generate_focus_obsidian_docs.py" {q(map_model)} "$FOCUS_MODEL" \
   {q(session)} {q(coverage)} "$ARCH"
 step "$PY" "$ROOT/scripts/generate_obsidian_docs.py" {q(map_model)} {q(atlas)} "$ARCH/atlas"
@@ -416,6 +471,14 @@ step "$PY" "$ROOT/scripts/validate_obsidian_links.py" "$TEMP/vault" --strict-war
         fail("bundled stencil preview is not deterministic generator output")
     if read_json(focus_regenerated) != read_json(focus_bundled):
         fail("bundled Focus visual model is not deterministic output of build_focus_profile.py")
+
+    clean_bundled = root / "examples/v5.3-clean-map/output"
+    if read_json(clean_out / "overview-map.json") != read_json(clean_bundled / "overview-map.json"):
+        fail("bundled bounded overview model is not deterministic generator output")
+    if read_json(clean_out / "overview-map.excalidraw") != read_json(clean_bundled / "overview-map.excalidraw"):
+        fail("bundled clean overview Excalidraw is not deterministic renderer output")
+    if (clean_out / "previews/overview-map.svg").read_text(encoding="utf-8") != (clean_bundled / "previews/overview-map.svg").read_text(encoding="utf-8"):
+        fail("bundled clean overview SVG is not deterministic renderer output")
 
     whiteboard_scene = read_json(whiteboard_draw / "focus-member-place-order.excalidraw")
     if (whiteboard_scene.get("imCodeMap") or {}).get("theme") != "whiteboard":
@@ -454,12 +517,13 @@ def main()->int:
       "libraries/im-code-map-architecture.excalidrawlib","libraries/im-code-map-architecture-preview.excalidraw",
       "libraries/previews/im-code-map-architecture-preview.svg","libraries/previews/im-code-map-architecture-preview.png",
       "scripts/excalidraw_design_system.py","scripts/generate_excalidraw_stencil_library.py","scripts/validate_repository_snapshot.py",
+      "scripts/font_support.py","scripts/validate_preview_fonts.py","scripts/clean_map_renderer.py","scripts/build_clean_map_bundle.py",
       "examples/map-model.example.json","examples/focus-visual-model.example.json","examples/atlas-visual-model.example.json",
       "examples/understanding-session.example.json","examples/coverage.example.json","examples/evidence-ledger.example.json","examples/repository-snapshot.example.json",
       "examples/workspace-registry.example.json","examples/demo-commerce/source-snapshot.md",
     ]
     try:
-        require(root,required); validate_frontmatter(root/"SKILL.md"); validate_manifest(root); validate_clean_tree(root); validate_json_files(root); validate_stencil_library(root); validate_artifact_set(root); validate_focus_selection_regression(); validate_navigation_label_regression(); validate_visual_slot_regression()
+        require(root,required); validate_frontmatter(root/"SKILL.md"); validate_manifest(root); validate_clean_tree(root); validate_json_files(root); validate_stencil_library(root); validate_artifact_set(root); validate_clean_overview_artifact(root); validate_focus_selection_regression(); validate_navigation_label_regression(); validate_visual_slot_regression()
         with tempfile.TemporaryDirectory(prefix="im-code-map-v5-validate-") as tmp:
             temp=Path(tmp); compile_scripts(root,temp/"bytecode"); clean_room(root,temp)
         print(f"PASS: im-code-map v{VERSION} package validated end-to-end"); return 0

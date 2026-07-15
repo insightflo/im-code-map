@@ -1,10 +1,10 @@
 ---
 name: im-code-map
 description: Human-first, evidence-grounded codebase understanding. Defaults to a question-scoped Focus map, preserves a full Deep Atlas, and supports either local CodeGraph analysis or immutable remote repository snapshots. Generates progressive Excalidraw views, linked Obsidian notes, machine-readable evidence, explicit unknowns, and render-based visual QA.
-version: 5.3.0
+version: 5.3.1
 ---
 
-# im-code-map v5.3.0
+# im-code-map v5.3.1
 
 ## v5.3 기본 실행 계약
 
@@ -69,6 +69,30 @@ python scripts/polish_excalidraw.py \
 ```
 
 `validate_bounded_overview_map.py`와 `validate_clean_excalidraw.py`를 모두 통과해야 overview 완료로 판정한다.
+
+### Multilingual font preflight
+
+SVG/PNG preview를 만들기 전에 그림에 들어가는 모든 문자열의 글리프 범위를 검사한다. 한글·CJK 등 비 ASCII 문자가 있으면 다음 로컬 폰트 스택을 우선 사용한다.
+
+```text
+Noto Sans CJK KR
+→ NanumGothic / NanumBarunGothic
+→ Apple SD Gothic Neo
+→ Malgun Gothic
+→ Arial Unicode MS
+```
+
+폰트 파일은 패키지에 포함하거나 재배포하지 않는다. 호스트에 필요한 글리프를 지원하는 폰트가 없으면 깨진 네모 글자를 포함한 PNG를 성공 산출물로 내놓지 말고, `Noto Sans CJK KR` 또는 `NanumGothic` 설치가 필요하다고 명시한다.
+
+```bash
+python scripts/validate_preview_fonts.py \
+  architecture/overview/overview-map.json \
+  --svg architecture/overview/previews/overview-map.svg \
+  --png architecture/overview/previews/overview-map.png \
+  --strict-warnings
+```
+
+`coverageVerified=true`가 아니면 다국어 preview 검증은 실패다. `.excalidraw` 원본이 유효하다는 사실만으로 깨진 raster preview를 통과시키지 않는다.
 
 ## 1. Mission
 

@@ -1,12 +1,12 @@
 {
   "ok": true,
   "files": {
-    "/mnt/data/work_im_code_map_v53/extracted/im-code-map-skill-v5.2.1/examples/v5.3-clean-map/output/overview-map.excalidraw": {
+    "overview-map.excalidraw": {
       "ok": true,
       "errors": [],
       "warnings": [],
       "counts": {
-        "elements": 200,
+        "elements": 213,
         "texts": 70
       }
     }

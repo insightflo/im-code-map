@@ -1,1 +1,6 @@
-node_modules/\n.DS_Store\n*.log\n__pycache__/\n.venv/
+node_modules/
+.DS_Store
+*.log
+__pycache__/
+*.pyc
+.venv/

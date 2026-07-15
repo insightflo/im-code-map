@@ -242,7 +242,16 @@ def note_label(path: str) -> str:
         return "그림 목차"
     if "/atlas/start-here" in lower:
         return "Atlas 시작"
-    if "/atlas/index" in lower:
+    # Match collection indexes before the generic atlas index. The old substring
+    # check treated ``/atlas/indexes/domains.md`` as ``/atlas/index.md``, creating
+    # identical visible buttons that pointed to different destinations.
+    if "/atlas/indexes/domains" in lower:
+        return "도메인 목차"
+    if "/atlas/indexes/streams" in lower:
+        return "스트림 목차"
+    if "/atlas/indexes/states-rules" in lower:
+        return "상태·규칙 목차"
+    if "/atlas/index.md" in lower or lower.endswith("/atlas/index"):
         return "Atlas 목차"
     if "start-here" in lower:
         return "시작 문서"

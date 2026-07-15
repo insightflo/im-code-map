@@ -58,25 +58,58 @@ def find_path(stream: dict[str, Any], target: str) -> tuple[list[str], list[dict
 
 
 def choose_visible_steps(path_steps: list[dict[str, Any]], max_nodes: int) -> list[dict[str, Any]]:
-    """Choose the story skeleton while preserving order and business decisions."""
+    """Choose the story skeleton without collapsing a critical pre-execution gate.
+
+    The previous implementation filled optional process slots strictly in source order.
+    In long flows with several decisions, that could preserve an early context-normalization
+    step while silently collapsing the rule-heavy process immediately before an external
+    call.  The rendered Focus diagram then appeared to jump straight from checkout to an
+    adapter, hiding workspace/trust/secret preflight.
+
+    Mandatory semantic nodes remain fixed. Optional nodes are ranked by reader value:
+    processes directly guarding an external call, rule-bearing steps, state/data writes,
+    events, and then remaining context. Source order is restored after selection.
+    """
     mandatory = {"start", "end", "decision", "state-change", "external-call"}
-    selected = [s for s in path_steps if s.get("kind") in mandatory]
-    # State-changing reads/writes and meaningful events/processes are next most valuable.
-    candidates = [s for s in path_steps if s not in selected and (
-        s.get("writes") or s.get("rule_refs") or s.get("kind") in {"event", "process"}
-    )]
-    for step in candidates:
+    selected = [step for step in path_steps if step.get("kind") in mandatory]
+    selected_ids = {step["id"] for step in selected}
+
+    def score(index: int, step: dict[str, Any]) -> tuple[int, int]:
+        next_kind = path_steps[index + 1].get("kind") if index + 1 < len(path_steps) else None
+        value = 0
+        if next_kind == "external-call":
+            value += 1000  # preserve the last safety/preflight gate before side effects
+        value += min(4, len(step.get("rule_refs") or [])) * 180
+        value += min(3, len(step.get("state_changes") or [])) * 150
+        value += min(4, len(step.get("writes") or [])) * 70
+        value += min(4, len(step.get("reads") or [])) * 35
+        if step.get("kind") == "event":
+            value += 120
+        elif step.get("kind") == "process":
+            value += 80
+        return value, -index
+
+    candidates = [
+        (index, step)
+        for index, step in enumerate(path_steps)
+        if step["id"] not in selected_ids
+    ]
+    candidates.sort(key=lambda item: score(item[0], item[1]), reverse=True)
+    for _, step in candidates:
         if len(selected) >= max_nodes:
             break
         selected.append(step)
-    selected_ids = {s["id"] for s in selected}
-    # Fill any remaining room in source order. This prevents tiny flows from becoming cryptic.
+        selected_ids.add(step["id"])
+
+    # Very small paths may still have room after ranked candidates; keep the fallback
+    # deterministic and preserve the original story order in the final projection.
     for step in path_steps:
         if len(selected) >= max_nodes:
             break
         if step["id"] not in selected_ids:
-            selected.append(step); selected_ids.add(step["id"])
-    selected.sort(key=lambda s: path_steps.index(s))
+            selected.append(step)
+            selected_ids.add(step["id"])
+    selected.sort(key=lambda step: path_steps.index(step))
     return selected
 
 

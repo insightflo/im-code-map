@@ -1,0 +1,64 @@
+{
+  "version": "2.0",
+  "name": "im-code-map clean v2",
+  "canvas": {
+    "background": "#fcfcfb",
+    "grid": 20,
+    "roughness": 0
+  },
+  "group": {
+    "background": "#f7f8fa",
+    "stroke": "#e5e7eb",
+    "strokeWidth": 1,
+    "opacity": 82,
+    "radius": 18,
+    "padding": 20,
+    "headerHeight": 52,
+    "nodeGap": 22
+  },
+  "node": {
+    "width": 220,
+    "baseHeight": 72,
+    "background": "#ffffff",
+    "stroke": "#d8dee7",
+    "strokeWidth": 1.15,
+    "radius": 14,
+    "accentWidth": 4,
+    "titleSize": 16,
+    "subSize": 11,
+    "iconChip": 28,
+    "maxEmbeds": 4
+  },
+  "edge": {
+    "stroke": "#9aa4b2",
+    "strokeWidth": 1.35,
+    "routing": "orthogonal-rounded",
+    "labelPlacement": "longest-segment",
+    "recoveryChannel": "below-main-flow"
+  },
+  "kindAccents": {
+    "entry": "#64748b",
+    "schedule": "#b7791f",
+    "actor": "#c05621",
+    "process": "#3b82f6",
+    "decision": "#7c3aed",
+    "service": "#2563eb",
+    "store": "#059669",
+    "external": "#0284c7",
+    "outcome": "#16a34a",
+    "risk": "#dc2626"
+  },
+  "rules": {
+    "overviewMaxNodes": 24,
+    "overviewMaxEdges": 48,
+    "overviewMaxGroups": 6,
+    "recommendedNodes": [12, 20],
+    "recommendedEdges": [18, 36],
+    "nodeLabelMax": 28,
+    "nodeSubMax": 44,
+    "edgeLabelMax": 24,
+    "rawPathInOverview": false,
+    "emojiIcons": false,
+    "nativeVectorIcons": true
+  }
+}

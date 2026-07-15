@@ -1,0 +1,801 @@
+{
+  "width": 1554,
+  "height": 844,
+  "groups": [
+    {
+      "group": {
+        "id": "group-1",
+        "label": "시작·입력",
+        "order": 0
+      },
+      "x": 80,
+      "y": 170,
+      "width": 260,
+      "height": 386
+    },
+    {
+      "group": {
+        "id": "group-2",
+        "label": "준비·대기",
+        "order": 1
+      },
+      "x": 458,
+      "y": 170,
+      "width": 260,
+      "height": 480
+    },
+    {
+      "group": {
+        "id": "group-3",
+        "label": "핵심 처리",
+        "order": 2
+      },
+      "x": 836,
+      "y": 170,
+      "width": 260,
+      "height": 530
+    },
+    {
+      "group": {
+        "id": "group-4",
+        "label": "결과·복구",
+        "order": 3
+      },
+      "x": 1214,
+      "y": 170,
+      "width": 260,
+      "height": 336
+    }
+  ],
+  "nodes": [
+    {
+      "node": {
+        "id": "board",
+        "label": "업무 요청",
+        "kind": "entry",
+        "groupId": "group-1",
+        "importance": 5,
+        "embeds": [],
+        "sub": "Board · API · Routine",
+        "_inputOrder": 0
+      },
+      "x": 100,
+      "y": 222,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-1"
+    },
+    {
+      "node": {
+        "id": "task",
+        "label": "Task 생성·배정",
+        "kind": "process",
+        "groupId": "group-1",
+        "importance": 5,
+        "embeds": [],
+        "sub": "목적과 담당 Agent 연결",
+        "_inputOrder": 1
+      },
+      "x": 100,
+      "y": 316,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-1"
+    },
+    {
+      "node": {
+        "id": "policy",
+        "label": "실행 가능한가?",
+        "kind": "decision",
+        "groupId": "group-1",
+        "importance": 5,
+        "embeds": [
+          {
+            "label": "회사 범위",
+            "kind": "rule"
+          },
+          {
+            "label": "예산 한도",
+            "kind": "rule"
+          },
+          {
+            "label": "Agent 상태",
+            "kind": "rule"
+          }
+        ],
+        "sub": "권한·예산·일시정지",
+        "_inputOrder": 2
+      },
+      "x": 100,
+      "y": 410,
+      "width": 220,
+      "height": 122,
+      "group_id": "group-1"
+    },
+    {
+      "node": {
+        "id": "wake",
+        "label": "Wake 요청",
+        "kind": "entry",
+        "groupId": "group-2",
+        "importance": 5,
+        "embeds": [],
+        "sub": "중복 요청 병합",
+        "_inputOrder": 3
+      },
+      "x": 478,
+      "y": 222,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-2"
+    },
+    {
+      "node": {
+        "id": "queue",
+        "label": "Heartbeat Queue",
+        "kind": "service",
+        "groupId": "group-2",
+        "importance": 5,
+        "embeds": [
+          {
+            "label": "Postgres",
+            "kind": "technology"
+          }
+        ],
+        "sub": "DB-backed 실행 대기열",
+        "_inputOrder": 4
+      },
+      "x": 478,
+      "y": 316,
+      "width": 220,
+      "height": 97,
+      "group_id": "group-2"
+    },
+    {
+      "node": {
+        "id": "dependency",
+        "label": "지금 시작할 수 있나?",
+        "kind": "entry",
+        "groupId": "group-2",
+        "importance": 5,
+        "embeds": [],
+        "sub": "의존성·동시성·소유권",
+        "_inputOrder": 5
+      },
+      "x": 478,
+      "y": 435,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-2"
+    },
+    {
+      "node": {
+        "id": "claim",
+        "label": "Run Claim",
+        "kind": "process",
+        "groupId": "group-2",
+        "importance": 5,
+        "embeds": [
+          {
+            "label": "queued → running",
+            "kind": "state"
+          }
+        ],
+        "sub": "실행 Lock 설정",
+        "_inputOrder": 6
+      },
+      "x": 478,
+      "y": 529,
+      "width": 220,
+      "height": 97,
+      "group_id": "group-2"
+    },
+    {
+      "node": {
+        "id": "checkout",
+        "label": "Task Checkout",
+        "kind": "decision",
+        "groupId": "group-3",
+        "importance": 4,
+        "embeds": [],
+        "sub": "in_progress 전환",
+        "_inputOrder": 7
+      },
+      "x": 856,
+      "y": 222,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-3"
+    },
+    {
+      "node": {
+        "id": "preflight",
+        "label": "실행 환경 준비",
+        "kind": "decision",
+        "groupId": "group-3",
+        "importance": 5,
+        "embeds": [
+          {
+            "label": "격리 정책",
+            "kind": "rule"
+          },
+          {
+            "label": "Secret 준비",
+            "kind": "rule"
+          }
+        ],
+        "sub": "Workspace·Trust·Secret",
+        "_inputOrder": 8
+      },
+      "x": 856,
+      "y": 316,
+      "width": 220,
+      "height": 97,
+      "group_id": "group-3"
+    },
+    {
+      "node": {
+        "id": "adapter",
+        "label": "Agent Adapter 실행",
+        "kind": "actor",
+        "groupId": "group-3",
+        "importance": 5,
+        "embeds": [
+          {
+            "label": "Claude",
+            "kind": "model"
+          },
+          {
+            "label": "Codex",
+            "kind": "model"
+          },
+          {
+            "label": "HTTP",
+            "kind": "tool"
+          },
+          {
+            "label": "MCP",
+            "kind": "tool"
+          }
+        ],
+        "sub": "실제 AI 런타임 호출",
+        "_inputOrder": 9
+      },
+      "x": 856,
+      "y": 435,
+      "width": 220,
+      "height": 122,
+      "group_id": "group-3"
+    },
+    {
+      "node": {
+        "id": "results",
+        "label": "결과와 세션 저장",
+        "kind": "store",
+        "groupId": "group-3",
+        "importance": 5,
+        "embeds": [
+          {
+            "label": "Run event",
+            "kind": "evidence"
+          },
+          {
+            "label": "Work product",
+            "kind": "evidence"
+          }
+        ],
+        "sub": "로그·비용·사용량",
+        "_inputOrder": 10
+      },
+      "x": 856,
+      "y": 579,
+      "width": 220,
+      "height": 97,
+      "group_id": "group-3"
+    },
+    {
+      "node": {
+        "id": "disposition",
+        "label": "다음 상태가 명확한가?",
+        "kind": "decision",
+        "groupId": "group-4",
+        "importance": 5,
+        "embeds": [],
+        "sub": "완료·검토·차단·계속",
+        "_inputOrder": 11
+      },
+      "x": 1234,
+      "y": 222,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-4"
+    },
+    {
+      "node": {
+        "id": "done",
+        "label": "Task 완료",
+        "kind": "outcome",
+        "groupId": "group-4",
+        "importance": 5,
+        "embeds": [],
+        "sub": "검증된 종료 상태",
+        "_inputOrder": 12
+      },
+      "x": 1234,
+      "y": 316,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-4"
+    },
+    {
+      "node": {
+        "id": "recover",
+        "label": "복구 경로",
+        "kind": "risk",
+        "groupId": "group-4",
+        "importance": 5,
+        "embeds": [],
+        "sub": "재시도 또는 운영자 개입",
+        "_inputOrder": 13
+      },
+      "x": 1234,
+      "y": 410,
+      "width": 220,
+      "height": 72,
+      "group_id": "group-4"
+    }
+  ],
+  "edges": [
+    {
+      "edge": {
+        "id": "flow-1-0-board-task-fd7ca30f",
+        "from": "board",
+        "to": "task",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          210.0,
+          294
+        ],
+        [
+          210.0,
+          305.0
+        ],
+        [
+          210.0,
+          305.0
+        ],
+        [
+          210.0,
+          316
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-1-task-policy-38d30dee",
+        "from": "task",
+        "to": "policy",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          210.0,
+          388
+        ],
+        [
+          210.0,
+          399.0
+        ],
+        [
+          210.0,
+          399.0
+        ],
+        [
+          210.0,
+          410
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-2-policy-wake-070a1009",
+        "from": "policy",
+        "to": "wake",
+        "kind": "conditional",
+        "label": "통과"
+      },
+      "points": [
+        [
+          320,
+          471.0
+        ],
+        [
+          399.0,
+          471.0
+        ],
+        [
+          399.0,
+          258.0
+        ],
+        [
+          478,
+          258.0
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-4-wake-queue-6668a559",
+        "from": "wake",
+        "to": "queue",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          588.0,
+          294
+        ],
+        [
+          588.0,
+          305.0
+        ],
+        [
+          588.0,
+          305.0
+        ],
+        [
+          588.0,
+          316
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-5-queue-dependency-41f5260e",
+        "from": "queue",
+        "to": "dependency",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          588.0,
+          413
+        ],
+        [
+          588.0,
+          424.0
+        ],
+        [
+          588.0,
+          424.0
+        ],
+        [
+          588.0,
+          435
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-8-claim-checkout-9b67ff1f",
+        "from": "claim",
+        "to": "checkout",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          698,
+          577.5
+        ],
+        [
+          777.0,
+          577.5
+        ],
+        [
+          777.0,
+          258.0
+        ],
+        [
+          856,
+          258.0
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-9-checkout-preflight-c0451b03",
+        "from": "checkout",
+        "to": "preflight",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          966.0,
+          294
+        ],
+        [
+          966.0,
+          305.0
+        ],
+        [
+          966.0,
+          305.0
+        ],
+        [
+          966.0,
+          316
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-10-preflight-adapter-ecc04507",
+        "from": "preflight",
+        "to": "adapter",
+        "kind": "conditional",
+        "label": "통과"
+      },
+      "points": [
+        [
+          966.0,
+          413
+        ],
+        [
+          966.0,
+          424.0
+        ],
+        [
+          966.0,
+          424.0
+        ],
+        [
+          966.0,
+          435
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-12-adapter-results-b8a7c2bd",
+        "from": "adapter",
+        "to": "results",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          966.0,
+          557
+        ],
+        [
+          966.0,
+          568.0
+        ],
+        [
+          966.0,
+          568.0
+        ],
+        [
+          966.0,
+          579
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-13-results-disposition-683b2e0d",
+        "from": "results",
+        "to": "disposition",
+        "kind": "conditional"
+      },
+      "points": [
+        [
+          1076,
+          627.5
+        ],
+        [
+          1155.0,
+          627.5
+        ],
+        [
+          1155.0,
+          258.0
+        ],
+        [
+          1234,
+          258.0
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-14-disposition-done-2194c1eb",
+        "from": "disposition",
+        "to": "done",
+        "kind": "conditional",
+        "label": "명확"
+      },
+      "points": [
+        [
+          1344.0,
+          294
+        ],
+        [
+          1344.0,
+          305.0
+        ],
+        [
+          1344.0,
+          305.0
+        ],
+        [
+          1344.0,
+          316
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-6-dependency-claim-ready-847ccbfb",
+        "from": "dependency",
+        "to": "claim",
+        "kind": "data",
+        "label": "ready"
+      },
+      "points": [
+        [
+          588.0,
+          507
+        ],
+        [
+          588.0,
+          518.0
+        ],
+        [
+          588.0,
+          518.0
+        ],
+        [
+          588.0,
+          529
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-3-policy-recover-57120553",
+        "from": "policy",
+        "to": "recover",
+        "kind": "error",
+        "label": "거절"
+      },
+      "points": [
+        [
+          320,
+          471.0
+        ],
+        [
+          777.0,
+          471.0
+        ],
+        [
+          777.0,
+          446.0
+        ],
+        [
+          1234,
+          446.0
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-7-dependency-recover-blocked-3561469a",
+        "from": "dependency",
+        "to": "recover",
+        "kind": "error",
+        "label": "blocked"
+      },
+      "points": [
+        [
+          698,
+          471.0
+        ],
+        [
+          966.0,
+          471.0
+        ],
+        [
+          966.0,
+          446.0
+        ],
+        [
+          1234,
+          446.0
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-11-preflight-recover-711da215",
+        "from": "preflight",
+        "to": "recover",
+        "kind": "error",
+        "label": "설정 필요"
+      },
+      "points": [
+        [
+          1076,
+          364.5
+        ],
+        [
+          1162.0,
+          364.5
+        ],
+        [
+          1162.0,
+          446.0
+        ],
+        [
+          1234,
+          446.0
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-15-disposition-recover-c11b786f",
+        "from": "disposition",
+        "to": "recover",
+        "kind": "error",
+        "label": "미정"
+      },
+      "points": [
+        [
+          1344.0,
+          294
+        ],
+        [
+          1344.0,
+          352.0
+        ],
+        [
+          1344.0,
+          352.0
+        ],
+        [
+          1344.0,
+          410
+        ]
+      ]
+    },
+    {
+      "edge": {
+        "id": "flow-1-16-recover-wake-541de411",
+        "from": "recover",
+        "to": "wake",
+        "kind": "recovery",
+        "label": "복구 후 재개"
+      },
+      "points": [
+        [
+          1344.0,
+          482
+        ],
+        [
+          1344.0,
+          755
+        ],
+        [
+          588.0,
+          755
+        ],
+        [
+          588.0,
+          294
+        ]
+      ]
+    }
+  ]
+}

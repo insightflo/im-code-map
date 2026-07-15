@@ -67,12 +67,14 @@ def validate(data: dict[str, Any], map_model: dict[str, Any] | None = None) -> t
         outgoing: dict[str, list[dict[str, Any]]] = defaultdict(list)
         incoming: dict[str, list[dict[str, Any]]] = defaultdict(list)
         frame_counts: dict[str, int] = defaultdict(int)
+        layout_slots: dict[tuple[Any, Any, Any], list[str]] = defaultdict(list)
         for node in nodes.values():
             if node.get("frame") not in frame_ids:
                 errors.append(f"diagram {did} node {node['id']} references unknown frame")
             if node.get("lane") not in lane_ids:
                 errors.append(f"diagram {did} node {node['id']} references unknown lane")
             frame_counts[node.get("frame")] += 1
+            layout_slots[(node.get("frame"), node.get("lane"), node.get("order"))].append(node["id"])
             if len(str(node.get("summary", "")).split()) > max_words:
                 errors.append(f"diagram {did} node {node['id']} summary exceeds max_card_words={max_words}")
             if node.get("kind") in {"process", "decision", "state-change", "error", "compensation", "domain"} and not node.get("details_link"):
@@ -82,6 +84,12 @@ def validate(data: dict[str, Any], map_model: dict[str, Any] | None = None) -> t
         for fid, count in frame_counts.items():
             if count > max_nodes:
                 errors.append(f"diagram {did} frame {fid} has {count} nodes; max is {max_nodes}; split into phases or child diagrams")
+        for (frame_id, lane_id, order), node_ids in layout_slots.items():
+            if len(node_ids) > 1:
+                errors.append(
+                    f"diagram {did} nodes {node_ids} share layout slot "
+                    f"frame={frame_id} lane={lane_id} order={order}; split outcomes or assign distinct orders"
+                )
 
         for edge in diagram.get("edges", []):
             if edge.get("from") not in nodes or edge.get("to") not in nodes:

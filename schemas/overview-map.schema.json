@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://im-code-map.local/schemas/overview-map.schema.json",
+  "title": "im-code-map bounded overview map",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "project", "question", "profile", "limits", "groups", "nodes", "edges", "focusPath"],
+  "properties": {
+    "version": { "const": "1.0" },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "slug"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 64 },
+        "slug": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-z0-9-]+$" },
+        "tagline": { "type": "string", "maxLength": 120 },
+        "sourceRef": { "type": "string", "maxLength": 160 }
+      }
+    },
+    "question": { "type": "string", "minLength": 1, "maxLength": 180 },
+    "profile": { "enum": ["orientation", "focus", "domain", "change", "debug"] },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxNodes", "maxEdges", "maxGroups", "maxEmbedsPerNode"],
+      "properties": {
+        "maxNodes": { "type": "integer", "minimum": 1, "maximum": 24 },
+        "maxEdges": { "type": "integer", "minimum": 0, "maximum": 48 },
+        "maxGroups": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "maxEmbedsPerNode": { "type": "integer", "minimum": 0, "maximum": 4 }
+      }
+    },
+    "groups": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "order"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "label": { "type": "string", "minLength": 1, "maxLength": 24 },
+          "order": { "type": "integer", "minimum": 0 },
+          "summary": { "type": "string", "maxLength": 100 }
+        }
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "kind", "groupId", "importance", "embeds"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "label": { "type": "string", "minLength": 1, "maxLength": 28 },
+          "kind": { "enum": ["entry", "schedule", "actor", "process", "decision", "service", "store", "external", "outcome", "risk"] },
+          "sub": { "type": "string", "maxLength": 44 },
+          "detail": { "type": "string", "maxLength": 240 },
+          "groupId": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "importance": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "link": { "type": "string", "maxLength": 240 },
+          "embeds": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["label", "kind"],
+              "properties": {
+                "label": { "type": "string", "minLength": 1, "maxLength": 24 },
+                "kind": { "enum": ["model", "tool", "rule", "state", "evidence", "technology"] },
+                "domain": { "type": "string", "maxLength": 120 }
+              }
+            }
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "maxItems": 8,
+            "items": { "type": "string", "maxLength": 240 }
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "from", "to", "kind"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "from": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "to": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "label": { "type": "string", "maxLength": 24 },
+          "kind": { "enum": ["normal", "conditional", "async", "data", "error", "recovery"] },
+          "condition": { "type": "string", "maxLength": 80 },
+          "evidenceRefs": {
+            "type": "array",
+            "maxItems": 8,
+            "items": { "type": "string", "maxLength": 240 }
+          }
+        }
+      }
+    },
+    "focusPath": {
+      "type": "array",
+      "maxItems": 24,
+      "items": { "type": "string", "minLength": 1, "maxLength": 64 }
+    },
+    "unknowns": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "type": "string", "maxLength": 160 }
+    },
+    "expansionPoints": {
+      "type": "array",
+      "maxItems": 8,
+      "items": { "type": "string", "maxLength": 160 }
+    },
+    "sourceSummary": { "type": "string", "maxLength": 500 },
+    "mapHash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

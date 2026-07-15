@@ -1,6 +1,6 @@
 {
   "name": "im-code-map",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "created_at": "2026-07-06",
   "updated_at": "2026-07-14",
   "description": "Human-first, evidence-grounded codebase understanding with Focus and Deep Atlas profiles, supporting both local CodeGraph analysis and immutable remote repository snapshots.",

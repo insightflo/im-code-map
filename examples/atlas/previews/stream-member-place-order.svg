@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="3200" height="1673" viewBox="-12.00 -22.00 5267.00 2755.00">
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1150" viewBox="-12.00 -22.00 5267.00 2755.00">
 <rect x="-12.00" y="-22.00" width="5267.00" height="2755.00" fill="#F7F8FC"/>
 <rect x="55.00" y="215.00" width="5140.00" height="1386.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="48.00" y="208.00" width="5140.00" height="1386.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
@@ -52,7 +52,7 @@
 <rect x="56.00" y="38.00" width="139.36" height="30.00" rx="5.40" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.0" opacity="1.000"/>
 <rect x="5076.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="4962.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="4848.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="4833.52" y="81.00" width="118.48" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="48.00" y="208.00" width="8.00" height="1386.00" rx="0.64" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
 <rect x="76.00" y="230.00" width="88.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
 <rect x="78.00" y="308.00" width="10.00" height="164.00" rx="0.80" stroke="#175CD3" fill="#175CD3" stroke-width="0.0" opacity="1.000"/>
@@ -183,9 +183,9 @@
 <text x="125.68" y="57.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="125.68" dy="0.00">DEEP ATLAS · 검증…</tspan></text>
 <text x="56.00" y="126.50" font-size="36.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="56.00" dy="0.00">Verified member places an order</tspan></text>
 <text x="56.00" y="159.00" font-size="16.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="56.00" dy="0.00">Read the complete business stream from user intent through eligibility, state changes,</tspan><tspan x="56.00" dy="20.00">failures, and compensation.</tspan></text>
-<a href="[[architecture/atlas/entities/product.md]]"><text x="5128.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="5128.00" dy="0.00">Deep Atlas</tspan></text></a>
-<a href="[[architecture/atlas/states/order-lifecycle.md]]"><text x="5014.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="5014.00" dy="0.00">Deep Atlas</tspan></text></a>
-<a href="[[architecture/atlas/flows/member-place-order.md]]"><text x="4900.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="4900.00" dy="0.00">흐름 문서</tspan></text></a>
+<a href="[[architecture/atlas/entities/product.md]]"><text x="5128.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="5128.00" dy="0.00">product</tspan></text></a>
+<a href="[[architecture/atlas/states/order-lifecycle.md]]"><text x="5014.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="5014.00" dy="0.00">order 상태</tspan></text></a>
+<a href="[[architecture/atlas/flows/member-place-order.md]]"><text x="4892.76" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="4892.76" dy="0.00">member place…</tspan></text></a>
 <text x="120.00" y="249.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 1</tspan></text>
 <text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">Primary order stream</tspan></text>
 <text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">Successful path with explicit decisions and state transitions.</tspan></text>

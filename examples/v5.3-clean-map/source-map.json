@@ -1,0 +1,51 @@
+{
+  "project": {"name": "Agent Operations"},
+  "nodes": [
+    {"id": "board", "label": "업무 요청", "kind": "entry", "sub": "Board · API · Routine", "phase": "시작·입력", "importance": 5},
+    {"id": "task", "label": "Task 생성·배정", "kind": "process", "sub": "목적과 담당 Agent 연결", "phase": "시작·입력", "importance": 5},
+    {"id": "policy", "label": "실행 가능한가?", "kind": "decision", "sub": "권한·예산·일시정지", "phase": "시작·입력", "importance": 5,
+      "rules": ["회사 범위", "예산 한도", "Agent 상태"]},
+
+    {"id": "wake", "label": "Wake 요청", "kind": "process", "sub": "중복 요청 병합", "phase": "준비·대기", "importance": 4},
+    {"id": "queue", "label": "Heartbeat Queue", "kind": "service", "sub": "DB-backed 실행 대기열", "phase": "준비·대기", "importance": 5,
+      "technologies": ["Postgres"]},
+    {"id": "dependency", "label": "지금 시작할 수 있나?", "kind": "decision", "sub": "의존성·동시성·소유권", "phase": "준비·대기", "importance": 5},
+    {"id": "claim", "label": "Run Claim", "kind": "process", "sub": "실행 Lock 설정", "phase": "준비·대기", "importance": 5,
+      "states": ["queued → running"]},
+
+    {"id": "checkout", "label": "Task Checkout", "kind": "process", "sub": "in_progress 전환", "phase": "핵심 처리", "importance": 4},
+    {"id": "preflight", "label": "실행 환경 준비", "kind": "decision", "sub": "Workspace·Trust·Secret", "phase": "핵심 처리", "importance": 5,
+      "rules": ["격리 정책", "Secret 준비"]},
+    {"id": "adapter", "label": "Agent Adapter 실행", "kind": "service", "sub": "실제 AI 런타임 호출", "phase": "핵심 처리", "importance": 5,
+      "models": ["Claude", "Codex"], "tools": ["HTTP", "MCP"]},
+    {"id": "results", "label": "결과와 세션 저장", "kind": "store", "sub": "로그·비용·사용량", "phase": "핵심 처리", "importance": 5,
+      "evidence": ["Run event", "Work product"]},
+
+    {"id": "disposition", "label": "다음 상태가 명확한가?", "kind": "decision", "sub": "완료·검토·차단·계속", "phase": "결과·복구", "importance": 5},
+    {"id": "done", "label": "Task 완료", "kind": "outcome", "sub": "검증된 종료 상태", "phase": "결과·복구", "importance": 5},
+    {"id": "recover", "label": "복구 경로", "kind": "risk", "sub": "재시도 또는 운영자 개입", "phase": "결과·복구", "importance": 5}
+  ],
+  "edges": [
+    {"from": "board", "to": "task"},
+    {"from": "task", "to": "policy"},
+    {"from": "policy", "to": "wake", "label": "통과", "kind": "conditional"},
+    {"from": "policy", "to": "recover", "label": "거절", "kind": "error"},
+    {"from": "wake", "to": "queue"},
+    {"from": "queue", "to": "dependency"},
+    {"from": "dependency", "to": "claim", "label": "ready", "kind": "conditional"},
+    {"from": "dependency", "to": "recover", "label": "blocked", "kind": "error"},
+    {"from": "claim", "to": "checkout"},
+    {"from": "checkout", "to": "preflight"},
+    {"from": "preflight", "to": "adapter", "label": "통과", "kind": "conditional"},
+    {"from": "preflight", "to": "recover", "label": "설정 필요", "kind": "error"},
+    {"from": "adapter", "to": "results"},
+    {"from": "results", "to": "disposition"},
+    {"from": "disposition", "to": "done", "label": "명확", "kind": "conditional"},
+    {"from": "disposition", "to": "recover", "label": "미정", "kind": "error"},
+    {"from": "recover", "to": "wake", "label": "복구 후 재개", "kind": "recovery"}
+  ],
+  "coverage": {
+    "unknown_relevant": ["외부 Adapter의 provider별 timeout 정책은 이 예제 범위 밖이다."],
+    "expansion_points": ["실행 환경 preflight 상세", "성공 Run disposition 상세", "process-loss 복구 상세"]
+  }
+}

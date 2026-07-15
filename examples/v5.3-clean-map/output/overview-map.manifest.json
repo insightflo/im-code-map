@@ -1,0 +1,24 @@
+{
+  "version": "5.3.0",
+  "profile": "focus",
+  "question": "배정된 Task가 실제 Agent 실행을 거쳐 완료되기까지 어떻게 이어지는가?",
+  "source": "/mnt/data/work_im_code_map_v53/extracted/im-code-map-skill-v5.3.0/examples/v5.3-clean-map/source-map.json",
+  "overview": "/mnt/data/work_im_code_map_v53/extracted/im-code-map-skill-v5.3.0/examples/v5.3-clean-map/output/overview-map.json",
+  "render": {
+    "excalidraw": "/mnt/data/work_im_code_map_v53/extracted/im-code-map-skill-v5.3.0/examples/v5.3-clean-map/output/overview-map.excalidraw",
+    "width": 1554,
+    "height": 844,
+    "elements": 200
+  },
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "counts": {
+      "nodes": 14,
+      "edges": 17,
+      "groups": 4,
+      "focusPath": 13
+    }
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "version": "1.0",
+  "project": {
+    "name": "Agent Operations",
+    "slug": "agent-operations"
+  },
+  "question": "배정된 Task가 실제 Agent 실행을 거쳐 완료되기까지 어떻게 이어지는가?",
+  "profile": "focus",
+  "limits": {
+    "maxNodes": 20,
+    "maxEdges": 36,
+    "maxGroups": 4,
+    "maxEmbedsPerNode": 4
+  },
+  "groups": [
+    {
+      "id": "group-1",
+      "label": "시작·입력",
+      "order": 0
+    },
+    {
+      "id": "group-2",
+      "label": "준비·대기",
+      "order": 1
+    },
+    {
+      "id": "group-3",
+      "label": "핵심 처리",
+      "order": 2
+    },
+    {
+      "id": "group-4",
+      "label": "결과·복구",
+      "order": 3
+    }
+  ],
+  "nodes": [
+    {
+      "id": "board",
+      "label": "업무 요청",
+      "kind": "entry",
+      "groupId": "group-1",
+      "importance": 5,
+      "embeds": [],
+      "sub": "Board · API · Routine"
+    },
+    {
+      "id": "task",
+      "label": "Task 생성·배정",
+      "kind": "process",
+      "groupId": "group-1",
+      "importance": 5,
+      "embeds": [],
+      "sub": "목적과 담당 Agent 연결"
+    },
+    {
+      "id": "policy",
+      "label": "실행 가능한가?",
+      "kind": "decision",
+      "groupId": "group-1",
+      "importance": 5,
+      "embeds": [
+        {
+          "label": "회사 범위",
+          "kind": "rule"
+        },
+        {
+          "label": "예산 한도",
+          "kind": "rule"
+        },
+        {
+          "label": "Agent 상태",
+          "kind": "rule"
+        }
+      ],
+      "sub": "권한·예산·일시정지"
+    },
+    {
+      "id": "wake",
+      "label": "Wake 요청",
+      "kind": "entry",
+      "groupId": "group-2",
+      "importance": 5,
+      "embeds": [],
+      "sub": "중복 요청 병합"
+    },
+    {
+      "id": "queue",
+      "label": "Heartbeat Queue",
+      "kind": "service",
+      "groupId": "group-2",
+      "importance": 5,
+      "embeds": [
+        {
+          "label": "Postgres",
+          "kind": "technology"
+        }
+      ],
+      "sub": "DB-backed 실행 대기열"
+    },
+    {
+      "id": "dependency",
+      "label": "지금 시작할 수 있나?",
+      "kind": "entry",
+      "groupId": "group-2",
+      "importance": 5,
+      "embeds": [],
+      "sub": "의존성·동시성·소유권"
+    },
+    {
+      "id": "claim",
+      "label": "Run Claim",
+      "kind": "process",
+      "groupId": "group-2",
+      "importance": 5,
+      "embeds": [
+        {
+          "label": "queued → running",
+          "kind": "state"
+        }
+      ],
+      "sub": "실행 Lock 설정"
+    },
+    {
+      "id": "checkout",
+      "label": "Task Checkout",
+      "kind": "decision",
+      "groupId": "group-3",
+      "importance": 4,
+      "embeds": [],
+      "sub": "in_progress 전환"
+    },
+    {
+      "id": "preflight",
+      "label": "실행 환경 준비",
+      "kind": "decision",
+      "groupId": "group-3",
+      "importance": 5,
+      "embeds": [
+        {
+          "label": "격리 정책",
+          "kind": "rule"
+        },
+        {
+          "label": "Secret 준비",
+          "kind": "rule"
+        }
+      ],
+      "sub": "Workspace·Trust·Secret"
+    },
+    {
+      "id": "adapter",
+      "label": "Agent Adapter 실행",
+      "kind": "actor",
+      "groupId": "group-3",
+      "importance": 5,
+      "embeds": [
+        {
+          "label": "Claude",
+          "kind": "model"
+        },
+        {
+          "label": "Codex",
+          "kind": "model"
+        },
+        {
+          "label": "HTTP",
+          "kind": "tool"
+        },
+        {
+          "label": "MCP",
+          "kind": "tool"
+        }
+      ],
+      "sub": "실제 AI 런타임 호출"
+    },
+    {
+      "id": "results",
+      "label": "결과와 세션 저장",
+      "kind": "store",
+      "groupId": "group-3",
+      "importance": 5,
+      "embeds": [
+        {
+          "label": "Run event",
+          "kind": "evidence"
+        },
+        {
+          "label": "Work product",
+          "kind": "evidence"
+        }
+      ],
+      "sub": "로그·비용·사용량"
+    },
+    {
+      "id": "disposition",
+      "label": "다음 상태가 명확한가?",
+      "kind": "decision",
+      "groupId": "group-4",
+      "importance": 5,
+      "embeds": [],
+      "sub": "완료·검토·차단·계속"
+    },
+    {
+      "id": "done",
+      "label": "Task 완료",
+      "kind": "outcome",
+      "groupId": "group-4",
+      "importance": 5,
+      "embeds": [],
+      "sub": "검증된 종료 상태"
+    },
+    {
+      "id": "recover",
+      "label": "복구 경로",
+      "kind": "risk",
+      "groupId": "group-4",
+      "importance": 5,
+      "embeds": [],
+      "sub": "재시도 또는 운영자 개입"
+    }
+  ],
+  "edges": [
+    {
+      "id": "flow-1-0-board-task-fd7ca30f",
+      "from": "board",
+      "to": "task",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-1-task-policy-38d30dee",
+      "from": "task",
+      "to": "policy",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-2-policy-wake-070a1009",
+      "from": "policy",
+      "to": "wake",
+      "kind": "conditional",
+      "label": "통과"
+    },
+    {
+      "id": "flow-1-4-wake-queue-6668a559",
+      "from": "wake",
+      "to": "queue",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-5-queue-dependency-41f5260e",
+      "from": "queue",
+      "to": "dependency",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-8-claim-checkout-9b67ff1f",
+      "from": "claim",
+      "to": "checkout",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-9-checkout-preflight-c0451b03",
+      "from": "checkout",
+      "to": "preflight",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-10-preflight-adapter-ecc04507",
+      "from": "preflight",
+      "to": "adapter",
+      "kind": "conditional",
+      "label": "통과"
+    },
+    {
+      "id": "flow-1-12-adapter-results-b8a7c2bd",
+      "from": "adapter",
+      "to": "results",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-13-results-disposition-683b2e0d",
+      "from": "results",
+      "to": "disposition",
+      "kind": "conditional"
+    },
+    {
+      "id": "flow-1-14-disposition-done-2194c1eb",
+      "from": "disposition",
+      "to": "done",
+      "kind": "conditional",
+      "label": "명확"
+    },
+    {
+      "id": "flow-1-6-dependency-claim-ready-847ccbfb",
+      "from": "dependency",
+      "to": "claim",
+      "kind": "data",
+      "label": "ready"
+    },
+    {
+      "id": "flow-1-3-policy-recover-57120553",
+      "from": "policy",
+      "to": "recover",
+      "kind": "error",
+      "label": "거절"
+    },
+    {
+      "id": "flow-1-7-dependency-recover-blocked-3561469a",
+      "from": "dependency",
+      "to": "recover",
+      "kind": "error",
+      "label": "blocked"
+    },
+    {
+      "id": "flow-1-11-preflight-recover-711da215",
+      "from": "preflight",
+      "to": "recover",
+      "kind": "error",
+      "label": "설정 필요"
+    },
+    {
+      "id": "flow-1-15-disposition-recover-c11b786f",
+      "from": "disposition",
+      "to": "recover",
+      "kind": "error",
+      "label": "미정"
+    },
+    {
+      "id": "flow-1-16-recover-wake-541de411",
+      "from": "recover",
+      "to": "wake",
+      "kind": "recovery",
+      "label": "복구 후 재개"
+    }
+  ],
+  "focusPath": [
+    "board",
+    "task",
+    "policy",
+    "wake",
+    "queue",
+    "dependency",
+    "claim",
+    "checkout",
+    "preflight",
+    "adapter",
+    "results",
+    "disposition",
+    "done"
+  ],
+  "unknowns": [
+    "외부 Adapter의 provider별 timeout 정책은 이 예제 범위 밖이다."
+  ],
+  "expansionPoints": [
+    "실행 환경 preflight 상세",
+    "성공 Run disposition 상세",
+    "process-loss 복구 상세"
+  ],
+  "sourceSummary": "Projection selected [None] from the detailed source; omitted detail remains in Atlas and evidence notes.",
+  "mapHash": "sha256:28cd9f74b9c5abb0ec9f7fd696c8d3e37ac4778f4d8ba2f09feab33713c773ae"
+}

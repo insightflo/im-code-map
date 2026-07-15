@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2307" height="971" viewBox="-12.00 -22.00 2307.00 971.00">
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="925" viewBox="-12.00 -22.00 2307.00 971.00">
 <rect x="-12.00" y="-22.00" width="2307.00" height="971.00" fill="#F7F8FC"/>
 <rect x="55.00" y="215.00" width="2180.00" height="674.00" rx="18.00" stroke="#101828" fill="#101828" stroke-width="0.0" opacity="0.100"/>
 <rect x="48.00" y="208.00" width="2180.00" height="674.00" rx="18.00" stroke="#D0D5DD" fill="#FFFFFF" stroke-width="1.4" opacity="1.000"/>
@@ -14,7 +14,7 @@
 <polyline points="1295.00,746.00 1356.00,746.00 1356.00,390.00 1417.00,390.00" stroke="#D97706" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1417.00,390.00 1399.60,397.83 1399.60,382.17" fill="#D97706" opacity="1.000"/>
 <polyline points="1295.00,746.00 1541.00,746.00 1541.00,390.00 1787.00,390.00" stroke="#D97706" fill="none" stroke-width="2.2" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1787.00,390.00 1769.60,397.83 1769.60,382.17" fill="#D97706" opacity="1.000"/>
 <rect x="56.00" y="38.00" width="139.36" height="30.00" rx="5.40" stroke="#4F46E5" fill="#EEF2FF" stroke-width="1.0" opacity="1.000"/>
-<rect x="2116.00" y="81.00" width="104.00" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="2073.68" y="81.00" width="146.32" height="30.00" rx="5.40" stroke="#667085" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="48.00" y="208.00" width="8.00" height="674.00" rx="0.64" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
 <rect x="76.00" y="230.00" width="88.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#F2F4F7" stroke-width="1.0" opacity="1.000"/>
 <rect x="78.00" y="308.00" width="10.00" height="164.00" rx="0.80" stroke="#175CD3" fill="#175CD3" stroke-width="0.0" opacity="1.000"/>
@@ -50,7 +50,7 @@
 <text x="125.68" y="57.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="125.68" dy="0.00">DEEP ATLAS · 검증…</tspan></text>
 <text x="56.00" y="126.50" font-size="36.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="56.00" dy="0.00">Browse products with orderability reason</tspan></text>
 <text x="56.00" y="159.00" font-size="16.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="56.00" dy="0.00">Show why a product appears orderable or blocked before checkout.</tspan></text>
-<a href="[[architecture/atlas/flows/browse-orderable-products.md]]"><text x="2168.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="2168.00" dy="0.00">흐름 문서</tspan></text></a>
+<a href="[[architecture/atlas/flows/browse-orderable-products.md]]"><text x="2146.84" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="2146.84" dy="0.00">browse orderable…</tspan></text></a>
 <text x="120.00" y="249.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 1</tspan></text>
 <text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">Catalog query</tspan></text>
 <text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">Visibility plus orderability.</tspan></text>

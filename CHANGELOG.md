@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.3.0 — 2026-07-14
+
+- Fixed Focus projection ranking so a rule-bearing preflight immediately before an external call cannot be silently collapsed merely because earlier context/process cards filled the 12-node budget.
+- Ranked optional Focus steps by safety and explanatory value: external-call guard, rule refs, state/data writes, events, then general context.
+- Added field validation against Paperclip's Task → Heartbeat → Adapter runtime, where the old ordering falsely implied checkout could jump directly to the Adapter while workspace/trust/secret preflight was hidden.
+- Fixed Atlas navigation label matching so collection indexes such as `indexes/domains.md` no longer collide with the root `atlas/index.md` button.
+- Added clean-room regression checks for both Focus preflight preservation and destination-specific Atlas index labels.
+- Added a visual-model gate that rejects distinct semantic nodes sharing the same frame/lane/order slot, preventing branch terminals from rendering on top of one another.
+
 ## 5.2.0 — 2026-07-14
 
 ### Immutable remote repository evidence

@@ -317,7 +317,7 @@
       "lanes": [
         {
           "id": "focus-phase-1",
-          "label": "1단계 · 주문 요청 → 주문 접수",
+          "label": "1단계 · 주문 요청 → 현재 주문 가능한 상품인가?",
           "order": 0,
           "kind": "phase",
           "icon": "process",
@@ -325,19 +325,19 @@
         },
         {
           "id": "focus-phase-2",
-          "label": "2단계 · 재고 확보 → 결제 승인 요청",
+          "label": "2단계 · 주문 접수 → 재고 확보 완료",
           "order": 1,
           "kind": "phase",
           "icon": "process",
-          "source_ref": "place-order.reserve-stock"
+          "source_ref": "place-order.create-pending"
         },
         {
           "id": "focus-phase-3",
-          "label": "3단계 · 결제가 승인됐는가? → 주문 완료",
+          "label": "3단계 · 결제 승인 요청 → 주문 완료",
           "order": 2,
           "kind": "phase",
           "icon": "process",
-          "source_ref": "place-order.check-payment"
+          "source_ref": "place-order.request-payment"
         },
         {
           "id": "focus-context-lane",
@@ -386,12 +386,30 @@
           "step_number": 2
         },
         {
-          "id": "focus-place-order-check-product",
-          "label": "3. 현재 주문 가능한 상품인가?",
-          "kind": "decision",
+          "id": "focus-place-order-load-product",
+          "label": "3. 상품 정보 확인",
+          "kind": "data",
           "frame": "focus-main",
           "lane": "focus-phase-1",
           "order": 2,
+          "summary": "판매 상태, 판매 기간, 현재 가격을 읽는다.",
+          "icon": "auto",
+          "source_refs": [
+            "place-order.load-product"
+          ],
+          "confidence": "VERIFIED",
+          "stream_step_ref": "place-order.load-product",
+          "details_link": "[[atlas/flows/member-place-order]]",
+          "role": "primary-story",
+          "step_number": 3
+        },
+        {
+          "id": "focus-place-order-check-product",
+          "label": "4. 현재 주문 가능한 상품인가?",
+          "kind": "decision",
+          "frame": "focus-main",
+          "lane": "focus-phase-1",
+          "order": 3,
           "summary": "판매 중이고 판매 기간 안인지 판단한다.",
           "icon": "auto",
           "source_refs": [
@@ -401,18 +419,15 @@
           "stream_step_ref": "place-order.check-product",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "decision",
-          "step_number": 3,
-          "collapsed_refs": [
-            "place-order.load-product"
-          ]
+          "step_number": 4
         },
         {
           "id": "focus-place-order-create-pending",
-          "label": "4. 주문 접수",
+          "label": "5. 주문 접수",
           "kind": "state-change",
           "frame": "focus-main",
-          "lane": "focus-phase-1",
-          "order": 3,
+          "lane": "focus-phase-2",
+          "order": 0,
           "summary": "상품과 가격을 고정해 주문을 접수 상태로 만든다.",
           "icon": "auto",
           "source_refs": [
@@ -422,17 +437,17 @@
           "stream_step_ref": "place-order.create-pending",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "primary-story",
-          "step_number": 4,
+          "step_number": 5,
           "state_before": "NONE",
           "state_after": "PENDING"
         },
         {
           "id": "focus-place-order-reserve-stock",
-          "label": "5. 재고 확보",
+          "label": "6. 재고 확보",
           "kind": "process",
           "frame": "focus-main",
           "lane": "focus-phase-2",
-          "order": 0,
+          "order": 1,
           "summary": "요청 수량을 주문에 맞춰 원자적으로 예약한다.",
           "icon": "auto",
           "source_refs": [
@@ -442,15 +457,15 @@
           "stream_step_ref": "place-order.reserve-stock",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "primary-story",
-          "step_number": 5
+          "step_number": 6
         },
         {
           "id": "focus-place-order-check-reservation",
-          "label": "6. 재고가 확보됐는가?",
+          "label": "7. 재고가 확보됐는가?",
           "kind": "decision",
           "frame": "focus-main",
           "lane": "focus-phase-2",
-          "order": 1,
+          "order": 2,
           "summary": "남은 수량이 주문 수량보다 충분한지 확인한다.",
           "icon": "auto",
           "source_refs": [
@@ -460,15 +475,15 @@
           "stream_step_ref": "place-order.check-reservation",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "decision",
-          "step_number": 6
+          "step_number": 7
         },
         {
           "id": "focus-place-order-mark-reserved",
-          "label": "7. 재고 확보 완료",
+          "label": "8. 재고 확보 완료",
           "kind": "state-change",
           "frame": "focus-main",
           "lane": "focus-phase-2",
-          "order": 2,
+          "order": 3,
           "summary": "주문에 재고 예약 정보를 기록한다.",
           "icon": "auto",
           "source_refs": [
@@ -478,17 +493,17 @@
           "stream_step_ref": "place-order.mark-reserved",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "primary-story",
-          "step_number": 7,
+          "step_number": 8,
           "state_before": "PENDING",
           "state_after": "RESERVED"
         },
         {
           "id": "focus-place-order-request-payment",
-          "label": "8. 결제 승인 요청",
+          "label": "9. 결제 승인 요청",
           "kind": "external",
           "frame": "focus-main",
-          "lane": "focus-phase-2",
-          "order": 3,
+          "lane": "focus-phase-3",
+          "order": 0,
           "summary": "재고가 확보된 뒤 결제 시스템에 승인을 요청한다.",
           "icon": "auto",
           "source_refs": [
@@ -498,17 +513,17 @@
           "stream_step_ref": "place-order.request-payment",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "primary-story",
-          "step_number": 8,
+          "step_number": 9,
           "state_before": "NONE",
           "state_after": "REQUESTED"
         },
         {
           "id": "focus-place-order-check-payment",
-          "label": "9. 결제가 승인됐는가?",
+          "label": "10. 결제가 승인됐는가?",
           "kind": "decision",
           "frame": "focus-main",
           "lane": "focus-phase-3",
-          "order": 0,
+          "order": 1,
           "summary": "승인, 거절, 응답 없음으로 결과를 나눈다.",
           "icon": "auto",
           "source_refs": [
@@ -518,15 +533,15 @@
           "stream_step_ref": "place-order.check-payment",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "decision",
-          "step_number": 9
+          "step_number": 10
         },
         {
           "id": "focus-place-order-mark-paid",
-          "label": "10. 주문 결제 완료",
+          "label": "11. 주문 결제 완료",
           "kind": "state-change",
           "frame": "focus-main",
           "lane": "focus-phase-3",
-          "order": 1,
+          "order": 2,
           "summary": "결제 승인 정보를 저장하고 주문을 완료한다.",
           "icon": "auto",
           "source_refs": [
@@ -536,27 +551,9 @@
           "stream_step_ref": "place-order.mark-paid",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "primary-story",
-          "step_number": 10,
+          "step_number": 11,
           "state_before": "RESERVED, REQUESTED",
           "state_after": "PAID, AUTHORIZED"
-        },
-        {
-          "id": "focus-place-order-emit-event",
-          "label": "11. 후속 처리 알림",
-          "kind": "event",
-          "frame": "focus-main",
-          "lane": "focus-phase-3",
-          "order": 2,
-          "summary": "확인·배송 처리를 위해 주문 완료 이벤트를 보낸다.",
-          "icon": "auto",
-          "source_refs": [
-            "place-order.emit-event"
-          ],
-          "confidence": "VERIFIED",
-          "stream_step_ref": "place-order.emit-event",
-          "details_link": "[[atlas/flows/member-place-order]]",
-          "role": "primary-story",
-          "step_number": 11
         },
         {
           "id": "focus-place-order-confirm",
@@ -574,7 +571,10 @@
           "stream_step_ref": "place-order.confirm",
           "details_link": "[[atlas/flows/member-place-order]]",
           "role": "primary-story",
-          "step_number": 12
+          "step_number": 12,
+          "collapsed_refs": [
+            "place-order.emit-event"
+          ]
         },
         {
           "id": "focus-stop-reasons",
@@ -650,130 +650,130 @@
         {
           "id": "focus-edge-2",
           "from": "focus-place-order-check-member",
-          "to": "focus-place-order-check-product",
+          "to": "focus-place-order-load-product",
           "kind": "happy-path",
           "label": "통과",
           "condition": "",
           "sequence": 2,
           "source_refs": [
-            "po-t2",
-            "po-t4"
+            "po-t2"
           ],
           "confidence": "VERIFIED"
         },
         {
           "id": "focus-edge-3",
+          "from": "focus-place-order-load-product",
+          "to": "focus-place-order-check-product",
+          "kind": "happy-path",
+          "label": "",
+          "condition": "",
+          "sequence": 3,
+          "source_refs": [
+            "po-t4"
+          ],
+          "confidence": "VERIFIED"
+        },
+        {
+          "id": "focus-edge-4",
           "from": "focus-place-order-check-product",
           "to": "focus-place-order-create-pending",
           "kind": "happy-path",
           "label": "통과",
           "condition": "",
-          "sequence": 3,
+          "sequence": 4,
           "source_refs": [
             "po-t5"
           ],
           "confidence": "VERIFIED"
         },
         {
-          "id": "focus-edge-4",
+          "id": "focus-edge-5",
           "from": "focus-place-order-create-pending",
           "to": "focus-place-order-reserve-stock",
           "kind": "happy-path",
           "label": "",
           "condition": "",
-          "sequence": 4,
+          "sequence": 5,
           "source_refs": [
             "po-t7"
           ],
           "confidence": "VERIFIED"
         },
         {
-          "id": "focus-edge-5",
+          "id": "focus-edge-6",
           "from": "focus-place-order-reserve-stock",
           "to": "focus-place-order-check-reservation",
           "kind": "happy-path",
           "label": "",
           "condition": "",
-          "sequence": 5,
+          "sequence": 6,
           "source_refs": [
             "po-t8"
           ],
           "confidence": "VERIFIED"
         },
         {
-          "id": "focus-edge-6",
+          "id": "focus-edge-7",
           "from": "focus-place-order-check-reservation",
           "to": "focus-place-order-mark-reserved",
           "kind": "happy-path",
           "label": "통과",
           "condition": "",
-          "sequence": 6,
+          "sequence": 7,
           "source_refs": [
             "po-t9"
           ],
           "confidence": "VERIFIED"
         },
         {
-          "id": "focus-edge-7",
+          "id": "focus-edge-8",
           "from": "focus-place-order-mark-reserved",
           "to": "focus-place-order-request-payment",
           "kind": "happy-path",
           "label": "",
           "condition": "",
-          "sequence": 7,
+          "sequence": 8,
           "source_refs": [
             "po-t12"
           ],
           "confidence": "VERIFIED"
         },
         {
-          "id": "focus-edge-8",
+          "id": "focus-edge-9",
           "from": "focus-place-order-request-payment",
           "to": "focus-place-order-check-payment",
           "kind": "happy-path",
           "label": "",
           "condition": "",
-          "sequence": 8,
+          "sequence": 9,
           "source_refs": [
             "po-t13"
           ],
           "confidence": "PARTIAL"
         },
         {
-          "id": "focus-edge-9",
+          "id": "focus-edge-10",
           "from": "focus-place-order-check-payment",
           "to": "focus-place-order-mark-paid",
           "kind": "happy-path",
           "label": "통과",
           "condition": "",
-          "sequence": 9,
+          "sequence": 10,
           "source_refs": [
             "po-t14"
           ],
           "confidence": "PARTIAL"
         },
         {
-          "id": "focus-edge-10",
-          "from": "focus-place-order-mark-paid",
-          "to": "focus-place-order-emit-event",
-          "kind": "happy-path",
-          "label": "",
-          "condition": "",
-          "sequence": 10,
-          "source_refs": [
-            "po-t17"
-          ],
-          "confidence": "VERIFIED"
-        },
-        {
           "id": "focus-edge-11",
-          "from": "focus-place-order-emit-event",
+          "from": "focus-place-order-mark-paid",
           "to": "focus-place-order-confirm",
           "kind": "async-event",
           "label": "비동기",
           "condition": "",
           "sequence": 11,
           "source_refs": [
+            "po-t17",
             "po-t18"
           ],
           "confidence": "VERIFIED",
@@ -795,6 +795,7 @@
         "primary_story_node_ids": [
           "focus-place-order-start",
           "focus-place-order-check-member",
+          "focus-place-order-load-product",
           "focus-place-order-check-product",
           "focus-place-order-create-pending",
           "focus-place-order-reserve-stock",
@@ -803,7 +804,6 @@
           "focus-place-order-request-payment",
           "focus-place-order-check-payment",
           "focus-place-order-mark-paid",
-          "focus-place-order-emit-event",
           "focus-place-order-confirm"
         ],
         "answers": {

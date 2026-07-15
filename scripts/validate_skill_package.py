@@ -19,7 +19,7 @@ import tempfile
 from pathlib import Path
 from typing import Iterable
 
-VERSION = "5.2.0"
+VERSION = "5.3.0"
 
 
 def fail(message: str) -> None:
@@ -199,6 +199,82 @@ def validate_artifact_set(root: Path) -> None:
                 fail(f"invalid PNG signature: {png}")
     print("OK: included Focus and Atlas drawings/previews")
 
+
+
+def validate_focus_selection_regression() -> None:
+    """Keep the safety preflight that directly guards an external side effect.
+
+    This reproduces the field failure found on Paperclip's Task → Heartbeat → Adapter
+    trace: a source-ordered optional-card budget could retain harmless early context
+    while collapsing the workspace/trust/secret gate immediately before the Adapter.
+    """
+    from build_focus_profile import choose_visible_steps
+
+    path_steps = [
+        {"id": "start", "kind": "start"},
+        {"id": "early-context", "kind": "process"},
+        {"id": "rule-check", "kind": "process", "rule_refs": ["policy"]},
+        {"id": "preflight", "kind": "process"},
+        {"id": "external", "kind": "external-call"},
+        {"id": "end", "kind": "end"},
+    ]
+    selected = choose_visible_steps(path_steps, max_nodes=5)
+    selected_ids = [step["id"] for step in selected]
+    if "preflight" not in selected_ids:
+        fail("Focus selection regression: external-call preflight was collapsed")
+    if "rule-check" not in selected_ids:
+        fail("Focus selection regression: rule-bearing process was collapsed")
+    if "early-context" in selected_ids:
+        fail("Focus selection regression: low-value context displaced a safety gate")
+    if selected_ids != ["start", "rule-check", "preflight", "external", "end"]:
+        fail(f"Focus selection regression: source-order restoration mismatch: {selected_ids}")
+    print("OK: Focus selection preserves rule-bearing external-call preflight")
+
+
+def validate_navigation_label_regression() -> None:
+    """Atlas collection indexes must not masquerade as the same button."""
+    from excalidraw_design_system import note_label
+
+    destinations = [
+        "architecture/atlas/index.md",
+        "architecture/atlas/indexes/domains.md",
+        "architecture/atlas/indexes/streams.md",
+        "architecture/atlas/indexes/states-rules.md",
+    ]
+    labels = [note_label(path) for path in destinations]
+    if len(labels) != len(set(labels)):
+        fail(f"navigation label regression: distinct Atlas indexes share labels: {labels}")
+    print("OK: Atlas collection indexes have destination-specific labels")
+
+
+def validate_visual_slot_regression() -> None:
+    """Reject two semantic nodes assigned to the same frame/lane/order slot."""
+    from validate_visual_model import validate as validate_visual_model
+
+    model = {
+        "profile": "atlas",
+        "reader_policy": {"detail_policy": "full-detail"},
+        "style_profile": {"max_card_words": 28, "max_nodes_per_frame": 18},
+        "diagrams": [{
+            "id": "duplicate-slot", "profile": "atlas", "type": "business-stream",
+            "frames": [{"id": "f"}],
+            "lanes": [{"id": "l"}],
+            "nodes": [
+                {"id": "s", "kind": "start", "frame": "f", "lane": "l", "order": 0, "summary": "start"},
+                {"id": "e", "kind": "end", "frame": "f", "lane": "l", "order": 0, "summary": "end"},
+            ],
+            "edges": [{"id": "se", "from": "s", "to": "e", "kind": "happy-path"}],
+            "reader_contract": {"start_here_node_id": "s", "primary_story_node_ids": ["s", "e"], "does_not_answer": ["detail"]},
+            "navigation": {"related_notes": ["architecture/atlas/index.md"]},
+            "layout": {"lane_axis": "actor-system"},
+            "source_refs": [],
+        }],
+        "compositions": [],
+    }
+    errors, _ = validate_visual_model(model)
+    if not any("share layout slot" in error for error in errors):
+        fail(f"visual slot regression was not detected: {errors}")
+    print("OK: visual-model rejects duplicate frame/lane/order slots")
 
 def clean_room(root: Path, temp: Path) -> None:
     """Exercise the release pipeline in one shell subprocess.
@@ -383,7 +459,7 @@ def main()->int:
       "examples/workspace-registry.example.json","examples/demo-commerce/source-snapshot.md",
     ]
     try:
-        require(root,required); validate_frontmatter(root/"SKILL.md"); validate_manifest(root); validate_clean_tree(root); validate_json_files(root); validate_stencil_library(root); validate_artifact_set(root)
+        require(root,required); validate_frontmatter(root/"SKILL.md"); validate_manifest(root); validate_clean_tree(root); validate_json_files(root); validate_stencil_library(root); validate_artifact_set(root); validate_focus_selection_regression(); validate_navigation_label_regression(); validate_visual_slot_regression()
         with tempfile.TemporaryDirectory(prefix="im-code-map-v5-validate-") as tmp:
             temp=Path(tmp); compile_scripts(root,temp/"bytecode"); clean_room(root,temp)
         print(f"PASS: im-code-map v{VERSION} package validated end-to-end"); return 0

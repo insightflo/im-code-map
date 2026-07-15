@@ -1,4 +1,4 @@
-# im-code-map v5.1.0
+# im-code-map v5.3.0
 
 `im-code-map` now defaults to **human understanding**, not maximum diagram coverage.
 

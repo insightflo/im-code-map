@@ -57,54 +57,57 @@
 <ellipse cx="603.00" cy="367.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="569.00" cy="323.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
 <rect x="836.00" y="424.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
-<rect x="954.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
-<rect x="954.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
-<rect x="969.00" y="335.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
-<ellipse cx="991.00" cy="357.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
-<ellipse cx="991.00" cy="367.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
+<rect x="954.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#175CD3" fill="#EFF8FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="954.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#175CD3" fill="#175CD3" stroke-width="0.0" opacity="1.000"/>
+<rect x="969.00" y="335.00" width="44.00" height="44.00" rx="3.52" stroke="#EFF8FF" fill="#EFF8FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="977.19" y="344.25" width="27.62" height="6.38" rx="1.15" stroke="#175CD3" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="977.19" y="353.81" width="27.62" height="6.38" rx="1.15" stroke="#175CD3" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="977.19" y="363.38" width="27.62" height="6.38" rx="1.15" stroke="#175CD3" fill="none" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="957.00" cy="323.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="1224.00" y="424.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
-<rect x="1342.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
-<rect x="1342.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
-<rect x="1357.00" y="335.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="1342.00" y="320.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
+<rect x="1342.00" y="320.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
+<rect x="1357.00" y="335.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="1379.00" cy="357.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="1379.01" cy="367.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="1345.00" cy="323.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="178.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.6" opacity="1.000"/>
-<rect x="178.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
-<rect x="193.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFFFF" fill="#FFFFFF" stroke-width="0.0" opacity="1.000"/>
-<rect x="201.19" y="645.31" width="27.62" height="23.38" rx="2.21" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
-<ellipse cx="207.56" cy="653.82" rx="2.12" ry="2.12" stroke="#4F46E5" fill="#4F46E5" stroke-width="2.1" opacity="1.000"/>
-<ellipse cx="207.56" cy="662.32" rx="2.12" ry="2.12" stroke="#4F46E5" fill="#4F46E5" stroke-width="2.1" opacity="1.000"/>
+<rect x="1612.00" y="424.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
+<rect x="178.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="178.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
+<rect x="193.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
 <ellipse cx="181.00" cy="623.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="566.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
-<rect x="566.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
-<rect x="581.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
-<ellipse cx="603.00" cy="657.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
-<ellipse cx="603.00" cy="667.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
+<rect x="566.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.6" opacity="1.000"/>
+<rect x="566.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#4F46E5" fill="#4F46E5" stroke-width="0.0" opacity="1.000"/>
+<rect x="581.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFFFF" fill="#FFFFFF" stroke-width="0.0" opacity="1.000"/>
+<rect x="589.19" y="645.31" width="27.62" height="23.38" rx="2.21" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="595.57" cy="653.82" rx="2.12" ry="2.12" stroke="#4F46E5" fill="#4F46E5" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="595.57" cy="662.32" rx="2.12" ry="2.12" stroke="#4F46E5" fill="#4F46E5" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="569.00" cy="623.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="836.00" y="724.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
-<rect x="954.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
-<rect x="954.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
-<rect x="969.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="954.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
+<rect x="954.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
+<rect x="969.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="991.00" cy="657.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="991.00" cy="667.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="957.00" cy="623.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="1342.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#C11574" fill="#FDF2FA" stroke-width="1.6" opacity="1.000"/>
-<rect x="1342.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#C11574" fill="#C11574" stroke-width="0.0" opacity="1.000"/>
-<rect x="1357.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#FDF2FA" fill="#FDF2FA" stroke-width="0.0" opacity="1.000"/>
-<ellipse cx="1379.00" cy="657.00" rx="13.81" ry="13.81" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000"/>
+<rect x="1224.00" y="724.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
+<rect x="1342.00" y="620.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="1342.00" y="620.00" width="354.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
+<rect x="1357.00" y="635.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
 <ellipse cx="1345.00" cy="623.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="178.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
-<rect x="178.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
-<rect x="193.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
-<ellipse cx="215.00" cy="957.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
-<ellipse cx="215.00" cy="967.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
+<rect x="178.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#C11574" fill="#FDF2FA" stroke-width="1.6" opacity="1.000"/>
+<rect x="178.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#C11574" fill="#C11574" stroke-width="0.0" opacity="1.000"/>
+<rect x="193.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#FDF2FA" fill="#FDF2FA" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="215.00" cy="957.00" rx="13.81" ry="13.81" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="181.00" cy="923.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="448.00" y="1024.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
-<rect x="566.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
-<rect x="566.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
-<rect x="581.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
+<rect x="566.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#D97706" fill="#FFFAEB" stroke-width="2.2" opacity="1.000"/>
+<rect x="566.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#D97706" fill="#D97706" stroke-width="0.0" opacity="1.000"/>
+<rect x="581.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#FFFAEB" fill="#FFFAEB" stroke-width="0.0" opacity="1.000"/>
+<ellipse cx="603.00" cy="957.00" rx="13.81" ry="13.81" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000"/>
+<ellipse cx="603.00" cy="967.10" rx="1.59" ry="1.59" stroke="#D97706" fill="#D97706" stroke-width="2.1" opacity="1.000"/>
 <ellipse cx="569.00" cy="923.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
-<rect x="954.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#0E7490" fill="#ECFDFF" stroke-width="1.6" opacity="1.000"/>
-<rect x="954.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#0E7490" fill="#0E7490" stroke-width="0.0" opacity="1.000"/>
-<rect x="969.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#ECFDFF" fill="#ECFDFF" stroke-width="0.0" opacity="1.000"/>
+<rect x="836.00" y="1024.00" width="62.00" height="30.00" rx="4.96" stroke="#D97706" fill="#FFFAEB" stroke-width="1.0" opacity="1.000"/>
+<rect x="954.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#7F56D9" fill="#F4F3FF" stroke-width="1.6" opacity="1.000"/>
+<rect x="954.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#7F56D9" fill="#7F56D9" stroke-width="0.0" opacity="1.000"/>
+<rect x="969.00" y="935.00" width="44.00" height="44.00" rx="3.52" stroke="#F4F3FF" fill="#F4F3FF" stroke-width="0.0" opacity="1.000"/>
 <ellipse cx="957.00" cy="923.00" rx="16.00" ry="16.00" stroke="#4F46E5" fill="#4F46E5" stroke-width="1.0" opacity="1.000"/>
 <rect x="1342.00" y="920.00" width="354.00" height="138.00" rx="18.00" stroke="#15803D" fill="#ECFDF3" stroke-width="1.6" opacity="1.000"/>
 <rect x="1342.00" y="920.00" width="354.00" height="5.00" rx="0.90" stroke="#15803D" fill="#15803D" stroke-width="0.0" opacity="1.000"/>
@@ -123,26 +126,25 @@
 <rect x="1230.00" y="1196.00" width="52.00" height="52.00" rx="4.16" stroke="#ECFDF3" fill="#ECFDF3" stroke-width="0.0" opacity="1.000"/>
 <rect x="1242.25" y="1204.50" width="27.50" height="35.00" rx="2.20" stroke="#15803D" fill="none" stroke-width="2.1" opacity="1.000"/>
 <rect x="895.00" y="373.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="1283.00" y="373.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="895.00" y="673.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
-<rect x="507.00" y="973.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1636.00" y="478.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="1283.00" y="673.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
+<rect x="895.00" y="973.00" width="84.00" height="30.00" rx="5.40" stroke="#4F46E5" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <rect x="1283.00" y="973.00" width="84.00" height="30.00" rx="5.40" stroke="#0E7490" fill="#FFFFFF" stroke-width="1.0" opacity="1.000"/>
 <polyline points="207.56,345.31 207.56,368.69 224.56,357.00 207.56,345.31" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="597.69,351.69 599.81,348.50 605.13,348.50 608.31,351.69 608.31,354.88 604.07,358.06 603.00,361.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="985.69,351.69 987.81,348.50 993.13,348.50 996.31,351.69 996.31,354.88 992.07,358.06 991.00,361.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="1365.19,349.56 1388.57,349.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1388.57,349.56 1371.37,357.30 1371.37,341.82" fill="#7F56D9" opacity="1.000"/>
-<polyline points="1392.82,364.44 1369.44,364.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1369.44,364.44 1386.64,356.70 1386.64,372.18" fill="#7F56D9" opacity="1.000"/>
-<polyline points="212.88,653.81 224.57,653.81" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="212.88,662.31 224.57,662.31" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="597.69,651.69 599.81,648.50 605.13,648.50 608.31,651.69 608.31,654.88 604.07,658.06 603.00,661.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="977.19,649.56 1000.57,649.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1000.57,649.56 983.37,657.30 983.37,641.82" fill="#7F56D9" opacity="1.000"/>
-<polyline points="1004.82,664.44 981.44,664.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="981.44,664.44 998.64,656.70 998.64,672.18" fill="#7F56D9" opacity="1.000"/>
-<polyline points="1366.25,657.00 1391.75,657.00" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="1379.00,644.25 1372.62,657.00 1379.00,669.75 1385.37,657.00 1379.00,644.25" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="209.69,951.69 211.81,948.50 217.13,948.50 220.31,951.69 220.31,954.88 216.07,958.06 215.00,961.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
-<polyline points="589.19,949.56 612.57,949.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="612.57,949.56 595.37,957.30 595.37,941.82" fill="#7F56D9" opacity="1.000"/>
-<polyline points="616.82,964.44 593.44,964.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="593.44,964.44 610.64,956.70 610.64,972.18" fill="#7F56D9" opacity="1.000"/>
-<polyline points="993.13,941.06 981.44,958.06 989.94,958.06 984.63,972.94 1002.69,952.75 993.13,952.75 993.13,941.06" stroke="#0E7490" fill="none" stroke-width="2.4" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1373.69,351.69 1375.81,348.50 1381.13,348.50 1384.31,351.69 1384.31,354.88 1380.07,358.06 1379.00,361.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="201.19,649.56 224.57,649.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="224.57,649.56 207.37,657.30 207.37,641.82" fill="#7F56D9" opacity="1.000"/>
+<polyline points="228.82,664.44 205.44,664.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="205.44,664.44 222.64,656.70 222.64,672.18" fill="#7F56D9" opacity="1.000"/>
+<polyline points="600.88,653.81 612.57,653.81" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="600.88,662.31 612.57,662.31" stroke="#4F46E5" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="985.69,651.69 987.81,648.50 993.13,648.50 996.31,651.69 996.31,654.88 992.07,658.06 991.00,661.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="1365.19,649.56 1388.57,649.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1388.57,649.56 1371.37,657.30 1371.37,641.82" fill="#7F56D9" opacity="1.000"/>
+<polyline points="1392.82,664.44 1369.44,664.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1369.44,664.44 1386.64,656.70 1386.64,672.18" fill="#7F56D9" opacity="1.000"/>
+<polyline points="202.25,957.00 227.75,957.00" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="215.00,944.25 208.62,957.00 215.00,969.75 221.37,957.00 215.00,944.25" stroke="#C11574" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="597.69,951.69 599.81,948.50 605.13,948.50 608.31,951.69 608.31,954.88 604.07,958.06 603.00,961.25" stroke="#D97706" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="977.19,949.56 1000.57,949.56" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="1000.57,949.56 983.37,957.30 983.37,941.82" fill="#7F56D9" opacity="1.000"/>
+<polyline points="1004.82,964.44 981.44,964.44" stroke="#7F56D9" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/><polygon points="981.44,964.44 998.64,956.70 998.64,972.18" fill="#7F56D9" opacity="1.000"/>
 <polyline points="1366.25,958.06 1374.75,966.56 1391.75,947.44" stroke="#15803D" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="92.00,1204.50 109.50,1238.25 74.50,1238.25 92.00,1204.50" stroke="#D92D20" fill="none" stroke-width="2.1" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
 <polyline points="92.00,1214.50 92.00,1227.00" stroke="#D92D20" fill="none" stroke-width="2.8" opacity="1.000" stroke-linejoin="round" stroke-linecap="round"/>
@@ -155,19 +157,19 @@
 <text x="118.72" y="57.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="118.72" dy="0.00">FOCUS · 중심 업무…</tspan></text>
 <text x="56.00" y="126.50" font-size="36.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="56.00" dy="0.00">회원이 상품을 주문하는 흐름</tspan></text>
 <text x="56.00" y="159.00" font-size="16.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="56.00" dy="0.00">주문 성공의 중심 흐름과 주문이 멈추는 핵심 이유를 이해한다.</tspan></text>
-<a href="[[architecture/atlas/index.md]]"><text x="1712.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1712.00" dy="0.00">Deep Atlas</tspan></text></a>
+<a href="[[architecture/atlas/index.md]]"><text x="1712.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1712.00" dy="0.00">Atlas 목차</tspan></text></a>
 <a href="[[architecture/unknowns.md]]"><text x="1598.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1598.00" dy="0.00">미확인 사항</tspan></text></a>
 <a href="[[architecture/flows/member-place-order-focus.md]]"><text x="1484.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1484.00" dy="0.00">흐름 문서</tspan></text></a>
 <a href="[[architecture/understanding/understand-member-order.md]]"><text x="1370.00" y="100.50" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#667085" opacity="1.000"><tspan x="1370.00" dy="0.00">질문 문서</tspan></text></a>
 <text x="120.00" y="249.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 1</tspan></text>
-<text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">주문 요청 → 주문 접수</tspan></text>
-<text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">주문 요청부터 주문 접수까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
+<text x="180.00" y="250.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">주문 요청 → 현재 주문 가능한 상품인가?</tspan></text>
+<text x="76.00" y="279.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">주문 요청부터 현재 주문 가능한 상품인가?까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
 <text x="120.00" y="549.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#7F56D9" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 2</tspan></text>
-<text x="180.00" y="550.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">재고 확보 → 결제 승인 요청</tspan></text>
-<text x="76.00" y="579.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">재고 확보부터 결제 승인 요청까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
+<text x="180.00" y="550.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">주문 접수 → 재고 확보 완료</tspan></text>
+<text x="76.00" y="579.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">주문 접수부터 재고 확보 완료까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
 <text x="120.00" y="849.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#0E7490" opacity="1.000"><tspan x="120.00" dy="0.00">PHASE 3</tspan></text>
-<text x="180.00" y="850.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">결제가 승인됐는가? → 주문 완료</tspan></text>
-<text x="76.00" y="879.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">결제가 승인됐는가?부터 주문 완료까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
+<text x="180.00" y="850.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="180.00" dy="0.00">결제 승인 요청 → 주문 완료</tspan></text>
+<text x="76.00" y="879.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">결제 승인 요청부터 주문 완료까지 왼쪽에서 오른쪽으로 읽습니다.</tspan></text>
 <text x="48.00" y="1149.00" font-size="24.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="48.00" dy="0.00">흐름이 멈추는 이유와 다음 탐색</tspan></text>
 <text x="76.00" y="1460.88" font-size="21.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="76.00" dy="0.00">이 그림이 답하지 않는 것</tspan></text>
 <text x="76.00" y="1489.00" font-size="13.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="76.00" dy="0.00">관리자 상품 등록 · 판매자 정산 · 추천 상품 생성 · 배송 이후 처리</tspan></text>
@@ -179,35 +181,35 @@
 <text x="867.00" y="443.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="867.00" dy="0.00">조건</tspan></text>
 <a href="[[atlas/flows/member-place-order]]"><text x="581.00" y="389.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="581.00" dy="0.00">회원 유형, 인증 상태, 정지 여부를 확인한다.</tspan></text></a>
 <text x="957.00" y="328.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="957.00" dy="0.00">3</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="1026.00" y="355.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1026.00" dy="0.00">현재 주문 가능한 상품인가?</tspan></text></a>
-<text x="1255.00" y="443.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="1255.00" dy="0.00">조건</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="969.00" y="389.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="969.00" dy="0.00">판매 중이고 판매 기간 안인지 판단한다.</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="1026.00" y="355.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1026.00" dy="0.00">상품 정보 확인</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="969.00" y="389.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="969.00" dy="0.00">판매 상태, 판매 기간, 현재 가격을 읽는다.</tspan></text></a>
 <text x="1345.00" y="328.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="1345.00" dy="0.00">4</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="1414.00" y="355.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1414.00" dy="0.00">주문 접수</tspan></text></a>
-<a href="[[atlas/flows/member-place-order]]"><text x="1357.00" y="389.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1357.00" dy="0.00">상품과 가격을 고정해 주문을 접수 상태로</tspan><tspan x="1357.00" dy="15.00">만든다.</tspan><tspan x="1357.00" dy="15.00">NONE → PENDING</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="1414.00" y="355.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1414.00" dy="0.00">현재 주문 가능한 상품인가?</tspan></text></a>
+<text x="1643.00" y="443.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="1643.00" dy="0.00">조건</tspan></text>
+<a href="[[atlas/flows/member-place-order]]"><text x="1357.00" y="389.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1357.00" dy="0.00">판매 중이고 판매 기간 안인지 판단한다.</tspan></text></a>
 <text x="181.00" y="628.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="181.00" dy="0.00">5</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="250.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="250.00" dy="0.00">재고 확보</tspan></text></a>
-<a href="[[atlas/flows/member-place-order]]"><text x="193.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="193.00" dy="0.00">요청 수량을 주문에 맞춰 원자적으로 예약한다.</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="250.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="250.00" dy="0.00">주문 접수</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="193.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="193.00" dy="0.00">상품과 가격을 고정해 주문을 접수 상태로</tspan><tspan x="193.00" dy="15.00">만든다.</tspan><tspan x="193.00" dy="15.00">NONE → PENDING</tspan></text></a>
 <text x="569.00" y="628.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="569.00" dy="0.00">6</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="638.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="638.00" dy="0.00">재고가 확보됐는가?</tspan></text></a>
-<text x="867.00" y="743.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="867.00" dy="0.00">조건</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="581.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="581.00" dy="0.00">남은 수량이 주문 수량보다 충분한지 확인한다.</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="638.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="638.00" dy="0.00">재고 확보</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="581.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="581.00" dy="0.00">요청 수량을 주문에 맞춰 원자적으로 예약한다.</tspan></text></a>
 <text x="957.00" y="628.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="957.00" dy="0.00">7</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="1026.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1026.00" dy="0.00">재고 확보 완료</tspan></text></a>
-<a href="[[atlas/flows/member-place-order]]"><text x="969.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="969.00" dy="0.00">주문에 재고 예약 정보를 기록한다.</tspan><tspan x="969.00" dy="15.00">PENDING → RESERVED</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="1026.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1026.00" dy="0.00">재고가 확보됐는가?</tspan></text></a>
+<text x="1255.00" y="743.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="1255.00" dy="0.00">조건</tspan></text>
+<a href="[[atlas/flows/member-place-order]]"><text x="969.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="969.00" dy="0.00">남은 수량이 주문 수량보다 충분한지 확인한다.</tspan></text></a>
 <text x="1345.00" y="628.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="1345.00" dy="0.00">8</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="1414.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1414.00" dy="0.00">결제 승인 요청</tspan></text></a>
-<a href="[[atlas/flows/member-place-order]]"><text x="1357.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1357.00" dy="0.00">재고가 확보된 뒤 결제 시스템에 승인을</tspan><tspan x="1357.00" dy="15.00">요청한다.</tspan><tspan x="1357.00" dy="15.00">NONE → REQUESTED</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="1414.00" y="655.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1414.00" dy="0.00">재고 확보 완료</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="1357.00" y="689.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1357.00" dy="0.00">주문에 재고 예약 정보를 기록한다.</tspan><tspan x="1357.00" dy="15.00">PENDING → RESERVED</tspan></text></a>
 <text x="181.00" y="928.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="181.00" dy="0.00">9</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="250.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="250.00" dy="0.00">결제가 승인됐는가?</tspan></text></a>
-<text x="479.00" y="1043.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="479.00" dy="0.00">조건</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="193.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="193.00" dy="0.00">승인, 거절, 응답 없음으로 결과를 나눈다.</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="250.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="250.00" dy="0.00">결제 승인 요청</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="193.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="193.00" dy="0.00">재고가 확보된 뒤 결제 시스템에 승인을</tspan><tspan x="193.00" dy="15.00">요청한다.</tspan><tspan x="193.00" dy="15.00">NONE → REQUESTED</tspan></text></a>
 <text x="569.00" y="928.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="569.00" dy="0.00">10</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="638.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="638.00" dy="0.00">주문 결제 완료</tspan></text></a>
-<a href="[[atlas/flows/member-place-order]]"><text x="581.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="581.00" dy="0.00">결제 승인 정보를 저장하고 주문을 완료한다.</tspan><tspan x="581.00" dy="15.00">RESERVED, REQUESTED →</tspan><tspan x="581.00" dy="15.00">PAID, AUTHORIZED</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="638.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="638.00" dy="0.00">결제가 승인됐는가?</tspan></text></a>
+<text x="867.00" y="1043.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#D97706" opacity="1.000"><tspan x="867.00" dy="0.00">조건</tspan></text>
+<a href="[[atlas/flows/member-place-order]]"><text x="581.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="581.00" dy="0.00">승인, 거절, 응답 없음으로 결과를 나눈다.</tspan></text></a>
 <text x="957.00" y="928.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="957.00" dy="0.00">11</tspan></text>
-<a href="[[atlas/flows/member-place-order]]"><text x="1026.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1026.00" dy="0.00">후속 처리 알림</tspan></text></a>
-<a href="[[atlas/flows/member-place-order]]"><text x="969.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="969.00" dy="0.00">확인·배송 처리를 위해 주문 완료 이벤트를</tspan><tspan x="969.00" dy="15.00">보낸다.</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="1026.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1026.00" dy="0.00">주문 결제 완료</tspan></text></a>
+<a href="[[atlas/flows/member-place-order]]"><text x="969.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="969.00" dy="0.00">결제 승인 정보를 저장하고 주문을 완료한다.</tspan><tspan x="969.00" dy="15.00">RESERVED, REQUESTED →</tspan><tspan x="969.00" dy="15.00">PAID, AUTHORIZED</tspan></text></a>
 <text x="1345.00" y="928.25" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#FFFFFF" opacity="1.000"><tspan x="1345.00" dy="0.00">12</tspan></text>
 <a href="[[atlas/flows/member-place-order]]"><text x="1414.00" y="955.62" font-size="15.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1414.00" dy="0.00">주문 완료</tspan></text></a>
 <a href="[[atlas/flows/member-place-order]]"><text x="1357.00" y="989.00" font-size="12.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1357.00" dy="0.00">회원에게 주문 번호와 완료 상태를 반환한다.</tspan></text></a>
@@ -218,8 +220,8 @@
 <a href="[[atlas/index]]"><text x="1298.00" y="1219.38" font-size="17.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#101828" opacity="1.000"><tspan x="1298.00" dy="0.00">결제 실패·보상·상태 전이를 포함한 전체 지도 열기</tspan></text></a>
 <a href="[[atlas/index]]"><text x="1230.00" y="1260.00" font-size="14.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="start" fill="#667085" opacity="1.000"><tspan x="1230.00" dy="0.00">• 결제 실패·timeout·재고 해제 •</tspan><tspan x="1230.00" dy="17.50">결제 후 주문 취소</tspan></text></a>
 <text x="937.00" y="392.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="937.00" dy="0.00">통과</tspan></text>
-<text x="1325.00" y="392.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="1325.00" dy="0.00">통과</tspan></text>
-<text x="937.00" y="692.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="937.00" dy="0.00">통과</tspan></text>
-<text x="549.00" y="992.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="549.00" dy="0.00">통과</tspan></text>
+<text x="1678.00" y="497.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="1678.00" dy="0.00">통과</tspan></text>
+<text x="1325.00" y="692.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="1325.00" dy="0.00">통과</tspan></text>
+<text x="937.00" y="992.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#4F46E5" opacity="1.000"><tspan x="937.00" dy="0.00">통과</tspan></text>
 <text x="1325.00" y="992.12" font-size="11.00" font-family="NanumGothic, Noto Sans CJK KR, Apple SD Gothic Neo, Arial, sans-serif" text-anchor="middle" fill="#0E7490" opacity="1.000"><tspan x="1325.00" dy="0.00">비동기</tspan></text>
 </svg>

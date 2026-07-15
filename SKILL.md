@@ -1,10 +1,74 @@
 ---
 name: im-code-map
 description: Human-first, evidence-grounded codebase understanding. Defaults to a question-scoped Focus map, preserves a full Deep Atlas, and supports either local CodeGraph analysis or immutable remote repository snapshots. Generates progressive Excalidraw views, linked Obsidian notes, machine-readable evidence, explicit unknowns, and render-based visual QA.
-version: 5.2.0
+version: 5.3.0
 ---
 
-# im-code-map v5.2.0
+# im-code-map v5.3.0
+
+## v5.3 기본 실행 계약
+
+### 1. 출력 위치와 도구를 먼저 정한다
+
+대화형 실행에서는 비싼 전체 분석에 들어가기 전에 다음을 한 번만 확인한다.
+
+- Obsidian vault에 넣을지, 일반 폴더로 받을지
+- Excalidraw 편집 파일이 필요한지
+- 사용자가 지정한 출력 경로가 있는지
+
+경로가 없으면 임의의 vault를 선택하지 않는다. 대신 portable output directory를 만들고 그 위치를 명시한다. 비대화형 실행에서는 이 portable 방식이 기본이다.
+
+### 2. 분석 범위를 선택한다
+
+- `guided` — 기본값. 빠른 scan과 bounded overview를 먼저 만들고, 관련 도메인·흐름을 expansion point로 남긴다. 사용자가 고른 영역부터 심층 분석한다.
+- `full` — 모든 주요 도메인과 핵심 흐름을 일괄 분석해 Deep Atlas를 만든다. 감사, 인수, 대규모 변경 또는 명시적 요청에 사용한다.
+- `focus` — 하나의 기능, 변경, 오류 또는 업무 흐름만 끝까지 추적한다.
+
+대화형으로 선택을 받을 수 없는 자동화에서는 `guided`로 시작한다. 전체를 이해했다고 꾸미지 말고 `coverage.json`에 확인한 범위와 미확인 영역을 남긴다.
+
+## v5.3 지도 생성 파이프라인
+
+```text
+repository evidence
+→ detailed semantic model
+→ bounded overview projection
+→ fixed deterministic layout
+→ clean Excalidraw / SVG / PNG
+→ linked notes and Deep Atlas
+```
+
+첫 지도는 상세 모델을 그대로 그리지 않는다. `scripts/build_bounded_overview_map.py`가 다음 제한을 가진 별도 overview contract를 만든 뒤 `scripts/render_clean_excalidraw_map.py`가 배치와 스타일을 소유한다.
+
+- Overview/Focus: 최대 24 nodes, 48 edges, 6 groups
+- 권장 기본값: 12–20 nodes, 18–36 edges, 3–4 groups
+- node label 28자, supporting line 44자, edge label 24자
+- model, tool, rule, state, evidence, technology leaf는 가능한 경우 owner card 안에 최대 4개까지 접는다
+- 순차 단계는 세로 stack group으로, group은 왼쪽에서 오른쪽으로 배치한다
+- group 사이의 edge channel을 공유하고 recovery/back edge는 중심 흐름 아래로 우회한다
+- raw UUID, 긴 symbol, 파일 경로는 overview에 표시하지 않고 detail/evidence note로 이동한다
+
+Deep Atlas의 의미 모델과 증거는 축약하지 않는다. 24-node 제한은 사람에게 처음 보이는 지도에만 적용된다.
+
+### 기본 생성 명령
+
+```bash
+python scripts/build_clean_map_bundle.py \
+  --input architecture/machine/map-model.json \
+  --output-dir architecture/overview \
+  --project-name "<project>" \
+  --question "<what the reader needs to understand>" \
+  --profile orientation
+```
+
+기존 Atlas drawing도 최종 렌더 전에 다음 정리 단계를 적용할 수 있다.
+
+```bash
+python scripts/polish_excalidraw.py \
+  --input architecture/atlas/excalidraw \
+  --output architecture/atlas/excalidraw-clean
+```
+
+`validate_bounded_overview_map.py`와 `validate_clean_excalidraw.py`를 모두 통과해야 overview 완료로 판정한다.
 
 ## 1. Mission
 
